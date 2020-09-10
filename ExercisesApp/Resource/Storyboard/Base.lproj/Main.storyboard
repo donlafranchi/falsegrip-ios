@@ -398,20 +398,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-g3-tej">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="32" width="414" height="682"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="tcU-4R-qEb">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="156.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekl-tx-euw">
-                                            <rect key="frame" x="28" y="20" width="358" height="20.5"/>
-                                            <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="16"/>
-                                            <color key="textColor" name="MainColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RI0-VO-9Dd" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="56.5" width="382" height="80"/>
+                                            <rect key="frame" x="16" y="8" width="382" height="80"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nkT-eW-Wji">
                                                     <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
@@ -453,13 +447,13 @@
                                                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8cm-Wj-SoA">
                                                                     <rect key="frame" x="27.5" y="11.5" width="72.5" height="30.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="55.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-7n-4MB">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-7n-4MB">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="30.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUO-O8-K8u">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUO-O8-K8u">
                                                                             <rect key="frame" x="54" y="10" width="18.5" height="18"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="14"/>
                                                                             <color key="textColor" name="MainColor"/>
@@ -542,17 +536,14 @@
                                     <color key="backgroundColor" name="BackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="RI0-VO-9Dd" firstAttribute="leading" secondItem="tcU-4R-qEb" secondAttribute="leading" constant="16" id="2E5-8E-1ef"/>
-                                        <constraint firstItem="RI0-VO-9Dd" firstAttribute="top" secondItem="ekl-tx-euw" secondAttribute="bottom" constant="16" id="Uz5-ht-UD2"/>
-                                        <constraint firstAttribute="trailing" secondItem="ekl-tx-euw" secondAttribute="trailing" constant="28" id="Xzg-Z0-DT9"/>
+                                        <constraint firstItem="RI0-VO-9Dd" firstAttribute="top" secondItem="tcU-4R-qEb" secondAttribute="top" constant="8" id="Hig-Z8-hlr"/>
                                         <constraint firstAttribute="bottom" secondItem="RI0-VO-9Dd" secondAttribute="bottom" constant="20" id="gJH-dV-eWc"/>
-                                        <constraint firstItem="ekl-tx-euw" firstAttribute="top" secondItem="tcU-4R-qEb" secondAttribute="top" constant="20" id="gp3-2Z-I9A"/>
                                         <constraint firstAttribute="trailing" secondItem="RI0-VO-9Dd" secondAttribute="trailing" constant="16" id="hfi-dR-j1o"/>
-                                        <constraint firstItem="ekl-tx-euw" firstAttribute="leading" secondItem="tcU-4R-qEb" secondAttribute="leading" constant="28" id="qVr-6b-1jD"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ExercisesTVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ExercisesTVCell" rowHeight="160" id="4Uz-hC-H1T" customClass="ExercisesTVCell" customModule="ExercisesApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="160"/>
+                                        <rect key="frame" x="0.0" y="136" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Uz-hC-H1T" id="cTt-ZZ-j9Z">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -720,6 +711,46 @@
                                     <outlet property="delegate" destination="8Bg-A3-usH" id="wMv-bD-9wI"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1A-0h-thQ" customClass="TagListView" customModule="TagListView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.16862745583057404" green="0.16862745583057404" blue="0.22352941334247589" alpha="0.69877860915492962" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                        <color key="value" red="0.16862745583057404" green="0.16862745583057404" blue="0.22352941334247589" alpha="0.69877860920000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                        <color key="value" red="0.93725490570068359" green="0.93725490570068359" blue="0.93725490570068359" alpha="0.50385123239436624" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagHighlightedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableRemoveButton" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marginY">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marginX">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-Bq-Fso" customClass="GradientButton" customModule="ExercisesApp" customModuleProvider="target">
                                 <rect key="frame" x="16" y="730" width="382" height="48"/>
                                 <color key="backgroundColor" name="startColor"/>
@@ -743,11 +774,14 @@
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jNe-Bq-Fso" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" constant="16" id="22h-4v-6xa"/>
+                            <constraint firstItem="qlW-g3-tej" firstAttribute="top" secondItem="p1A-0h-thQ" secondAttribute="bottom" id="6vt-MT-6LU"/>
                             <constraint firstItem="qlW-g3-tej" firstAttribute="trailing" secondItem="d5m-NT-Uhf" secondAttribute="trailing" id="OkT-xL-MpZ"/>
                             <constraint firstItem="d5m-NT-Uhf" firstAttribute="trailing" secondItem="jNe-Bq-Fso" secondAttribute="trailing" constant="16" id="Rwi-j6-tBn"/>
+                            <constraint firstItem="p1A-0h-thQ" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" id="Sxz-am-bSc"/>
                             <constraint firstItem="jNe-Bq-Fso" firstAttribute="top" secondItem="qlW-g3-tej" secondAttribute="bottom" constant="16" id="TW3-q4-rId"/>
                             <constraint firstItem="qlW-g3-tej" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" id="aUB-QH-eBQ"/>
-                            <constraint firstItem="qlW-g3-tej" firstAttribute="top" secondItem="d5m-NT-Uhf" secondAttribute="top" id="oAV-Zd-i0R"/>
+                            <constraint firstItem="p1A-0h-thQ" firstAttribute="top" secondItem="d5m-NT-Uhf" secondAttribute="top" id="ltm-cs-6wo"/>
+                            <constraint firstItem="d5m-NT-Uhf" firstAttribute="trailing" secondItem="p1A-0h-thQ" secondAttribute="trailing" id="mhe-A1-nN9"/>
                             <constraint firstAttribute="bottom" secondItem="jNe-Bq-Fso" secondAttribute="bottom" constant="30" id="taR-Og-nHn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d5m-NT-Uhf"/>
@@ -761,9 +795,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="lblTitle" destination="ekl-tx-euw" id="2ce-1K-uos"/>
                         <outlet property="noteBtn" destination="Ci2-tA-qwD" id="J37-mo-x7J"/>
                         <outlet property="tableView" destination="qlW-g3-tej" id="gf0-SR-Mze"/>
+                        <outlet property="tagView" destination="p1A-0h-thQ" id="bSW-xW-0ei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tM-9o-YGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

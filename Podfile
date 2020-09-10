@@ -18,4 +18,5 @@ target 'ExercisesApp' do
     pod 'ASPVideoPlayer'
     pod 'FittedSheets', '~>1.4.5'
     pod 'TTGTagCollectionView'
+    pod 'TagListView'
 end

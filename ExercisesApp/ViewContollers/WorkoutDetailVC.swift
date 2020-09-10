@@ -8,13 +8,13 @@
 
 import UIKit
 import FittedSheets
-
+import TagListView
 
 class WorkoutDetailVC: UIViewController {
 
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var tagView: TagListView!
     @IBOutlet weak var noteBtn: UIButton!
     let titles = ["Push","Pull","Abs","Legs"]
     
@@ -22,10 +22,18 @@ class WorkoutDetailVC: UIViewController {
     var addSetVC = AddSetVC()
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = titles.joined(separator: "     ")
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
         setUpBottomSlider()
+        initTagView()
+    }
+    
+    func initTagView(){
+        
+        tagView.textFont = UIFont(name: "Mulish-Medium", size: 16)!
+        tagView.alignment = .center
+        tagView.removeAllTags()
+        tagView.addTags(titles)
     }
     
     
