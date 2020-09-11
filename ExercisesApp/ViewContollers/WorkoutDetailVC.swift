@@ -9,6 +9,7 @@
 import UIKit
 import FittedSheets
 import TagListView
+import EasyTipView
 
 class WorkoutDetailVC: UIViewController {
 
@@ -16,16 +17,50 @@ class WorkoutDetailVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tagView: TagListView!
     @IBOutlet weak var noteBtn: UIButton!
+    @IBOutlet weak var batteryImgView: UIImageView!    
+    @IBOutlet weak var weightImgView: UIImageView!
+    @IBOutlet weak var lblWeight: UILabel!
+    @IBOutlet weak var noteImgView: UIImageView!
+    @IBOutlet weak var weightView: UIStackView!
+    
+    
     let titles = ["Push","Pull","Abs","Legs"]
     
     var sheetController = SheetViewController()
     var addSetVC = AddSetVC()
+    var preferences = EasyTipView.Preferences()
+    var note = NoteModel(){
+        didSet{
+            switch note.energyLevel {
+            case 0:
+                batteryImgView.image = UIImage(named: "battery_empty")
+            case 1:
+                batteryImgView.image = UIImage(named: "battery1")
+            case 2:
+                batteryImgView.image = UIImage(named: "battery2")
+            case 3:
+                batteryImgView.image = UIImage(named: "battery3")
+            case 4:
+                batteryImgView.image = UIImage(named: "battery4")
+            case 5:
+                batteryImgView.image = UIImage(named: "battery5")
+            default:
+                break
+            }
+            
+            weightImgView.isHidden = note.weight > 0
+            weightView.isHidden = !(note.weight > 0)
+            lblWeight.text = "\(note.weight)"
+            noteImgView.image = note.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes") 
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
         setUpBottomSlider()
         initTagView()
+        setTipView()
     }
     
     func initTagView(){
@@ -36,6 +71,14 @@ class WorkoutDetailVC: UIViewController {
         tagView.addTags(titles)
     }
     
+    func setTipView(){
+        
+
+        preferences.drawing.font = UIFont(name: "Mulish-Medium", size: 16)!
+        preferences.drawing.foregroundColor = MAIN_COLOR!
+        preferences.drawing.backgroundColor = BACKGROUND_COLOR!
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+    }
     
     func setUpBottomSlider(){
         
@@ -77,6 +120,10 @@ class WorkoutDetailVC: UIViewController {
     
     @IBAction func didTapNote(_ sender: Any) {
         noteBtn.backgroundColor = UNSELECT_COLOR
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StatusVC") as! StatusVC
+        vc.delegate = self
+        vc.note = self.note
+        navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func didDownNote(_ sender: Any) {
         noteBtn.backgroundColor = SELECT_COLOR
@@ -87,6 +134,18 @@ class WorkoutDetailVC: UIViewController {
         self.present(sheetController, animated: false, completion: nil)
     }
     
+    @IBAction func tapNote(_ sender: Any) {
+        
+//        if !self.note.comments.isEmpty {
+//            
+//            EasyTipView.globalPreferences = preferences
+//            EasyTipView.show(forView: noteImgView, text: note.comments)
+//        }else{
+//            didTapNote(self)
+//        }
+        didTapNote(self)
+    }
+
 }
 
 
@@ -130,5 +189,12 @@ extension WorkoutDetailVC: AddSetVCDelegate{
     
     func cancel() {
         self.sheetController.closeSheet()
+    }
+}
+
+extension WorkoutDetailVC: StatusVCDelegate{
+    
+    func saveNote(_ note: NoteModel) {
+        self.note = note
     }
 }

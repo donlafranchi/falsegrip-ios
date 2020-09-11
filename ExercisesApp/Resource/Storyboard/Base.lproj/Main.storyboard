@@ -15,6 +15,9 @@
         <array key="Mulish-ExtraBold.ttf">
             <string>Mulish-ExtraBold</string>
         </array>
+        <array key="Mulish-Light.ttf">
+            <string>Mulish-Light</string>
+        </array>
         <array key="Mulish-Medium.ttf">
             <string>Mulish-Medium</string>
         </array>
@@ -60,7 +63,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make your self Perfect!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="333-Xs-maw">
-                                <rect key="frame" x="20" y="350.5" width="374" height="35.5"/>
+                                <rect key="frame" x="20" y="351.5" width="374" height="33"/>
                                 <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="28"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -97,22 +100,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXz-dT-vL2" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
-                                <rect key="frame" x="35" y="324" width="344" height="248"/>
+                                <rect key="frame" x="35" y="326" width="344" height="244.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhH-Ay-Tas">
-                                        <rect key="frame" x="16" y="65.5" width="75.5" height="20.5"/>
+                                        <rect key="frame" x="16" y="63.5" width="72.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                         <color key="textColor" name="MainColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lr1-84-izP">
-                                        <rect key="frame" x="98.5" y="20" width="147.5" height="25.5"/>
+                                        <rect key="frame" x="102.5" y="20" width="139.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="20"/>
                                         <color key="textColor" name="MainColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txU-UP-FWj">
-                                        <rect key="frame" x="16" y="94" width="312" height="40"/>
+                                        <rect key="frame" x="16" y="90.5" width="312" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="EIY-f3-6dw"/>
                                         </constraints>
@@ -130,7 +133,7 @@
                                         </connections>
                                     </textField>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tu-ZS-xxH" customClass="LGButton" customModule="LGButton">
-                                        <rect key="frame" x="16" y="184" width="312" height="48"/>
+                                        <rect key="frame" x="16" y="180.5" width="312" height="48"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="xs5-mY-2jJ"/>
@@ -215,7 +218,7 @@
             <objects>
                 <viewController storyboardIdentifier="WorkoutHistoryVC" title="WorkoutHistoryVC" id="agd-0h-zla" customClass="WorkoutHistoryVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zin-zP-Cmd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7q-mR-C6W">
@@ -244,16 +247,16 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="KEZ-Ye-Xlw">
-                                                                    <rect key="frame" x="20" y="22.5" width="31.5" height="48.5"/>
+                                                                    <rect key="frame" x="20" y="24.5" width="29" height="44.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPS-XP-JWv">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="31.5" height="33"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="30.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="26"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy5-3L-qnG">
-                                                                            <rect key="frame" x="0.0" y="33" width="31.5" height="15.5"/>
+                                                                            <rect key="frame" x="0.0" y="30.5" width="29" height="14"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="12"/>
                                                                             <color key="textColor" name="SubColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -261,13 +264,13 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push / Pull / Legs" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHA-6T-34x">
-                                                                    <rect key="frame" x="71.5" y="18" width="294.5" height="18"/>
+                                                                    <rect key="frame" x="69" y="18" width="297" height="16.5"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="14"/>
                                                                     <color key="textColor" name="MainColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push ups, Pull ups" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgZ-Mk-dDv">
-                                                                    <rect key="frame" x="71.5" y="46" width="101" height="15.5"/>
+                                                                    <rect key="frame" x="69" y="44.5" width="100" height="14"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -389,12 +392,403 @@
             </objects>
             <point key="canvasLocation" x="2185.507246376812" y="105.80357142857143"/>
         </scene>
+        <!--Status-->
+        <scene sceneID="fr4-uG-GCF">
+            <objects>
+                <viewController storyboardIdentifier="StatusVC" id="IPs-Az-MUg" customClass="StatusVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vef-Lb-IUH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grp-oJ-0sW">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HnZ-rz-n4y">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8c-Z3-EP7">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="197"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dE-aq-WpW">
+                                                        <rect key="frame" x="16" y="20" width="49.5" height="27"/>
+                                                        <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="16"/>
+                                                        <color key="textColor" name="MainColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gre-bY-8se" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="61" width="382" height="120"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="nQG-Su-SYv">
+                                                                <rect key="frame" x="36" y="25" width="310" height="48"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e8-KZ-Bdb">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="36.5" height="48"/>
+                                                                        <color key="backgroundColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="j8b-yx-W0h"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="dOI-mT-XvQ" appends="YES" id="rIu-RX-GgR"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZD-SI-jad">
+                                                                        <rect key="frame" x="68.5" y="0.0" width="36.5" height="48"/>
+                                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="Rg8-NH-J7Z"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="dH7-QY-P1U" appends="YES" id="i3H-eg-rZC"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rs5-Hh-FBE">
+                                                                        <rect key="frame" x="137" y="0.0" width="36" height="48"/>
+                                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="jgf-eB-mM8"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="aO5-sq-arW" appends="YES" id="D6z-XA-Mjg"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-fT-BRu">
+                                                                        <rect key="frame" x="205" y="0.0" width="36.5" height="48"/>
+                                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="0PX-5T-pqM"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="eEC-0Z-BaX" appends="YES" id="KNM-qY-Ft2"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDX-Xq-vID">
+                                                                        <rect key="frame" x="273.5" y="0.0" width="36.5" height="48"/>
+                                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="aSO-3y-VdN"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outletCollection property="gestureRecognizers" destination="E9h-tQ-yO0" appends="YES" id="XsG-6Y-kST"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very tired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-W7-EHj">
+                                                                <rect key="frame" x="29" y="85" width="50.5" height="14"/>
+                                                                <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
+                                                                <color key="textColor" name="SubColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full of energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPJ-G1-NGv">
+                                                                <rect key="frame" x="291.5" y="85" width="72.5" height="14"/>
+                                                                <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
+                                                                <color key="textColor" name="SubColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="nQG-Su-SYv" firstAttribute="top" secondItem="Gre-bY-8se" secondAttribute="top" constant="25" id="8KU-EE-0LF"/>
+                                                            <constraint firstAttribute="height" constant="120" id="AQL-Hp-hjL"/>
+                                                            <constraint firstItem="Av3-W7-EHj" firstAttribute="centerX" secondItem="3e8-KZ-Bdb" secondAttribute="centerX" id="Db1-Hn-DC4"/>
+                                                            <constraint firstAttribute="trailing" secondItem="nQG-Su-SYv" secondAttribute="trailing" constant="36" id="UNk-gW-BEO"/>
+                                                            <constraint firstItem="Av3-W7-EHj" firstAttribute="top" secondItem="nQG-Su-SYv" secondAttribute="bottom" constant="12" id="Vvo-jb-9qn"/>
+                                                            <constraint firstItem="nQG-Su-SYv" firstAttribute="leading" secondItem="Gre-bY-8se" secondAttribute="leading" constant="36" id="bLC-Hk-Wez"/>
+                                                            <constraint firstItem="pPJ-G1-NGv" firstAttribute="centerX" secondItem="gDX-Xq-vID" secondAttribute="centerX" id="feT-Ja-rlK"/>
+                                                            <constraint firstItem="pPJ-G1-NGv" firstAttribute="centerY" secondItem="Av3-W7-EHj" secondAttribute="centerY" id="k3e-Ob-Ufa"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Gre-bY-8se" secondAttribute="trailing" constant="16" id="CMJ-og-Yvl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Gre-bY-8se" secondAttribute="bottom" constant="16" id="OdJ-qE-zy0"/>
+                                                    <constraint firstItem="Gre-bY-8se" firstAttribute="leading" secondItem="v8c-Z3-EP7" secondAttribute="leading" constant="16" id="QjX-Rt-Box"/>
+                                                    <constraint firstItem="1dE-aq-WpW" firstAttribute="top" secondItem="v8c-Z3-EP7" secondAttribute="top" constant="20" id="ZSL-KJ-6dp"/>
+                                                    <constraint firstItem="1dE-aq-WpW" firstAttribute="leading" secondItem="v8c-Z3-EP7" secondAttribute="leading" constant="16" id="lO5-6W-R1h"/>
+                                                    <constraint firstItem="Gre-bY-8se" firstAttribute="top" secondItem="1dE-aq-WpW" secondAttribute="bottom" constant="14" id="sx3-Z4-tZT"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fv7-ng-0Qj">
+                                                <rect key="frame" x="0.0" y="197" width="414" height="124.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BE-X8-Ycd">
+                                                        <rect key="frame" x="16" y="4" width="49.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="16"/>
+                                                        <color key="textColor" name="MainColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rua-34-odF" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="38.5" width="382" height="70"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="x2w-Vi-NPQ">
+                                                                <rect key="frame" x="156.5" y="21" width="69.5" height="28"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vee-ye-YGu">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="28"/>
+                                                                        <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOm-7j-3LQ">
+                                                                        <rect key="frame" x="52" y="8" width="17.5" height="19"/>
+                                                                        <fontDescription key="fontDescription" name="Mulish-Light" family="Mulish" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UN9-Ei-Iit">
+                                                                <rect key="frame" x="256" y="23" width="24" height="24"/>
+                                                                <state key="normal" image="plus"/>
+                                                                <connections>
+                                                                    <action selector="didTapPlus:" destination="IPs-Az-MUg" eventType="touchUpInside" id="4WL-nR-83K"/>
+                                                                    <outletCollection property="gestureRecognizers" destination="0e2-AI-vNH" appends="YES" id="WPx-FB-Xxv"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfN-nL-7ag">
+                                                                <rect key="frame" x="102.5" y="23" width="24" height="24"/>
+                                                                <state key="normal" image="minus"/>
+                                                                <connections>
+                                                                    <action selector="didTapMinuse:" destination="IPs-Az-MUg" eventType="touchUpInside" id="h1X-Kp-zKM"/>
+                                                                    <outletCollection property="gestureRecognizers" destination="5Pl-Vb-ZAo" appends="YES" id="qEq-l4-N9A"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="UN9-Ei-Iit" firstAttribute="leading" secondItem="x2w-Vi-NPQ" secondAttribute="trailing" constant="30" id="HjW-oU-IHG"/>
+                                                            <constraint firstAttribute="height" constant="70" id="QL0-qq-5fa"/>
+                                                            <constraint firstItem="x2w-Vi-NPQ" firstAttribute="centerY" secondItem="Rua-34-odF" secondAttribute="centerY" id="Yjc-8d-WOd"/>
+                                                            <constraint firstItem="x2w-Vi-NPQ" firstAttribute="leading" secondItem="SfN-nL-7ag" secondAttribute="trailing" constant="30" id="ZkW-9R-vDW"/>
+                                                            <constraint firstItem="UN9-Ei-Iit" firstAttribute="centerY" secondItem="x2w-Vi-NPQ" secondAttribute="centerY" id="ZxT-en-dxf"/>
+                                                            <constraint firstItem="SfN-nL-7ag" firstAttribute="centerY" secondItem="x2w-Vi-NPQ" secondAttribute="centerY" id="oOP-1h-o0D"/>
+                                                            <constraint firstItem="x2w-Vi-NPQ" firstAttribute="centerX" secondItem="Rua-34-odF" secondAttribute="centerX" id="sI6-d1-fhq"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Rua-34-odF" firstAttribute="leading" secondItem="fv7-ng-0Qj" secondAttribute="leading" constant="16" id="Cma-cs-tKW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Rua-34-odF" secondAttribute="bottom" constant="16" id="hqX-8U-ERQ"/>
+                                                    <constraint firstItem="5BE-X8-Ycd" firstAttribute="top" secondItem="fv7-ng-0Qj" secondAttribute="top" constant="4" id="n93-gx-777"/>
+                                                    <constraint firstItem="5BE-X8-Ycd" firstAttribute="leading" secondItem="fv7-ng-0Qj" secondAttribute="leading" constant="16" id="pbc-s0-OdX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Rua-34-odF" secondAttribute="trailing" constant="16" id="tp5-pd-hyi"/>
+                                                    <constraint firstItem="Rua-34-odF" firstAttribute="top" secondItem="5BE-X8-Ycd" secondAttribute="bottom" constant="14" id="u19-Dr-Nqo"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQK-io-poH">
+                                                <rect key="frame" x="0.0" y="321.5" width="414" height="370.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdg-Ve-qnG">
+                                                        <rect key="frame" x="16" y="4" width="42.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="16"/>
+                                                        <color key="textColor" name="MainColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-WM-i9S" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="38.5" width="382" height="316"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="olQ-mV-Kl9" customClass="GrowingTextView" customModule="GrowingTextView">
+                                                                <rect key="frame" x="8" y="8" width="366" height="300"/>
+                                                                <color key="backgroundColor" name="BackgroundColor"/>
+                                                                <color key="textColor" name="MainColor"/>
+                                                                <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
+                                                                        <real key="value" value="300"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                                        <integer key="value" value="1000"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter your notes here"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" name="SubColor"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="olQ-mV-Kl9" firstAttribute="top" secondItem="zGi-WM-i9S" secondAttribute="top" constant="8" id="4Ek-6I-EqF"/>
+                                                            <constraint firstAttribute="bottom" secondItem="olQ-mV-Kl9" secondAttribute="bottom" constant="8" id="LMt-qS-btU"/>
+                                                            <constraint firstItem="olQ-mV-Kl9" firstAttribute="leading" secondItem="zGi-WM-i9S" secondAttribute="leading" constant="8" id="h3M-Ms-8vc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="olQ-mV-Kl9" secondAttribute="trailing" constant="8" id="rc5-cB-PNx"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="zGi-WM-i9S" firstAttribute="leading" secondItem="uQK-io-poH" secondAttribute="leading" constant="16" id="1Mb-S7-iwa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zGi-WM-i9S" secondAttribute="trailing" constant="16" id="E5G-AT-lzN"/>
+                                                    <constraint firstItem="Pdg-Ve-qnG" firstAttribute="top" secondItem="uQK-io-poH" secondAttribute="top" constant="4" id="P7C-eK-kLN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zGi-WM-i9S" secondAttribute="bottom" constant="16" id="TC4-82-RdZ"/>
+                                                    <constraint firstItem="zGi-WM-i9S" firstAttribute="top" secondItem="Pdg-Ve-qnG" secondAttribute="bottom" constant="14" id="mO8-Kz-IPv"/>
+                                                    <constraint firstItem="Pdg-Ve-qnG" firstAttribute="leading" secondItem="uQK-io-poH" secondAttribute="leading" constant="16" id="q2Z-g5-3F4"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="HnZ-rz-n4y" firstAttribute="top" secondItem="grp-oJ-0sW" secondAttribute="top" id="2iJ-FM-Kyf"/>
+                                    <constraint firstItem="HnZ-rz-n4y" firstAttribute="leading" secondItem="grp-oJ-0sW" secondAttribute="leading" id="5cy-9x-5ex"/>
+                                    <constraint firstAttribute="trailing" secondItem="HnZ-rz-n4y" secondAttribute="trailing" id="Xrb-7I-dDo"/>
+                                    <constraint firstAttribute="bottom" secondItem="HnZ-rz-n4y" secondAttribute="bottom" id="toV-uF-wn3"/>
+                                    <constraint firstItem="HnZ-rz-n4y" firstAttribute="width" secondItem="grp-oJ-0sW" secondAttribute="width" id="v45-zn-1SR"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="wRx-9z-hmH"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="mvr-iz-fhV"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYB-Qd-0qr" customClass="GradientButton" customModule="ExercisesApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="730" width="382" height="48"/>
+                                <color key="backgroundColor" name="startColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="dwP-di-a3J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksTobounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapSave:" destination="IPs-Az-MUg" eventType="touchUpInside" id="64W-n7-DCc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mYB-Qd-0qr" firstAttribute="leading" secondItem="KuY-zR-lUT" secondAttribute="leading" constant="16" id="6Cq-IZ-jcC"/>
+                            <constraint firstItem="grp-oJ-0sW" firstAttribute="top" secondItem="KuY-zR-lUT" secondAttribute="top" id="6NU-8y-WEG"/>
+                            <constraint firstItem="grp-oJ-0sW" firstAttribute="trailing" secondItem="KuY-zR-lUT" secondAttribute="trailing" id="FGo-l6-geI"/>
+                            <constraint firstAttribute="bottom" secondItem="mYB-Qd-0qr" secondAttribute="bottom" constant="30" id="hjH-Ks-dlY"/>
+                            <constraint firstAttribute="bottom" secondItem="grp-oJ-0sW" secondAttribute="bottom" id="lW0-TX-MS2"/>
+                            <constraint firstItem="KuY-zR-lUT" firstAttribute="trailing" secondItem="mYB-Qd-0qr" secondAttribute="trailing" constant="16" id="psm-ib-gFq"/>
+                            <constraint firstItem="grp-oJ-0sW" firstAttribute="leading" secondItem="KuY-zR-lUT" secondAttribute="leading" id="qLn-ra-42Q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KuY-zR-lUT"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Status" id="muA-rB-TjX">
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="kTI-dc-sxx">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapBack:" destination="IPs-Az-MUg" id="b11-VH-N84"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="lblWeight" destination="vee-ye-YGu" id="sAI-hO-9sN"/>
+                        <outlet property="notesTextView" destination="olQ-mV-Kl9" id="hOt-xH-jLM"/>
+                        <outletCollection property="energyViews" destination="3e8-KZ-Bdb" collectionClass="NSMutableArray" id="YR3-g9-lXI"/>
+                        <outletCollection property="energyViews" destination="4ZD-SI-jad" collectionClass="NSMutableArray" id="Zor-ya-sRq"/>
+                        <outletCollection property="energyViews" destination="rs5-Hh-FBE" collectionClass="NSMutableArray" id="d32-fP-Pak"/>
+                        <outletCollection property="energyViews" destination="kzI-fT-BRu" collectionClass="NSMutableArray" id="nr2-Q6-iWN"/>
+                        <outletCollection property="energyViews" destination="gDX-Xq-vID" collectionClass="NSMutableArray" id="Vmy-dR-dAp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RgC-Ay-wTI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dOI-mT-XvQ">
+                    <connections>
+                        <action selector="tapEnergy1:" destination="IPs-Az-MUg" id="SyD-LQ-ciC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="dH7-QY-P1U">
+                    <connections>
+                        <action selector="tapEnergy2:" destination="IPs-Az-MUg" id="WKs-h3-rPD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="aO5-sq-arW">
+                    <connections>
+                        <action selector="tapEnergy3:" destination="IPs-Az-MUg" id="rt5-zC-VQ9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="eEC-0Z-BaX">
+                    <connections>
+                        <action selector="tapEnergy4:" destination="IPs-Az-MUg" id="hjR-i2-Z8l"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="E9h-tQ-yO0">
+                    <connections>
+                        <action selector="tapEnergy5:" destination="IPs-Az-MUg" id="Ef0-TQ-HMk"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5Pl-Vb-ZAo">
+                    <connections>
+                        <action selector="longPressMinus:" destination="IPs-Az-MUg" id="bIk-yQ-3EF"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="0e2-AI-vNH">
+                    <connections>
+                        <action selector="longPressPlus:" destination="IPs-Az-MUg" id="HqN-H9-2Sk"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1515.9420289855075" y="775.44642857142856"/>
+        </scene>
         <!--Workout details-->
         <scene sceneID="PHU-xK-3dc">
             <objects>
                 <viewController storyboardIdentifier="WorkoutDetailVC" id="8Bg-A3-usH" customClass="WorkoutDetailVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pft-1U-PqG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-g3-tej">
@@ -407,20 +801,20 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RI0-VO-9Dd" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
                                             <rect key="frame" x="16" y="8" width="382" height="80"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nkT-eW-Wji">
+                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nkT-eW-Wji">
                                                     <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1d-n6-INH">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1d-n6-INH">
                                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="80"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-6J-f3q">
-                                                                    <rect key="frame" x="6" y="52.5" width="115.5" height="15.5"/>
+                                                                    <rect key="frame" x="6" y="54" width="115.5" height="14"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_empty" translatesAutoresizingMaskIntoConstraints="NO" id="ShB-am-b5q">
-                                                                    <rect key="frame" x="46" y="16.5" width="35" height="24"/>
+                                                                    <rect key="frame" x="46" y="18" width="35" height="24"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -432,29 +826,29 @@
                                                                 <constraint firstAttribute="bottom" secondItem="3Ep-6J-f3q" secondAttribute="bottom" constant="12" id="etu-ny-hTG"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgs-b8-sjE">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgs-b8-sjE">
                                                             <rect key="frame" x="127.5" y="0.0" width="127" height="80"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3C-PW-Vh0">
-                                                                    <rect key="frame" x="6" y="52.5" width="115" height="15.5"/>
+                                                                    <rect key="frame" x="6" y="54" width="115" height="14"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weight_empty" translatesAutoresizingMaskIntoConstraints="NO" id="ffm-rB-fPd">
-                                                                    <rect key="frame" x="49.5" y="12.5" width="28" height="28"/>
+                                                                    <rect key="frame" x="49.5" y="14" width="28" height="28"/>
                                                                 </imageView>
                                                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8cm-Wj-SoA">
-                                                                    <rect key="frame" x="27.5" y="11.5" width="72.5" height="30.5"/>
+                                                                    <rect key="frame" x="29.5" y="14" width="68.5" height="28"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-7n-4MB">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="30.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="55.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-7n-4MB">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="47" height="28"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUO-O8-K8u">
-                                                                            <rect key="frame" x="54" y="10" width="18.5" height="18"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUO-O8-K8u">
+                                                                            <rect key="frame" x="51" y="9.5" width="17.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="14"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -473,17 +867,17 @@
                                                                 <constraint firstItem="O3C-PW-Vh0" firstAttribute="top" secondItem="ffm-rB-fPd" secondAttribute="bottom" constant="12" id="paR-DB-qEE"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePQ-Jw-Dol">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePQ-Jw-Dol">
                                                             <rect key="frame" x="254.5" y="0.0" width="127.5" height="80"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-r1-H8P">
-                                                                    <rect key="frame" x="6" y="52.5" width="115.5" height="15.5"/>
+                                                                    <rect key="frame" x="6" y="54" width="115.5" height="14"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notes_empty" translatesAutoresizingMaskIntoConstraints="NO" id="aTN-pv-ZZ9">
-                                                                    <rect key="frame" x="48" y="12.5" width="32" height="28"/>
+                                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notes_empty" translatesAutoresizingMaskIntoConstraints="NO" id="aTN-pv-ZZ9">
+                                                                    <rect key="frame" x="48" y="14" width="32" height="28"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -513,17 +907,27 @@
                                                         <action selector="noteCancel:" destination="8Bg-A3-usH" eventType="touchCancel" id="bL4-eo-eVG"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNK-RD-Owe">
+                                                    <rect key="frame" x="303.5" y="13" width="30" height="30"/>
+                                                    <connections>
+                                                        <action selector="tapNote:" destination="8Bg-A3-usH" eventType="touchUpInside" id="F4n-Sa-joE"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" name="BackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="nkT-eW-Wji" firstAttribute="top" secondItem="RI0-VO-9Dd" secondAttribute="top" id="4uc-li-LWq"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ci2-tA-qwD" secondAttribute="trailing" id="7Bb-r0-D1u"/>
                                                 <constraint firstItem="Ci2-tA-qwD" firstAttribute="leading" secondItem="RI0-VO-9Dd" secondAttribute="leading" id="Gwi-T1-gaX"/>
+                                                <constraint firstItem="MNK-RD-Owe" firstAttribute="centerY" secondItem="aTN-pv-ZZ9" secondAttribute="centerY" id="Ljs-qu-jhh"/>
+                                                <constraint firstItem="MNK-RD-Owe" firstAttribute="width" secondItem="aTN-pv-ZZ9" secondAttribute="width" multiplier="0.9375" id="QHg-y8-16f"/>
+                                                <constraint firstItem="MNK-RD-Owe" firstAttribute="height" secondItem="aTN-pv-ZZ9" secondAttribute="height" multiplier="1.07143" id="ROa-p4-Sfh"/>
                                                 <constraint firstAttribute="height" constant="80" id="Zr1-ql-bLz"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ci2-tA-qwD" secondAttribute="bottom" id="cH9-pU-2vb"/>
                                                 <constraint firstItem="Ci2-tA-qwD" firstAttribute="top" secondItem="RI0-VO-9Dd" secondAttribute="top" id="fNu-k6-HfJ"/>
                                                 <constraint firstItem="nkT-eW-Wji" firstAttribute="leading" secondItem="RI0-VO-9Dd" secondAttribute="leading" id="gcr-gX-nik"/>
                                                 <constraint firstAttribute="bottom" secondItem="nkT-eW-Wji" secondAttribute="bottom" id="i6D-ex-2wx"/>
+                                                <constraint firstItem="MNK-RD-Owe" firstAttribute="centerX" secondItem="aTN-pv-ZZ9" secondAttribute="centerX" id="i8z-9I-wm4"/>
                                                 <constraint firstAttribute="trailing" secondItem="nkT-eW-Wji" secondAttribute="trailing" id="xRj-Xl-JIQ"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -565,13 +969,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Archer Push Ups" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGP-2F-U6b">
-                                                            <rect key="frame" x="124" y="10" width="125.5" height="20.5"/>
+                                                            <rect key="frame" x="124" y="10" width="121" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBw-JE-zDH">
-                                                            <rect key="frame" x="317" y="8" width="55" height="28"/>
+                                                            <rect key="frame" x="319" y="8" width="53" height="26"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="12"/>
                                                             <state key="normal" title="+ Add set">
                                                                 <color key="titleColor" name="Color2"/>
@@ -581,19 +985,19 @@
                                                             </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-1w-8Wp">
-                                                            <rect key="frame" x="124" y="43.5" width="126.5" height="16"/>
+                                                            <rect key="frame" x="124" y="43.5" width="124" height="16"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="award icon" translatesAutoresizingMaskIntoConstraints="NO" id="7dX-sx-4nL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="12" height="16"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Personal record:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sj-bU-iw0">
-                                                                    <rect key="frame" x="17" y="0.0" width="90" height="16"/>
+                                                                    <rect key="frame" x="17" y="0.0" width="88.5" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOm-rk-XNJ">
-                                                                    <rect key="frame" x="112" y="0.0" width="14.5" height="16"/>
+                                                                    <rect key="frame" x="110.5" y="0.0" width="13.5" height="16"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="MainColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -610,13 +1014,13 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TtM-JG-LTq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="56"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMP-l9-sH1">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMP-l9-sH1">
                                                                             <rect key="frame" x="6" y="0.0" width="112" height="30.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1x-4C-5fb">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1x-4C-5fb">
                                                                             <rect key="frame" x="6" y="34.5" width="112" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                             <color key="textColor" name="SubColor"/>
@@ -637,13 +1041,13 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQE-PP-NjO">
                                                                     <rect key="frame" x="124" y="0.0" width="124" height="56"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI8-lW-bZM">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI8-lW-bZM">
                                                                             <rect key="frame" x="6" y="0.0" width="112" height="30.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Reps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-Cq-4br">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Reps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-Cq-4br">
                                                                             <rect key="frame" x="6" y="34.5" width="112" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                             <color key="textColor" name="SubColor"/>
@@ -795,9 +1199,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="batteryImgView" destination="ShB-am-b5q" id="OE0-6c-xTJ"/>
+                        <outlet property="lblWeight" destination="Zrm-7n-4MB" id="w2d-sJ-DTK"/>
                         <outlet property="noteBtn" destination="Ci2-tA-qwD" id="J37-mo-x7J"/>
+                        <outlet property="noteImgView" destination="aTN-pv-ZZ9" id="YM2-xZ-XM7"/>
                         <outlet property="tableView" destination="qlW-g3-tej" id="gf0-SR-Mze"/>
                         <outlet property="tagView" destination="p1A-0h-thQ" id="bSW-xW-0ei"/>
+                        <outlet property="weightImgView" destination="ffm-rB-fPd" id="4We-Cc-K3M"/>
+                        <outlet property="weightView" destination="8cm-Wj-SoA" id="qIr-DZ-zhJ"/>
+                        <segue destination="IPs-Az-MUg" kind="show" id="LZR-Eo-dtX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tM-9o-YGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -816,13 +1226,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQl-vK-kk6">
-                                        <rect key="frame" x="172.5" y="14.5" width="69" height="23"/>
+                                        <rect key="frame" x="174.5" y="15.5" width="65.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="18"/>
                                         <color key="textColor" name="MainColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knh-wO-b7k">
-                                        <rect key="frame" x="16" y="9.5" width="51" height="33"/>
+                                        <rect key="frame" x="16" y="10.5" width="50" height="31"/>
                                         <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="16"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" name="MainColor"/>
@@ -832,7 +1242,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rg-ry-Bbs">
-                                        <rect key="frame" x="358" y="9.5" width="40" height="33"/>
+                                        <rect key="frame" x="360" y="10.5" width="38" height="31"/>
                                         <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="16"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" name="Color2"/>
@@ -854,7 +1264,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-uR-0xi">
-                                <rect key="frame" x="160" y="273" width="94" height="30"/>
+                                <rect key="frame" x="162.5" y="273" width="89" height="29"/>
                                 <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="14"/>
                                 <state key="normal" title="Add one more">
                                     <color key="titleColor" name="Color2"/>
@@ -881,22 +1291,22 @@
                                                     <rect key="frame" x="16" y="66" width="382" height="1"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HI-Re-CN0">
-                                                    <rect key="frame" x="36" y="23.5" width="38.5" height="20.5"/>
+                                                    <rect key="frame" x="36" y="24" width="37.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                     <color key="textColor" name="MainColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mDN-qR-Y8x">
-                                                    <rect key="frame" x="290" y="18.5" width="50.5" height="30.5"/>
+                                                    <rect key="frame" x="290" y="19.5" width="49" height="28"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJE-hr-WvY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="14.5" height="30.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="13.5" height="28"/>
                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="reps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKm-qP-a3D">
-                                                            <rect key="frame" x="18.5" y="8" width="32" height="20.5"/>
+                                                            <rect key="frame" x="17.5" y="8" width="31.5" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
@@ -911,7 +1321,7 @@
                                                     </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ard-E0-0mC">
-                                                    <rect key="frame" x="360.5" y="21.5" width="24" height="24"/>
+                                                    <rect key="frame" x="359" y="21.5" width="24" height="24"/>
                                                     <state key="normal" image="plus"/>
                                                     <connections>
                                                         <action selector="didTapPlus:" destination="xjM-gw-gRg" eventType="touchUpInside" id="nkv-S4-xxY"/>
@@ -974,7 +1384,7 @@
             <objects>
                 <viewController storyboardIdentifier="AllExercisesVC" id="Xft-Y8-eni" customClass="AllExercisesVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xn0-Ud-Hxg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M2u-DN-6Wy">
@@ -1005,7 +1415,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twisting" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQF-SL-nZ2">
-                                                            <rect key="frame" x="10" y="199.5" width="136" height="44.5"/>
+                                                            <rect key="frame" x="10" y="199.5" width="136" height="46"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1089,13 +1499,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercises 1" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xex-T4-o81">
-                                                            <rect key="frame" x="10" y="199.5" width="136" height="44.5"/>
+                                                            <rect key="frame" x="10" y="199.5" width="136" height="46"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Legs" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdf-Sx-PCP">
-                                                            <rect key="frame" x="10" y="244" width="136" height="18"/>
+                                                            <rect key="frame" x="10" y="245.5" width="136" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="14"/>
                                                             <color key="textColor" name="SubColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1185,13 +1595,13 @@
                                 <rect key="frame" x="16" y="670" width="382" height="52"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-nQ-Nw4">
-                                        <rect key="frame" x="116" y="0.0" width="150.5" height="52"/>
+                                        <rect key="frame" x="116.5" y="0.0" width="149.5" height="52"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="eUG-ej-r0r">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="52"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Exercise selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnZ-yT-bY8">
-                                                <rect key="frame" x="28" y="0.0" width="122.5" height="52"/>
+                                                <rect key="frame" x="28" y="0.0" width="121.5" height="52"/>
                                                 <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="14"/>
                                                 <color key="textColor" name="MainColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1249,7 +1659,7 @@
             <objects>
                 <viewController storyboardIdentifier="ExercisesDetailVC" id="2ch-Hm-ZJS" customClass="ExercisesDetailVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2rn-3i-F76">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BU5-Sf-kek">
@@ -1304,33 +1714,33 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Courtney Henry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFS-us-iVi">
-                                            <rect key="frame" x="16" y="242.5" width="119" height="20.5"/>
+                                            <rect key="frame" x="16" y="242.5" width="112.5" height="19"/>
                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                             <color key="textColor" name="SubColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdV-fk-zbh">
-                                            <rect key="frame" x="377" y="242" width="20" height="22"/>
+                                            <rect key="frame" x="377" y="241" width="20" height="22"/>
                                             <state key="normal" image="Vector"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-ZI-Cea">
-                                            <rect key="frame" x="333" y="242" width="28" height="22"/>
+                                            <rect key="frame" x="333" y="241" width="28" height="22"/>
                                             <state key="normal" image="youtube icon"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ar8-zD-baa">
-                                            <rect key="frame" x="16" y="283" width="382" height="60"/>
+                                            <rect key="frame" x="16" y="281.5" width="382" height="60"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp1-Kn-qol">
                                                     <rect key="frame" x="0.0" y="0.0" width="191" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primary muscles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VC-XY-Oio">
-                                                            <rect key="frame" x="8" y="4" width="175" height="23.5"/>
+                                                            <rect key="frame" x="8" y="4" width="175" height="25"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                             <color key="textColor" name="SubColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYh-IR-LWI">
-                                                            <rect key="frame" x="8" y="35.5" width="175" height="20.5"/>
+                                                            <rect key="frame" x="8" y="37" width="175" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1351,7 +1761,7 @@
                                                     <rect key="frame" x="191" y="0.0" width="191" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secondary muscles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyq-Kd-dLr">
-                                                            <rect key="frame" x="8" y="8" width="175" height="15.5"/>
+                                                            <rect key="frame" x="8" y="9.5" width="175" height="14"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                             <color key="textColor" name="SubColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1380,31 +1790,31 @@
                                             </constraints>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yd1-id-egP">
-                                            <rect key="frame" x="16" y="363" width="55.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="361.5" width="51" height="19"/>
                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
                                             <color key="textColor" name="MainColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="X0L-us-F6T">
-                                            <rect key="frame" x="16" y="393.5" width="382" height="60"/>
+                                            <rect key="frame" x="16" y="390.5" width="382" height="60"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvo-Kn-J1q">
                                                     <rect key="frame" x="0.0" y="0.0" width="191" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-xf-drD">
-                                                            <rect key="frame" x="8" y="35.5" width="175" height="20.5"/>
+                                                            <rect key="frame" x="8" y="37" width="175" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Wqd-Ip-N18">
-                                                            <rect key="frame" x="44" y="4" width="103.5" height="23.5"/>
+                                                            <rect key="frame" x="45" y="4" width="101" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="award icon" translatesAutoresizingMaskIntoConstraints="NO" id="9rL-R7-n1S">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="12" height="23.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="12" height="25"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2q-B0-dMB">
-                                                                    <rect key="frame" x="16" y="0.0" width="87.5" height="23.5"/>
+                                                                    <rect key="frame" x="16" y="0.0" width="85" height="25"/>
                                                                     <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                     <color key="textColor" name="SubColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1427,13 +1837,13 @@
                                                     <rect key="frame" x="191" y="0.0" width="191" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total lifetime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojj-4w-qSA">
-                                                            <rect key="frame" x="8" y="8" width="175" height="15.5"/>
+                                                            <rect key="frame" x="8" y="9.5" width="175" height="14"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                             <color key="textColor" name="SubColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="240" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6f-uD-1Sv">
-                                                            <rect key="frame" x="8" y="35.5" width="175" height="20.5"/>
+                                                            <rect key="frame" x="8" y="37" width="175" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1489,22 +1899,22 @@
                                                     <rect key="frame" x="16" y="12" width="382" height="187"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGX-NB-6Kq">
-                                                            <rect key="frame" x="20" y="10" width="78" height="20.5"/>
+                                                            <rect key="frame" x="20" y="10" width="74" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQb-1L-u62">
-                                                            <rect key="frame" x="302.5" y="10" width="19.5" height="20.5"/>
+                                                            <rect key="frame" x="303" y="10" width="18" height="19"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-sA-woS">
-                                                            <rect key="frame" x="10" y="40.5" width="362" height="1"/>
+                                                            <rect key="frame" x="10" y="39" width="362" height="1"/>
                                                         </imageView>
                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EtZ-OM-jYo">
-                                                            <rect key="frame" x="0.0" y="41.5" width="382" height="145.5"/>
+                                                            <rect key="frame" x="0.0" y="40" width="382" height="147"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </tableView>
                                                     </subviews>

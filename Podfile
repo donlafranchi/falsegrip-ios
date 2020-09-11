@@ -19,4 +19,6 @@ target 'ExercisesApp' do
     pod 'FittedSheets', '~>1.4.5'
     pod 'TTGTagCollectionView'
     pod 'TagListView'
+    pod 'GrowingTextView'
+    pod 'EasyTipView'
 end

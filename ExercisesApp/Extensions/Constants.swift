@@ -21,6 +21,13 @@ let START_COLOR = UIColor(named: "startColor")
 let END_COLOR = UIColor(named: "endColor")
 let UNSELECT_COLOR = UIColor(named: "unselectColor")
 let SELECT_COLOR = UIColor(named: "selectColor")
+let COLOR1 = UIColor(named: "Color1")
+let COLOR2 = UIColor(named: "Color2")
+let COLOR3 = UIColor(named: "Color3")
+let COLOR4 = UIColor(named: "Color4")
+let COLOR5 = UIColor(named: "Color5")
+
+
 
 
 // MARK: - Strings
