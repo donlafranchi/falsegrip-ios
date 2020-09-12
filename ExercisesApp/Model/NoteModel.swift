@@ -13,4 +13,5 @@ class NoteModel: NSObject {
     var energyLevel = 0
     var weight = 0.0
     var comments = ""
+    var unit = 0
 }

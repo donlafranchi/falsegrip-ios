@@ -22,4 +22,6 @@ target 'ExercisesApp' do
     pod 'GrowingTextView'
     pod 'EasyTipView'
     pod 'SwipeTransition'
+    pod 'StepSlider'
+    pod 'iOSDropDown'
 end

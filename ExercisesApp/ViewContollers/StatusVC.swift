@@ -8,6 +8,8 @@
 
 import UIKit
 import GrowingTextView
+import StepSlider
+import iOSDropDown
 
 protocol StatusVCDelegate {
     func saveNote(_ note: NoteModel)
@@ -15,41 +17,44 @@ protocol StatusVCDelegate {
 
 class StatusVC: UIViewController {
 
-    @IBOutlet var energyViews: [UIView]!
+    @IBOutlet weak var energySlider: StepSlider!
     @IBOutlet weak var lblWeight: UILabel!
     @IBOutlet weak var notesTextView: GrowingTextView!
+    @IBOutlet weak var unitDropDown: DropDown!
     var minusTimer: Timer?
     var plusTimer: Timer?
-    var isTap = false
     var note = NoteModel()
     var delegate : StatusVCDelegate?
+    var units = ["kg","lb"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initDropDown()
         lblWeight.text = "\(note.weight)"
-        changeEnergy(note.energyLevel)
+        self.energySlider.index = UInt(note.energyLevel)
         notesTextView.text = note.comments
         
-
-
-
-
     }
     
-    func changeEnergy(_ selectedIndex: Int){
-        
-        for (index,item) in energyViews.enumerated() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.swipeBack?.isEnabled = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.swipeBack?.isEnabled = true
+    }
+    
+    func initDropDown(){
+        unitDropDown.optionArray = units
+        unitDropDown.selectedIndex = note.unit
+       
+        unitDropDown.didSelect { (unit, index, id) in
             
-            if index <= selectedIndex - 1 {
-                item.backgroundColor = COLOR3
-            }else{
-                item.backgroundColor = COLOR5
-            }
+            self.note.unit = index
         }
-        
-        note.energyLevel = selectedIndex
     }
-    
+
     func startMinusTimer(){
          minusTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(minusPress), userInfo: nil, repeats: true)
     }
@@ -76,36 +81,12 @@ class StatusVC: UIViewController {
     @IBAction func didTapBack(_ sender: Any) {
          back()
     }
-    
-    @IBAction func tapEnergy1(_ sender: UITapGestureRecognizer) {
-        
-        if isTap {
-           changeEnergy(0)
-        }else{
-           changeEnergy(1)
-        }
-        isTap = !isTap
+       
+    @IBAction func didChangeEnergy(_ sender: StepSlider) {
+        print(sender.index)
+        note.energyLevel = Int(sender.index)
     }
     
-    @IBAction func tapEnergy2(_ sender: UITapGestureRecognizer) {
-        changeEnergy(2)
-        isTap = false
-    }
-
-    @IBAction func tapEnergy3(_ sender: UITapGestureRecognizer) {
-        changeEnergy(3)
-        isTap = false
-    }
-    
-    @IBAction func tapEnergy4(_ sender: UITapGestureRecognizer) {
-        changeEnergy(4)
-        isTap = false
-    }
-    
-    @IBAction func tapEnergy5(_ sender: UITapGestureRecognizer) {
-        changeEnergy(5)
-        isTap = false
-    }
     
     @IBAction func didTapMinuse(_ sender: Any) {
         

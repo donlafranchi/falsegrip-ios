@@ -10,6 +10,7 @@ import UIKit
 
 class ExercisesCell1: UICollectionViewCell {
     
+    @IBOutlet weak var container: DropShadowView!
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var imgCheck: UIImageView!
 }
