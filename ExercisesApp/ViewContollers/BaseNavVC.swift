@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import AMScrollingNavbar
+import SwipeTransition
 
-class BaseNavVC: ScrollingNavigationController {
+class BaseNavVC: SwipeBackNavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

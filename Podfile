@@ -21,4 +21,5 @@ target 'ExercisesApp' do
     pod 'TagListView'
     pod 'GrowingTextView'
     pod 'EasyTipView'
+    pod 'SwipeTransition'
 end
