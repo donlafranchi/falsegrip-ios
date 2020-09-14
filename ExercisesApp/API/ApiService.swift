@@ -17,9 +17,14 @@ class ApiService: NSObject {
             switch response.result {
             case .success(let data):
                 let jsonData = JSON(data).dictionary
-                completion(true, jsonData)
+                if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                    completion(true, jsonData)
+                }else{
+                    completion(false, jsonData)
+                }
                 break
             case .failure(let error):
+                
                 completion(false, ["error": error])
                 break
             }
@@ -30,10 +35,11 @@ class ApiService: NSObject {
         AF.request(APIRouter.login(params)).responseJSON { (response) in
             switch response.result {
             case .success(let data):
-                if let dict = data as? [String: Any] {
-                    completion(true, dict)
-                } else {
-                    completion(false, [:])
+                let jsonData = JSON(data).dictionary
+                if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                    completion(true, jsonData)
+                }else{
+                    completion(false, jsonData)
                 }
                 break
             case .failure(let error):

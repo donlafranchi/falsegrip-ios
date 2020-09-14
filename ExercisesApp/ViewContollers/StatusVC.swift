@@ -48,6 +48,7 @@ class StatusVC: UIViewController {
     func initDropDown(){
         unitDropDown.optionArray = units
         unitDropDown.selectedIndex = note.unit
+        unitDropDown.text = units[note.unit]
        
         unitDropDown.didSelect { (unit, index, id) in
             

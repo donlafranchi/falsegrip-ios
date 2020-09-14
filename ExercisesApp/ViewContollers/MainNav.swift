@@ -18,13 +18,34 @@ class MainNav: UINavigationController {
         appleIDProvider.getCredentialState(forUserID: UserInfo.shared.appleID) { (credentialState, error) in
             print(UserInfo.shared.appleID)
             print(UserInfo.shared.username)
-
+            
             switch credentialState {
             case .authorized:
-                DispatchQueue.main.async {
-                    let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
-                    self.view.window?.rootViewController = vc
+                
+                self.showHUD()
+                let params = [
+                    "apple_id": UserInfo.shared.appleID] as [String : Any]
+                
+                ApiService.login(params: params) { (success, data) in
+                    self.dismissHUD()
+                    if success {
+                        
+                        print(data!["key"])
+                        UserInfo.shared.setUserInfo(.token, value: data!["key"] as! String)
+                        
+                        DispatchQueue.main.async {
+                            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
+                            self.view.window?.rootViewController = vc
+                        }
+                    }else{
+                        DispatchQueue.main.async {
+                            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
+                            self.view.window?.rootViewController = vc
+                         }
+                    }
                 }
+                
+
 
                 break
             case .revoked, .notFound:

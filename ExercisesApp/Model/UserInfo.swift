@@ -10,8 +10,8 @@ import Foundation
 
 enum UserField {
     case appleID
+    case token
     case name
-    case email
 }
 
 class UserInfo: NSObject {
@@ -21,7 +21,7 @@ class UserInfo: NSObject {
     var id = 0
     var appleID: String = ""
     var username: String = ""
-    var email: String = ""
+    var token: String = ""
     
     override init() {
         super.init()
@@ -37,10 +37,9 @@ class UserInfo: NSObject {
         if let userName = defaults.string(forKey: "name") {
             username = userName
         }
-        if let mail = defaults.string(forKey: "email") {
-            email = mail
+        if let token = defaults.string(forKey: "token") {
+            self.token = token
         }
-        
     }
     
     func setUserInfo(_ key: UserField, value: Any) {
@@ -53,9 +52,9 @@ class UserInfo: NSObject {
         case .name:
             username = value as? String ?? ""
             defaults.set(username, forKey: "name")
-        case .email:
-            email = value as? String ?? ""
-            defaults.set(email, forKey: "email")
+        case .token:
+            token = value as? String ?? ""
+            defaults.set(token, forKey: "token")
         }
     }
     

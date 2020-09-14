@@ -11,7 +11,7 @@ import Alamofire
 public enum APIRouter: URLRequestConvertible {
     
     enum Constants {
-        static let baseURLPath = "http://13.210.68.152/api"
+        static let baseURLPath = "http://humblerings.com"
     }
     
     case register([String: Any])
@@ -36,9 +36,9 @@ public enum APIRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .register:
-            return "/register-user"
+            return "/auth/sign-up/"
         case .login:
-            return "/login-users"
+            return "/auth/sign-in/"
         case .update:
             return "/update-users"
         case .upload:

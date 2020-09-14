@@ -10,7 +10,7 @@ import UIKit
 import LGButton
 
 protocol SignupAlertVCDelegate {
-    func onSignup()
+    func onSignup(_ name: String)
 }
 
 class SignupAlertVC: UIViewController {
@@ -34,7 +34,7 @@ class SignupAlertVC: UIViewController {
     
     @IBAction func didTapCreate(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        delegate?.onSignup()
+        delegate?.onSignup(nameField.text!)
     }
     
 
