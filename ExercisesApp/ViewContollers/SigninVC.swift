@@ -68,6 +68,7 @@ extension SigninVC: ASAuthorizationControllerDelegate, ASAuthorizationController
         ApiService.login(params: params) { (success, data) in
             self.dismissHUD()
             if success {
+                print(data!["key"] as! String)
                 UserInfo.shared.setUserInfo(.token, value: data!["key"] as! String)
                 DispatchQueue.main.async {
                     let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
