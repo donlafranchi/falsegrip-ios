@@ -20,6 +20,8 @@
 		8B17E58F250BDEE900EE1DBA /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E58E250BDEE900EE1DBA /* NoteModel.swift */; };
 		8B1CE337250CF4CC00EECE4E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1CE336250CF4CC00EECE4E /* APIRouter.swift */; };
 		8B1CE339250CF53700EECE4E /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1CE338250CF53700EECE4E /* ApiService.swift */; };
+		8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EA251120AC006618E6 /* WorkoutModel.swift */; };
+		8B33C0ED25112327006618E6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EC25112327006618E6 /* Exercise.swift */; };
 		8BD8B9082503C4EF00688B57 /* MainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B9072503C4EF00688B57 /* MainNav.swift */; };
 		8BD8B90C2506CC8500688B57 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90B2506CC8500688B57 /* GradientButton.swift */; };
 		8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */; };
@@ -70,6 +72,8 @@
 		8B17E58E250BDEE900EE1DBA /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		8B1CE336250CF4CC00EECE4E /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		8B1CE338250CF53700EECE4E /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		8B33C0EA251120AC006618E6 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		8B33C0EC25112327006618E6 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		8BD8B9072503C4EF00688B57 /* MainNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNav.swift; sourceTree = "<group>"; };
 		8BD8B90B2506CC8500688B57 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExercisesVC.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 			children = (
 				8BED7FFF250336D0001F2BBE /* UserInfo.swift */,
 				8B17E58E250BDEE900EE1DBA /* NoteModel.swift */,
+				8B33C0EC25112327006618E6 /* Exercise.swift */,
+				8B33C0EA251120AC006618E6 /* WorkoutModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				8BED7FE12502E734001F2BBE /* extension+viewcontroller.swift in Sources */,
 				8B17E55B250982C100EE1DBA /* ExercisesTVCell.swift in Sources */,
 				8BD8B9132507015B00688B57 /* ExercisesCell2.swift in Sources */,
+				8B33C0ED25112327006618E6 /* Exercise.swift in Sources */,
 				8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */,
 				8BED7FC82502D8BF001F2BBE /* ViewController.swift in Sources */,
 				8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */,
@@ -467,6 +474,7 @@
 				8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */,
 				8B17E569250A7B5F00EE1DBA /* Extension+UITableView.swift in Sources */,
 				8B17E58F250BDEE900EE1DBA /* NoteModel.swift in Sources */,
+				8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */,
 				8BED7FFD25030A51001F2BBE /* WorkoutHistoryVC.swift in Sources */,
 				8BED7FF3250300EC001F2BBE /* HeaderCell.swift in Sources */,
 				8B17E5552509257000EE1DBA /* Extension+UITextField.swift in Sources */,

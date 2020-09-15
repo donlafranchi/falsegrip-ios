@@ -131,6 +131,7 @@ class WorkoutDetailVC: UIViewController {
 
     @IBAction func didTapAddSet(_ sender: UIButton) {
         
+        self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
         self.present(sheetController, animated: false, completion: nil)
     }
     
@@ -182,6 +183,13 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
 }
 
 extension WorkoutDetailVC: AddSetVCDelegate{
+    func tapAdd() {
+        self.sheetController.setSizes([.fixed(CGFloat(360))])
+    }
+    
+    func tapAddMore() {
+        self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
+    }
     
     func done(_ reps: [Int]) {
         self.sheetController.closeSheet()

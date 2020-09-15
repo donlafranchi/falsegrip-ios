@@ -12,10 +12,9 @@ class AddSetTVCell: UITableViewCell {
 
     
     @IBOutlet weak var lblSet: UILabel!
-    @IBOutlet weak var lblReps: UILabel!
     @IBOutlet weak var lblSub: UILabel!
-    @IBOutlet weak var minuseBtn: UIButton!
-    @IBOutlet weak var plusBtn: UIButton!
+    @IBOutlet weak var lblReps: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

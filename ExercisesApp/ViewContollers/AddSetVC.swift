@@ -11,17 +11,21 @@ import UIKit
 protocol AddSetVCDelegate {
     func cancel()
     func done(_ reps: [Int])
+    func tapAdd()
+    func tapAddMore()
 }
 
 class AddSetVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pickerView: UIPickerView!
     
-    var repes = [6,4,8,0]{
+    var repes = [6,4,38]{
         didSet{
             tableView.reloadData()
         }
     }
+    
     var delegate: AddSetVCDelegate?
     
     override func viewDidLoad() {
@@ -40,8 +44,9 @@ class AddSetVC: UIViewController {
     }
     
     @IBAction func didTapAddMore(_ sender: Any) {
-        self.repes.append(0)
-        self.tableView.scrollToBottom()
+//        self.repes.append(0)
+//        self.tableView.scrollToBottom()
+        delegate?.tapAddMore()
     }
     
     @IBAction func didTapMinuse(_ sender: UIButton) {
@@ -58,6 +63,11 @@ class AddSetVC: UIViewController {
          self.repes[sender.tag] += 1
     }
     
+    @IBAction func didTapAdd(_ sender: Any) {
+        self.repes.append(pickerView.selectedRow(inComponent: 0) + 1)
+        self.tableView.scrollToBottom()
+        delegate?.tapAdd()
+    }
 }
 
 extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
@@ -68,11 +78,7 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetTVCell", for: indexPath) as! AddSetTVCell
         cell.lblSet.text = "\(indexPath.row + 1) Set"
-        cell.minuseBtn.isHidden = indexPath.row < repes.count - 1
-        cell.plusBtn.isHidden = indexPath.row < repes.count - 1
         cell.lblReps.text = "\(repes[indexPath.row])"
-        cell.plusBtn.tag = indexPath.row
-        cell.minuseBtn.tag = indexPath.row
         
         if repes[indexPath.row] > 1 {
             cell.lblSub.text = "reps"
@@ -93,4 +99,18 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
         return 50
     }
     
+}
+
+extension AddSetVC: UIPickerViewDataSource,UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 50
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(row + 1)"
+    }
 }

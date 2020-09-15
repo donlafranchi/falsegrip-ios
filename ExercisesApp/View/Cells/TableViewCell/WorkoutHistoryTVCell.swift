@@ -14,17 +14,15 @@ class WorkoutHistoryTVCell: UITableViewCell {
     @IBOutlet weak var lblMain: UILabel!
     @IBOutlet weak var lblSub: UILabel!
     @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var lblDay: UILabel!
+    @IBOutlet weak var lblMonth: UILabel!
+    
+    var workout = WorkoutModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        updateOverlay(selected)
-//    }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
@@ -36,6 +34,30 @@ class WorkoutHistoryTVCell: UITableViewCell {
         
         self.overlay.alpha = isSelected ? 1 : 0
         
+    }
+    
+    func initCell( _ workout: WorkoutModel){
+        
+        self.workout = workout
+        
+        self.lblMain.isHidden = workout.isToday
+        self.lblSub.isHidden = workout.isToday
+        
+        self.lblMain.text = self.workout.title
+        self.lblSub.isHidden = self.workout.exercises.count == 0
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:self.workout.datetime)!
+        
+        dateFormatter.dateFormat = "dd"
+        let day = dateFormatter.string(from: date)
+        
+        dateFormatter.dateFormat = "EEE"
+        let weekDay = dateFormatter.string(from: date)
+       
+        self.lblDay.text = day
+        self.lblMonth.text = weekDay.uppercased()
     }
 
 }

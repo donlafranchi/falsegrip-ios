@@ -14,17 +14,15 @@ class WorkoutHistoryVC: UIViewController {
 
     @IBOutlet weak var historyTableView: UITableView!
     var rowCount = 0
+    var pageNum = 1
+    var nextPage = ""
+    var workouts = [WorkoutModel]()
+    var workoutDict = [String: [WorkoutModel]]()
+    var sections = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        showHUD()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            self.rowCount = 8
-            self.historyTableView.reloadData()
-            self.dismissHUD()
-        }
         setUpTableView()
+        getWorkouts()
         
     }
 
@@ -45,26 +43,112 @@ class WorkoutHistoryVC: UIViewController {
         let animator = RamotionAnimator(ballColor: UIColor(red: 0.027, green: 0.408, blue: 0.624, alpha: 0.4), waveColor: .white)
         animator.backgroundColor = .clear
         historyTableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
-            /// start refresh
-            /// Do anything you want...
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                /// Stop refresh when your job finished, it will reset refresh footer if completion is true
-                self?.historyTableView.cr.endHeaderRefresh()
-            })
+            self?.pageNum = 1
+            self?.getWorkouts()
+        }
+
+        
+        historyTableView.cr.addFootRefresh(animator: NormalFooterAnimator()) { [weak self] in
+            
+            if (self?.workouts.count)! < self!.rowCount {
+                self?.getWorkouts()
+            }else{
+                self!.historyTableView.cr.noticeNoMoreData()
+            }
+             
+        }
+//        historyTableView.cr.beginHeaderRefresh()
+    }
+    
+    func getWorkouts(){
+        self.showHUD()
+        let params = [
+            "order_by": ""] as [String : Any]
+        ApiService.getWorkouts(page: pageNum, params: params) { (success, data) in
+            self.dismissHUD()
+            if success {
+                if self.pageNum == 1 {
+                    self.workouts.removeAll()
+                }
+                
+                if let next = data!["next"] as? String, !next.isEmpty {
+                    self.pageNum += 1
+                }
+                
+                if let count = data!["count"] as? Int {
+                    self.rowCount = count
+                }
+                
+                if let results = data!["results"] as? [[String:Any]] {
+                   
+                    if results.count == 0 {
+                        self.historyTableView.cr.noticeNoMoreData()
+                    }else{
+                        self.historyTableView.cr.resetNoMore()
+                    }
+                    
+                    for item in results {
+                        self.workouts.append(WorkoutModel(item))
+                    }
+                    self.sortWorkouts()
+                }else{
+                    self.historyTableView.cr.endHeaderRefresh()
+                    self.historyTableView.cr.endLoadingMore()
+                    self.historyTableView.cr.noticeNoMoreData()
+                }
+            }else{
+                self.historyTableView.cr.endHeaderRefresh()
+                self.historyTableView.cr.endLoadingMore()
+                self.historyTableView.cr.noticeNoMoreData()
+            }
+        }
+    }
+    
+    func sortWorkouts(){
+        
+
+        self.workoutDict.removeAll()
+        self.sections.removeAll()
+        for item in self.workouts {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let date = dateFormatter.date(from:item.datetime)!
+            dateFormatter.dateFormat = "LLLL"
+            let monthName = dateFormatter.string(from: date)
+            print(monthName)
+            
+            if self.workoutDict.keys.contains(monthName) {
+                self.workoutDict[monthName]?.append(item)
+            }else{
+                self.workoutDict[monthName] = [item]
+                self.sections.append(monthName)
+            }
         }
         
-//        historyTableView.cr.addFootRefresh(animator: NormalFooterAnimator()) { [weak self] in
-//            /// start refresh
-//            /// Do anything you want...
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-//                /// Stop refresh when your job finished, it will reset refresh footer if completion is true
-//                self?.historyTableView.cr.endLoadingMore()
-//                self?.historyTableView.cr.noticeNoMoreData()
-//                /// Reset no more data
-//                self?.historyTableView.cr.resetNoMore()
-//            })
-//        }
-        historyTableView.cr.beginHeaderRefresh()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        let monthName = dateFormatter.string(from: Date())
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateTime = dateFormatter.string(from: Date())
+        
+        let todayWorkout = WorkoutModel()
+        todayWorkout.isToday = true
+        todayWorkout.datetime = dateTime
+        
+        if sections.contains(monthName) {
+            self.workoutDict[monthName]?.insert(todayWorkout, at: 0)
+        }else{
+            self.sections.insert(monthName, at: 0)
+            self.workoutDict[monthName]? = [todayWorkout]
+        }
+        
+        self.historyTableView.reloadData()
+        self.historyTableView.cr.endHeaderRefresh()
+        self.historyTableView.cr.endLoadingMore()
+
+        
     }
     
     @IBAction func didTapCreateWorkout(_ sender: Any) {
@@ -83,23 +167,24 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
+        headerView.lblMonth.text = self.sections[section]
         return headerView
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return rowCount
+        return self.workoutDict.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.workoutDict[self.sections[section]]!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutHistoryTVCell", for: indexPath) as! WorkoutHistoryTVCell
-        cell.lblMain.isHidden = indexPath.row == 0 && indexPath.section == 0
-        cell.lblSub.isHidden = indexPath.row == 0 && indexPath.section == 0
-
+        
+        let workout = self.workoutDict[self.sections[indexPath.section]]![indexPath.row]
+        cell.initCell(workout)
         return cell
     }
 
