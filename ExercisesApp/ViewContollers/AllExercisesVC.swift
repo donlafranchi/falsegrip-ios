@@ -40,7 +40,6 @@ class AllExercisesVC: UIViewController {
     var pageNum = 1
     var nextPage = ""
     var exercises = [Exercise]()
-    var tempExercises = [Exercise]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +137,48 @@ class AllExercisesVC: UIViewController {
         }
     }
     
+    private func createWorkout(){
+        
+        self.showHUD()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateTime = dateFormatter.string(from: Date())
+        
+        var titles = [String]()
+        var ids = [String]()
+        for item in self.exercises {
+            if item.isSelected && !item.primary_muscle.isEmpty {
+                titles.append(item.primary_muscle)
+            }
+            if item.isSelected {
+                ids.append(item.id)
+            }
+        }
+        
+        var title = ""
+        if titles.count > 0 {
+            title = titles.joined(separator: "/")
+        }
+        
+        let params = [
+            "datetime": dateTime,
+            "title": title,
+            "body_weight": 0,
+            "energy_level": 0,
+            "comments": "",
+            "exercises":ids] as [String : Any]
+        
+        ApiService.createWorkout(params: params) { (success, data) in
+            self.dismissHUD()
+            if success {
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name("WorkoutCreated"), object: nil)
+                self.back()
+            }
+        }
+    }
+    
     
     
     // MARK: - Layout
@@ -163,8 +204,19 @@ class AllExercisesVC: UIViewController {
     
     @IBAction func didTapWorkout(_ sender: Any) {
         
-        workoutBtn.isSelected = !workoutBtn.isSelected
-        self.isSelectionMode = workoutBtn.isSelected
+        if !self.isSelectionMode {
+            self.workoutBtn.isSelected = !self.workoutBtn.isSelected
+            self.isSelectionMode = workoutBtn.isSelected
+        }else{
+            if self.seletedCount == 0 {
+                self.workoutBtn.isSelected = !self.workoutBtn.isSelected
+                self.isSelectionMode = workoutBtn.isSelected
+            }else{
+                createWorkout()
+            }
+        }
+        
+
     }
 }
 

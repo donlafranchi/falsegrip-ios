@@ -9,6 +9,7 @@
 import UIKit
 import AMScrollingNavbar
 import CRRefresh
+import CRNotifications
 
 class WorkoutHistoryVC: UIViewController {
 
@@ -21,6 +22,7 @@ class WorkoutHistoryVC: UIViewController {
     var sections = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNotification()
         setUpTableView()
         getWorkouts()
         
@@ -33,6 +35,15 @@ class WorkoutHistoryVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    func setupNotification(){
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.workoutCreatedNotification), name: Notification.Name("WorkoutCreated"), object: nil)
+    }
+    
+    deinit {
+       NotificationCenter.default.removeObserver(self)
     }
     
     func setUpTableView(){
@@ -57,7 +68,6 @@ class WorkoutHistoryVC: UIViewController {
             }
              
         }
-//        historyTableView.cr.beginHeaderRefresh()
     }
     
     func getWorkouts(){
@@ -126,28 +136,51 @@ class WorkoutHistoryVC: UIViewController {
             }
         }
         
+       
+        
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL"
         let monthName = dateFormatter.string(from: Date())
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let dateTime = dateFormatter.string(from: Date())
+        var isTodayExsit = false
+        for item in self.workoutDict[monthName]! {
+            
+            let date = dateFormatter.date(from: item.datetime)!            
+            if  Calendar.current.isDateInToday(date) {
+                isTodayExsit = true
+                break
+            }
+        }
         
-        let todayWorkout = WorkoutModel()
-        todayWorkout.isToday = true
-        todayWorkout.datetime = dateTime
-        
-        if sections.contains(monthName) {
-            self.workoutDict[monthName]?.insert(todayWorkout, at: 0)
-        }else{
-            self.sections.insert(monthName, at: 0)
-            self.workoutDict[monthName]? = [todayWorkout]
+        if !isTodayExsit {
+            let dateTime = dateFormatter.string(from: Date())
+            
+            let todayWorkout = WorkoutModel()
+            todayWorkout.isToday = true
+            todayWorkout.datetime = dateTime
+            
+            if sections.contains(monthName) {
+                self.workoutDict[monthName]?.insert(todayWorkout, at: 0)
+            }else{
+                self.sections.insert(monthName, at: 0)
+                self.workoutDict[monthName]? = [todayWorkout]
+            }
         }
         
         self.historyTableView.reloadData()
         self.historyTableView.cr.endHeaderRefresh()
         self.historyTableView.cr.endLoadingMore()
 
+        
+    }
+    
+    @objc func workoutCreatedNotification(notification: Notification) {
+        
+        self.pageNum = 1
+        self.getWorkouts()
+        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully created Workout.", dismissDelay: 5)
         
     }
     

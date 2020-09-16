@@ -25,4 +25,5 @@ target 'ExercisesApp' do
     pod 'StepSlider'
     pod 'iOSDropDown'
     pod 'Nuke'
+    pod 'CRNotifications'
 end

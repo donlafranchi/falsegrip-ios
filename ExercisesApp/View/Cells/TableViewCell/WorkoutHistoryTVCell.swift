@@ -46,6 +46,14 @@ class WorkoutHistoryTVCell: UITableViewCell {
         self.lblMain.text = self.workout.title
         self.lblSub.isHidden = self.workout.exercises.count == 0
         
+        if self.workout.exercises.count > 0 {
+            var names = [String]()
+            for item in self.workout.exercises {
+                names.append(item.name)
+            }
+            self.lblSub.text = names.joined(separator: ", ")
+        }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = dateFormatter.date(from:self.workout.datetime)!

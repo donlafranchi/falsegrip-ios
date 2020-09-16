@@ -236,9 +236,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOH-N6-nXd">
                                                     <rect key="frame" x="16" y="8" width="382" height="93"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 33" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJv-ne-fH8">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJv-ne-fH8">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" red="0.81046434859154926" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-cc-csG">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>
@@ -1981,7 +1981,6 @@
     </scenes>
     <resources>
         <image name="Close" width="20" height="20"/>
-        <image name="Rectangle 33" width="275" height="183"/>
         <image name="Rectangle 5 (1).png" width="164" height="199"/>
         <image name="Rectangle 5.png" width="164" height="199"/>
         <image name="Vector" width="20" height="20"/>

@@ -36,7 +36,7 @@ class WorkoutModel: NSObject {
         energy_level = json["energy_level"] as? Int ?? 0
         comments = json["comments"] as? String ?? ""
         
-        let exercises = json["exercises"] as?  [[String: Any]] ?? []
+        let exercises = json["exercises_obj"] as?  [[String: Any]] ?? []
         var exercisesList = [Exercise]()
         for item in exercises {
             exercisesList.append(Exercise(item))
