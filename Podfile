@@ -24,4 +24,5 @@ target 'ExercisesApp' do
     pod 'SwipeTransition'
     pod 'StepSlider'
     pod 'iOSDropDown'
+    pod 'Nuke'
 end

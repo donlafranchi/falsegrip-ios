@@ -20,6 +20,7 @@ class Exercise: NSObject {
     var equipment = ""
     var primary_muscle = ""
     var secondary_muscle = ""
+    var isSelected = false
 
     
     override init() {

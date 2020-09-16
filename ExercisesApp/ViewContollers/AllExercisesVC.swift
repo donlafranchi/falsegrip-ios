@@ -9,6 +9,7 @@
 import UIKit
 import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
+import CRRefresh
 
 class AllExercisesVC: UIViewController {
 
@@ -20,14 +21,12 @@ class AllExercisesVC: UIViewController {
     var isSelectionMode = false{
         didSet{
             if !isSelectionMode {
-                arrCheck = Array.init(repeating: 0, count: 23)
+                for item in self.exercises {
+                    item.isSelected = false
+                }
+                self.collectionView.reloadData()
                 seletedCount = 0
             }
-        }
-    }
-    var arrCheck = Array.init(repeating: 0, count: 23){
-        didSet{
-            collectionView.reloadData()
         }
     }
     var seletedCount = 0 {
@@ -37,16 +36,17 @@ class AllExercisesVC: UIViewController {
         }
     }
     fileprivate var readyForPresentation = false
-    
+    var itemCount = 0
+    var pageNum = 1
+    var nextPage = ""
+    var exercises = [Exercise]()
+    var tempExercises = [Exercise]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell.identifier")
-        
-        if let collectionViewLayout = self.collectionView.collectionViewLayout as? RSKCollectionViewRetractableFirstItemLayout {
-
-            collectionViewLayout.firstItemRetractableAreaInset = UIEdgeInsets(top: 8.0, left: 0.0, bottom: 8.0, right: 0.0)
-        }
+        setupCollectionView()
+        getAllExercises()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +62,84 @@ class AllExercisesVC: UIViewController {
 //            navigationController.stopFollowingScrollView()
 //        }
     }
+    
+    func setupCollectionView(){
+        
+        self.collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell.identifier")
+        
+        if let collectionViewLayout = self.collectionView.collectionViewLayout as? RSKCollectionViewRetractableFirstItemLayout {
+
+            collectionViewLayout.firstItemRetractableAreaInset = UIEdgeInsets(top: 8.0, left: 0.0, bottom: 8.0, right: 0.0)
+        }
+        
+        collectionView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            self?.pageNum = 1
+            self?.getAllExercises()
+        }
+
+        
+        collectionView.cr.addFootRefresh(animator: NormalFooterAnimator()) { [weak self] in
+            
+            if (self?.exercises.count)! < self!.itemCount {
+                self?.getAllExercises()
+            }else{
+                self!.collectionView.cr.noticeNoMoreData()
+            }
+             
+        }
+    }
+    
+    func getAllExercises(){
+        self.showHUD()
+        let params = [
+            "order_by": "-created"] as [String : Any]
+        ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
+            self.dismissHUD()
+            if success {
+                if self.pageNum == 1 {
+                    self.seletedCount = 0
+                    self.exercises.removeAll()
+                }
+                
+                if let next = data!["next"] as? String, !next.isEmpty {
+                    self.pageNum += 1
+                }
+                
+                if let count = data!["count"] as? Int {
+                    self.itemCount = count
+                }
+                
+                if let results = data!["results"] as? [[String:Any]] {
+                   
+                    if results.count == 0 {
+                        self.collectionView.cr.noticeNoMoreData()
+                    }else{
+                        self.collectionView.cr.resetNoMore()
+                    }
+                    
+                    for item in results {
+                        self.exercises.append(Exercise(item))
+                    }
+              
+                    self.collectionView.reloadData()
+                    self.collectionView.cr.endHeaderRefresh()
+                    self.collectionView.cr.endLoadingMore()
+                    
+                }else{
+                    self.collectionView.cr.endHeaderRefresh()
+                    self.collectionView.cr.endLoadingMore()
+                    self.collectionView.cr.noticeNoMoreData()
+                }
+            }else{
+                self.collectionView.cr.endHeaderRefresh()
+                self.collectionView.cr.endLoadingMore()
+                self.collectionView.cr.noticeNoMoreData()
+            }
+        }
+    }
+    
+    
+    
     // MARK: - Layout
     
     internal override func viewDidLayoutSubviews() {
@@ -109,10 +187,9 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
         case 1:
             if indexPath.item % 2 == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell1", for: indexPath) as! ExercisesCell1
-                if isSelectionMode {
-                    cell.overlayView.isHidden = arrCheck[indexPath.item] == 0
-                    cell.imgCheck.isHidden = arrCheck[indexPath.item] == 0
-                }else{
+                
+                cell.initCell(self.exercises[indexPath.item])
+                if !isSelectionMode {
                     cell.imgCheck.isHidden = true
                     cell.overlayView.isHidden  = true
                 }
@@ -120,10 +197,8 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
                 return cell
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell2", for: indexPath) as! ExercisesCell2
-                if isSelectionMode {
-                    cell.overlayView.isHidden = arrCheck[indexPath.item] == 0
-                    cell.imgCheck.isHidden = arrCheck[indexPath.item] == 0
-                }else{
+                cell.initCell(self.exercises[indexPath.item])
+                if !isSelectionMode {
                     cell.overlayView.isHidden = true
                     cell.imgCheck.isHidden = true
                 }
@@ -144,7 +219,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return 1
             
         case 1:
-            return 23
+            return self.exercises.count
             
         default:
             assert(false)
@@ -189,7 +264,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             
         case 0:
             let itemWidth = collectionView.frame.width
-            let itemHeight: CGFloat = 44.0
+            let itemHeight: CGFloat = 1.0
             
             return CGSize(width: itemWidth, height: itemHeight)
         
@@ -201,7 +276,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
             
             let itemWidth = (collectionView.frame.width - inset.left - inset.right) / numberOfItemsInLine
-            let itemHeight = itemWidth * 1.8
+            let itemHeight = itemWidth * 1.75
             
             return CGSize(width: itemWidth, height: itemHeight)
             
@@ -217,13 +292,17 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
 
         if indexPath.section == 1 {
              if isSelectionMode {
-                if self.arrCheck[indexPath.item] == 1 {
-                    self.arrCheck[indexPath.item] = 0
-                }else{
-                    self.arrCheck[indexPath.item] = 1
+                
+                self.exercises[indexPath.item].isSelected = !self.exercises[indexPath.item].isSelected
+                self.collectionView.reloadItems(at: [indexPath])
+                
+                var count = 0
+                for item in self.exercises {
+                    if item.isSelected {
+                        count += 1
+                    }
                 }
-                let countedSet = NSCountedSet(array: arrCheck)
-                seletedCount = countedSet.count(for: 1)
+                seletedCount = count
              }else{
                 let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
                 self.navigationController?.pushViewController(vc, animated: true)

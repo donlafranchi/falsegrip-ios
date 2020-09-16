@@ -22,6 +22,7 @@
 		8B1CE339250CF53700EECE4E /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1CE338250CF53700EECE4E /* ApiService.swift */; };
 		8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EA251120AC006618E6 /* WorkoutModel.swift */; };
 		8B33C0ED25112327006618E6 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EC25112327006618E6 /* Exercise.swift */; };
+		8B33C0F02512606C006618E6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EF2512606C006618E6 /* Utilities.swift */; };
 		8BD8B9082503C4EF00688B57 /* MainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B9072503C4EF00688B57 /* MainNav.swift */; };
 		8BD8B90C2506CC8500688B57 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90B2506CC8500688B57 /* GradientButton.swift */; };
 		8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */; };
@@ -74,6 +75,7 @@
 		8B1CE338250CF53700EECE4E /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		8B33C0EA251120AC006618E6 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		8B33C0EC25112327006618E6 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		8B33C0EF2512606C006618E6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8BD8B9072503C4EF00688B57 /* MainNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNav.swift; sourceTree = "<group>"; };
 		8BD8B90B2506CC8500688B57 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExercisesVC.swift; sourceTree = "<group>"; };
@@ -134,6 +136,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		8B33C0EE2512606C006618E6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8B33C0EF2512606C006618E6 /* Utilities.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		8BD8B90F2507012200688B57 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		8BED7FC22502D8BF001F2BBE /* ExercisesApp */ = {
 			isa = PBXGroup;
 			children = (
+				8B33C0EE2512606C006618E6 /* Utils */,
 				8B1CE335250CF4B800EECE4E /* API */,
 				8BED7FFE250336BF001F2BBE /* Model */,
 				8BED7FEF25030099001F2BBE /* View */,
@@ -468,6 +479,7 @@
 				8BD8B91F2507D05800688B57 /* ExercisesDetailVC.swift in Sources */,
 				8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */,
 				8B17E567250A6F2D00EE1DBA /* AddSetVC.swift in Sources */,
+				8B33C0F02512606C006618E6 /* Utilities.swift in Sources */,
 				8B1CE339250CF53700EECE4E /* ApiService.swift in Sources */,
 				8B17E58D250BAE7500EE1DBA /* StatusVC.swift in Sources */,
 				8BD8B9112507014600688B57 /* ExercisesCell1.swift in Sources */,
