@@ -188,6 +188,7 @@ class AddExercisesVC: UIViewController {
             if success {
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil)
+                nc.post(name: Notification.Name("workoutUpdated"), object: nil)
                 self.back()
             }
         }

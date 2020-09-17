@@ -40,6 +40,8 @@ class WorkoutHistoryVC: UIViewController {
     func setupNotification(){
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.workoutCreatedNotification), name: Notification.Name("WorkoutCreated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.workoutUpdated), name: Notification.Name("workoutUpdated"), object: nil)
+
     }
     
     deinit {
@@ -182,6 +184,12 @@ class WorkoutHistoryVC: UIViewController {
         self.getWorkouts()
         CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully created Workout.", dismissDelay: 5)
         
+    }
+    
+    @objc func workoutUpdated(notification: Notification) {
+        
+        self.pageNum = 1
+        self.getWorkouts()
     }
     
     @IBAction func didTapCreateWorkout(_ sender: Any) {

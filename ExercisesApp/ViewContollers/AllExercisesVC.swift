@@ -179,6 +179,7 @@ class AllExercisesVC: UIViewController {
                     if let id = data!["id"] as? String {
                         let dict: [String : String] = ["id" : id]
                         nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil,userInfo: dict)
+                        nc.post(name: Notification.Name("workoutUpdated"), object: nil)
                     }
                     
                 }else{
