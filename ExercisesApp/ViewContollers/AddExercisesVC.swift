@@ -1,8 +1,8 @@
 //
-//  AllExercisesVC.swift
+//  AddExercisesVC.swift
 //  ExercisesApp
 //
-//  Created by developer on 9/8/20.
+//  Created by developer on 9/18/20.
 //  Copyright © 2020 Bradin. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
 import CRRefresh
 
-class AllExercisesVC: UIViewController {
+class AddExercisesVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var workoutBtn: GradientButton!
@@ -40,8 +40,9 @@ class AllExercisesVC: UIViewController {
     var pageNum = 1
     var nextPage = ""
     var exercises = [Exercise]()
-    var isFromDetail = false
-
+    var selectedExercises = [Exercise]()
+    var workout = WorkoutModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -118,12 +119,32 @@ class AllExercisesVC: UIViewController {
                     }
                     
                     for item in results {
-                        self.exercises.append(Exercise(item))
-                    }
+                        let exerciceItem = Exercise(item)
+                        var isContain = false
+                        for item1 in self.selectedExercises {
+                            if item1.id == exerciceItem.id {
+                                isContain = true
+                                break
+                            }
+                        }
+                        
+                        if !isContain {
+                            self.exercises.append(exerciceItem)
+                        }                        
+                    }                    
                     
-                    self.collectionView.reloadData()
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
                     self.collectionView.cr.endHeaderRefresh()
                     self.collectionView.cr.endLoadingMore()
+                    if let next = data!["next"] as? String, !next.isEmpty {
+                        self.getAllExercises()
+                    }else{
+                        self.collectionView.cr.noticeNoMoreData()
+                    }
+                    
+
                     
                 }else{
                     self.collectionView.cr.endHeaderRefresh()
@@ -138,52 +159,35 @@ class AllExercisesVC: UIViewController {
         }
     }
     
-    private func createWorkout(){
+    private func addToWorkout(){
         
         self.showHUD()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let dateTime = dateFormatter.string(from: Date())
-        
-        var titles = [String]()
         var ids = [String]()
+        
+        for item in self.selectedExercises {
+            ids.append(item.id)
+        }
+        
         for item in self.exercises {
-            if item.isSelected && !item.primary_muscle.isEmpty {
-                titles.append(item.primary_muscle)
-            }
             if item.isSelected {
                 ids.append(item.id)
             }
         }
         
-        var title = ""
-        if titles.count > 0 {
-            title = titles.joined(separator: "/")
-        }
-        
         let params = [
-            "datetime": dateTime,
-            "title": title,
-            "body_weight": 0,
-            "energy_level": 0,
-            "comments": "",
+            "datetime": self.workout.datetime,
+            "title": self.workout.title,
+            "body_weight": self.workout.body_weight,
+            "energy_level": self.workout.energy_level,
+            "comments": self.workout.comments,
             "exercises":ids] as [String : Any]
         
-        ApiService.createWorkout(params: params) { (success, data) in
+        ApiService.updateWorkout(id: self.workout.id,params: params) { (success, data) in
             self.dismissHUD()
             if success {
                 let nc = NotificationCenter.default
-                if self.isFromDetail {
-                    
-                    if let id = data!["id"] as? String {
-                        let dict: [String : String] = ["id" : id]
-                        nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil,userInfo: dict)
-                    }
-                    
-                }else{
-                    nc.post(name: Notification.Name("WorkoutCreated"), object: nil)
-                }
+                nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil)
                 self.back()
             }
         }
@@ -222,7 +226,7 @@ class AllExercisesVC: UIViewController {
                 self.workoutBtn.isSelected = !self.workoutBtn.isSelected
                 self.isSelectionMode = workoutBtn.isSelected
             }else{
-                createWorkout()
+                addToWorkout()
             }
         }
         
@@ -230,7 +234,7 @@ class AllExercisesVC: UIViewController {
     }
 }
 
-extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
   
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -400,46 +404,46 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
     
 }
 
-extension AllExercisesVC: UISearchBarDelegate{
+extension AddExercisesVC: UISearchBarDelegate{
     
     // MARK: - UISearchBarDelegate
      
      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
          
 //         let oldFilteredNames = self.filteredNames!
-//         
+//
 //         if searchText.isEmpty {
-//             
+//
 //             self.filteredNames = self.names
 //         }
 //         else {
-//             
+//
 //             self.filteredNames = self.names.filter({ (name) -> Bool in
-//                 
+//
 //                 return name.hasPrefix(searchText)
 //             })
 //         }
-//         
+//
 //         self.collectionView.performBatchUpdates({
-//             
+//
 //             for (oldIndex, oldName) in oldFilteredNames.enumerated() {
-//                 
+//
 //                 if self.filteredNames.contains(oldName) == false {
-//                     
+//
 //                     let indexPath = IndexPath(item: oldIndex, section: 1)
 //                     self.collectionView.deleteItems(at: [indexPath])
 //                 }
 //             }
-//             
+//
 //             for (index, name) in self.filteredNames.enumerated() {
-//                 
+//
 //                 if oldFilteredNames.contains(name) == false {
-//                     
+//
 //                     let indexPath = IndexPath(item: index, section: 1)
 //                     self.collectionView.insertItems(at: [indexPath])
 //                 }
 //             }
-//             
+//
 //         }, completion: nil)
      }
 }

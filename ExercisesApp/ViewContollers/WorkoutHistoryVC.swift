@@ -222,9 +222,19 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "WorkoutDetailVC") as! WorkoutDetailVC
-        vc.workoutID = self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if self.workoutDict[self.sections[indexPath.section]]![indexPath.row].isToday {
+            let vc = storyboard?.instantiateViewController(identifier: "WorkoutDetailVC") as! WorkoutDetailVC
+            vc.workout = self.workoutDict[self.sections[indexPath.section]]![indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = storyboard?.instantiateViewController(identifier: "WorkoutDetailVC") as! WorkoutDetailVC
+            vc.workoutID = self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
+
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Exercise: NSObject, Equatable {
+class Exercise: NSObject {
 
     var id = ""
     var name = ""
@@ -40,9 +40,5 @@ class Exercise: NSObject, Equatable {
         primary_muscle = json["primary_muscle"] as? String ?? ""
         secondary_muscle = json["secondary_muscle"] as? String ?? ""
 
-    }
-    
-    public static func ==(lhs: Exercise, rhs: Exercise) -> Bool{
-         return  lhs.id == rhs.id
     }
 }

@@ -238,7 +238,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJv-ne-fH8">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>
-                                                            <color key="backgroundColor" red="0.81046434859154926" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.96432108274647887" green="0.97890074823943662" blue="0.98539282570422537" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKZ-cc-csG">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>

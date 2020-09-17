@@ -11,6 +11,7 @@ import FittedSheets
 import TagListView
 import EasyTipView
 import CRRefresh
+import CRNotifications
 
 
 class WorkoutDetailVC: UIViewController {
@@ -39,6 +40,7 @@ class WorkoutDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTablveView()
+        setupNotification()
         setUpBottomSlider()
         initTagView()
         setTipView()
@@ -84,6 +86,28 @@ class WorkoutDetailVC: UIViewController {
         tagView.alignment = .left
 //        tagView.removeAllTags()
 //        tagView.addTags(titles)
+    }
+    
+    func setupNotification(){
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.addToWorkoutNotification), name: Notification.Name("addToWorkoutNotification"), object: nil)
+    }
+    
+    deinit {
+       NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func addToWorkoutNotification(notification: Notification) {
+        
+        if self.workout.isToday {
+            if let id = notification.userInfo!["id"] as? String {
+                self.workoutID = id
+                self.getWorkout()
+            }
+        }else{
+            self.getWorkout()
+        }
+        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully add exercises to Workout.", dismissDelay: 5)
     }
     
     func setupTablveView(){
@@ -168,6 +192,11 @@ class WorkoutDetailVC: UIViewController {
     }
     
     @IBAction func didTapNote(_ sender: Any) {
+        
+        if self.workout.isToday {
+            return
+        }        
+        
         noteBtn.backgroundColor = UNSELECT_COLOR
         let vc = storyboard?.instantiateViewController(withIdentifier: "StatusVC") as! StatusVC
         vc.delegate = self
@@ -180,10 +209,16 @@ class WorkoutDetailVC: UIViewController {
 
     @IBAction func addExercise(_ sender: Any) {
         
-        let vc = storyboard?.instantiateViewController(identifier: "AddExercisesVC") as! AddExercisesVC
-        vc.selectedExercises = self.exercises
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        if self.workout.isToday {
+            let vc = storyboard?.instantiateViewController(identifier: "AllExercisesVC") as! AllExercisesVC
+            vc.isFromDetail = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = storyboard?.instantiateViewController(identifier: "AddExercisesVC") as! AddExercisesVC
+            vc.selectedExercises = self.exercises
+            vc.workout = self.workout
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func tapNote(_ sender: Any) {
