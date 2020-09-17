@@ -16,7 +16,7 @@ class WorkoutModel: NSObject {
     var modified = ""
     var datetime = ""
     var title = ""
-    var body_weight: Float = 0.0
+    var body_weight: Double = 0.0
     var energy_level = 0
     var comments = ""
     var isToday = false
@@ -32,7 +32,7 @@ class WorkoutModel: NSObject {
         modified = json["modified"] as? String ?? ""
         datetime = json["datetime"] as? String ?? ""
         title = json["title"] as? String ?? ""
-        body_weight = json["body_weight"] as? Float ?? 0.0
+        body_weight = json["body_weight"] as? Double ?? 0.0
         energy_level = json["energy_level"] as? Int ?? 0
         comments = json["comments"] as? String ?? ""
         

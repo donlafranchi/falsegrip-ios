@@ -10,6 +10,8 @@ import UIKit
 import FittedSheets
 import TagListView
 import EasyTipView
+import CRRefresh
+
 
 class WorkoutDetailVC: UIViewController {
 
@@ -23,52 +25,75 @@ class WorkoutDetailVC: UIViewController {
     @IBOutlet weak var noteImgView: UIImageView!
     @IBOutlet weak var weightView: UIStackView!
     
-    
-    let titles = ["Push","Pull","Abs","Legs"]
+    var workoutID = ""
+    var workout = WorkoutModel()
+    var exercises = [Exercise]()
+//    var exerciseDict = [String: [Exercise]]()
+    var sections = [String]()
     
     var sheetController = SheetViewController()
     var addSetVC = AddSetVC()
     var preferences = EasyTipView.Preferences()
-    var note = NoteModel(){
-        didSet{
-            switch note.energyLevel {
-            case 0:
-                batteryImgView.image = UIImage(named: "battery_empty")
-            case 1:
-                batteryImgView.image = UIImage(named: "battery1")
-            case 2:
-                batteryImgView.image = UIImage(named: "battery2")
-            case 3:
-                batteryImgView.image = UIImage(named: "battery3")
-            case 4:
-                batteryImgView.image = UIImage(named: "battery4")
-            case 5:
-                batteryImgView.image = UIImage(named: "battery5")
-            default:
-                break
-            }
-            
-            weightImgView.isHidden = note.weight > 0
-            weightView.isHidden = !(note.weight > 0)
-            lblWeight.text = "\(note.weight)"
-            noteImgView.image = note.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes") 
-        }
-    }
+    var note = NoteModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nibName = UINib(nibName: "HeaderCell", bundle: nil)
-        self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
+        setupTablveView()
         setUpBottomSlider()
         initTagView()
         setTipView()
+        getWorkout()
+    }
+    
+    func reloadView(){
+        
+        self.tableView.reloadData()
+        self.tagView.removeAllTags()
+        self.tagView.addTags(sections)
+        self.note.energyLevel = self.workout.energy_level
+        self.note.weight = self.workout.body_weight
+        self.note.comments = self.workout.comments
+        
+        switch self.workout.energy_level {
+        case 0:
+            batteryImgView.image = UIImage(named: "battery_empty")
+        case 1:
+            batteryImgView.image = UIImage(named: "battery1")
+        case 2:
+            batteryImgView.image = UIImage(named: "battery2")
+        case 3:
+            batteryImgView.image = UIImage(named: "battery3")
+        case 4:
+            batteryImgView.image = UIImage(named: "battery4")
+        case 5:
+            batteryImgView.image = UIImage(named: "battery5")
+        default:
+            break
+        }
+        
+        weightImgView.isHidden = self.workout.body_weight > 0
+        weightView.isHidden = !(self.workout.body_weight > 0)
+        lblWeight.text = "\(self.workout.body_weight)"
+        noteImgView.image = self.workout.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes")
+        
     }
     
     func initTagView(){
         
         tagView.textFont = UIFont(name: "Mulish-Medium", size: 16)!
-        tagView.alignment = .center
-        tagView.removeAllTags()
-        tagView.addTags(titles)
+        tagView.alignment = .left
+//        tagView.removeAllTags()
+//        tagView.addTags(titles)
+    }
+    
+    func setupTablveView(){
+        
+        let nibName = UINib(nibName: "HeaderCell", bundle: nil)
+        self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
+        
+        self.tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            self?.getWorkout()
+        }
     }
     
     func setTipView(){
@@ -109,6 +134,30 @@ class WorkoutDetailVC: UIViewController {
             print("Will dismiss")
         }
     }
+    
+    func getWorkout(){
+        showHUD()
+        ApiService.getWorkout(id: self.workoutID) { (success, data) in
+            self.dismissHUD()
+            if success {
+                if let results = data {
+                                        
+                    self.workout = WorkoutModel(results)
+                    self.exercises = self.workout.exercises
+                    self.sections.removeAll()
+                    for item in self.exercises {
+                        
+                        if !self.sections.contains(item.primary_muscle) {
+                            self.sections.append(item.primary_muscle)
+                        }
+                    }
+                    self.reloadView()
+                    
+                }
+            }
+            self.tableView.cr.endHeaderRefresh()
+        }
+    }
    
     @IBAction func didTapBack(_ sender: Any) {
         back()
@@ -129,10 +178,12 @@ class WorkoutDetailVC: UIViewController {
         noteBtn.backgroundColor = SELECT_COLOR
     }
 
-    @IBAction func didTapAddSet(_ sender: UIButton) {
+    @IBAction func addExercise(_ sender: Any) {
         
-        self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
-        self.present(sheetController, animated: false, completion: nil)
+        let vc = storyboard?.instantiateViewController(identifier: "AddExercisesVC") as! AddExercisesVC
+        vc.selectedExercises = self.exercises
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @IBAction func tapNote(_ sender: Any) {
@@ -151,28 +202,26 @@ class WorkoutDetailVC: UIViewController {
 
 
 extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 40
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
+//        headerView.lblMonth.text = sections[section]
+//        return headerView
+//    }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
-        headerView.lblMonth.text = titles[section]
-        return headerView
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return titles.count
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.exercises.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExercisesTVCell", for: indexPath) as! ExercisesTVCell
-        
+        cell.initCell(self.exercises[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -205,4 +254,13 @@ extension WorkoutDetailVC: StatusVCDelegate{
     func saveNote(_ note: NoteModel) {
         self.note = note
     }
+}
+
+extension WorkoutDetailVC: ExercisesTVCellDelegate{
+    func tapAddSet(_ exercise: Exercise) {
+        
+        self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
+        self.present(sheetController, animated: false, completion: nil)
+    }
+    
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-
+let baseURL = "http://humblerings.com"
 // MARK: - Colors
 
 let BACKGROUND_COLOR = UIColor(named: "BackgroundColor")

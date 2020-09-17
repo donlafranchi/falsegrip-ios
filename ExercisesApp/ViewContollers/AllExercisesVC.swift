@@ -119,7 +119,7 @@ class AllExercisesVC: UIViewController {
                     for item in results {
                         self.exercises.append(Exercise(item))
                     }
-              
+                    
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
                     self.collectionView.cr.endLoadingMore()
