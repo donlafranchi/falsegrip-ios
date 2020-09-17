@@ -12,7 +12,7 @@ import StepSlider
 import iOSDropDown
 
 protocol StatusVCDelegate {
-    func saveNote(_ note: NoteModel)
+    func saveNote(_ workout: WorkoutModel)
 }
 
 class StatusVC: UIViewController {
@@ -23,16 +23,15 @@ class StatusVC: UIViewController {
     @IBOutlet weak var unitDropDown: DropDown!
     var minusTimer: Timer?
     var plusTimer: Timer?
-    var note = NoteModel()
+    var workout = WorkoutModel()
     var delegate : StatusVCDelegate?
     var units = ["kg","lb"]
     override func viewDidLoad() {
         super.viewDidLoad()
         initDropDown()
-        lblWeight.text = "\(note.weight)"
-        self.energySlider.index = UInt(note.energyLevel)
-        notesTextView.text = note.comments
-        
+        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.energySlider.index = UInt(self.workout.energy_level)
+        self.notesTextView.text = self.workout.comments
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,12 +46,12 @@ class StatusVC: UIViewController {
     
     func initDropDown(){
         unitDropDown.optionArray = units
-        unitDropDown.selectedIndex = note.unit
-        unitDropDown.text = units[note.unit]
+        unitDropDown.selectedIndex = 0
+        unitDropDown.text = units[0]
        
         unitDropDown.didSelect { (unit, index, id) in
             
-            self.note.unit = index
+//            self.note.unit = index
         }
     }
 
@@ -65,18 +64,18 @@ class StatusVC: UIViewController {
     }
     
     @objc func minusPress() {
-        if note.weight == 0 {
+        if self.workout.body_weight == 0 {
             minusTimer?.invalidate()
             return
         }
         
-        note.weight -= 0.5
-        self.lblWeight.text = "\(note.weight)"
+        self.workout.body_weight -= 0.5
+        self.lblWeight.text = "\(self.workout.body_weight)"
     }
     
     @objc func plusPress() {
-        note.weight += 0.5
-        self.lblWeight.text = "\(note.weight)"
+        self.workout.body_weight += 0.5
+        self.lblWeight.text = "\(self.workout.body_weight)"
     }
 
     @IBAction func didTapBack(_ sender: Any) {
@@ -85,24 +84,24 @@ class StatusVC: UIViewController {
        
     @IBAction func didChangeEnergy(_ sender: StepSlider) {
         print(sender.index)
-        note.energyLevel = Int(sender.index)
+        self.workout.energy_level = Int(sender.index)
     }
     
     
     @IBAction func didTapMinuse(_ sender: Any) {
         
-        if note.weight == 0 {
+        if self.workout.body_weight == 0 {
             return
         }
         
-        note.weight -= 0.5
-        self.lblWeight.text = "\(note.weight)"
+        self.workout.body_weight -= 0.5
+        self.lblWeight.text = "\(self.workout.body_weight)"
     }
     
     @IBAction func didTapPlus(_ sender: Any) {
         
-        note.weight += 0.5
-        self.lblWeight.text = "\(note.weight)"
+        self.workout.body_weight += 0.5
+        self.lblWeight.text = "\(self.workout.body_weight)"
         
     }
     
@@ -132,9 +131,30 @@ class StatusVC: UIViewController {
     }
     
     @IBAction func didTapSave(_ sender: Any) {
-        self.back()
-        note.comments = notesTextView.text
-        delegate?.saveNote(note)
+        
+        self.workout.comments = notesTextView.text
+        self.showHUD()
+        var ids = [String]()
+        for item in self.workout.exercises {
+           ids.append(item.id)
+        }
+        
+        let params = [
+            "datetime": self.workout.datetime,
+            "title": self.workout.title,
+            "body_weight": self.workout.body_weight,
+            "energy_level": self.workout.energy_level,
+            "comments": self.workout.comments,
+            "exercises":ids] as [String : Any]
+        
+        ApiService.updateWorkout(id: self.workout.id,params: params) { (success, data) in
+            self.dismissHUD()
+            if success {
+                self.delegate?.saveNote(self.workout)
+                self.back()
+            }
+        }        
+        
     }
     
 }

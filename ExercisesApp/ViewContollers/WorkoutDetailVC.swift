@@ -35,7 +35,6 @@ class WorkoutDetailVC: UIViewController {
     var sheetController = SheetViewController()
     var addSetVC = AddSetVC()
     var preferences = EasyTipView.Preferences()
-    var note = NoteModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +51,12 @@ class WorkoutDetailVC: UIViewController {
         self.tableView.reloadData()
         self.tagView.removeAllTags()
         self.tagView.addTags(sections)
-        self.note.energyLevel = self.workout.energy_level
-        self.note.weight = self.workout.body_weight
-        self.note.comments = self.workout.comments
+        self.reloadNoteView()
+
         
+    }
+    
+    func reloadNoteView(){
         switch self.workout.energy_level {
         case 0:
             batteryImgView.image = UIImage(named: "battery_empty")
@@ -77,7 +78,6 @@ class WorkoutDetailVC: UIViewController {
         weightView.isHidden = !(self.workout.body_weight > 0)
         lblWeight.text = "\(self.workout.body_weight)"
         noteImgView.image = self.workout.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes")
-        
     }
     
     func initTagView(){
@@ -195,12 +195,12 @@ class WorkoutDetailVC: UIViewController {
         
         if self.workout.isToday {
             return
-        }        
+        }
         
         noteBtn.backgroundColor = UNSELECT_COLOR
         let vc = storyboard?.instantiateViewController(withIdentifier: "StatusVC") as! StatusVC
         vc.delegate = self
-        vc.note = self.note
+        vc.workout = self.workout
         navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func didDownNote(_ sender: Any) {
@@ -286,8 +286,10 @@ extension WorkoutDetailVC: AddSetVCDelegate{
 
 extension WorkoutDetailVC: StatusVCDelegate{
     
-    func saveNote(_ note: NoteModel) {
-        self.note = note
+    func saveNote(_ workout: WorkoutModel) {
+        self.workout = workout
+        self.reloadNoteView()
+        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully updated Note.", dismissDelay: 5)
     }
 }
 
