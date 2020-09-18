@@ -2168,6 +2168,50 @@
             </objects>
             <point key="canvasLocation" x="4273.913043478261" y="754.6875"/>
         </scene>
+        <!--Video PlayerVC-->
+        <scene sceneID="whp-PA-sUD">
+            <objects>
+                <viewController storyboardIdentifier="VideoPlayerVC" id="6iL-2I-on5" customClass="VideoPlayerVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qb7-im-wDc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQz-gM-bNu" customClass="MBVideoPlayerView" customModule="MBVideoPlayer">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ze-v2-CgU">
+                                <rect key="frame" x="10" y="54" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="X75-1h-7iR"/>
+                                    <constraint firstAttribute="width" constant="40" id="fNU-dP-PHi"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <action selector="didTapClose:" destination="6iL-2I-on5" eventType="touchUpInside" id="xJU-Cw-zBp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Ze-v2-CgU" firstAttribute="top" secondItem="zra-fZ-cBW" secondAttribute="top" constant="10" id="HUW-tf-H9W"/>
+                            <constraint firstItem="cQz-gM-bNu" firstAttribute="trailing" secondItem="zra-fZ-cBW" secondAttribute="trailing" id="VGI-qq-pwB"/>
+                            <constraint firstItem="cQz-gM-bNu" firstAttribute="top" secondItem="qb7-im-wDc" secondAttribute="top" id="dWg-zH-cI7"/>
+                            <constraint firstItem="zra-fZ-cBW" firstAttribute="bottom" secondItem="cQz-gM-bNu" secondAttribute="bottom" id="kdj-NH-rN0"/>
+                            <constraint firstItem="cQz-gM-bNu" firstAttribute="leading" secondItem="zra-fZ-cBW" secondAttribute="leading" id="nDT-dF-YCu"/>
+                            <constraint firstItem="9Ze-v2-CgU" firstAttribute="leading" secondItem="zra-fZ-cBW" secondAttribute="leading" constant="10" id="zHj-pK-IyT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zra-fZ-cBW"/>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="cQz-gM-bNu" id="Yx2-1u-qi9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJH-BL-Amj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4979.7101449275369" y="756.69642857142856"/>
+        </scene>
         <!--Main Nav-->
         <scene sceneID="CcD-BC-e9D">
             <objects>

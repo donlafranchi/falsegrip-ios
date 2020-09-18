@@ -28,4 +28,6 @@ target 'ExercisesApp' do
     pod 'CRNotifications'
     pod 'Parchment'
     pod 'SwiftyGif'
+    pod 'MBVideoPlayer', :git => 'https://github.com/mwaqasbhati/MBVideoPlayer.git'
+
 end

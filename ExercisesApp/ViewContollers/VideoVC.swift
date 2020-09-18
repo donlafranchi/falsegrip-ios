@@ -16,7 +16,7 @@ class VideoVC: UIViewController {
     @IBOutlet weak var videoPlayerBackgroundView: UIView!
     @IBOutlet weak var videoPlayer: ASPVideoPlayer!
     
-    let firstNetworkURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4")
+    let firstNetworkURL = URL(string: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8")
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +26,10 @@ class VideoVC: UIViewController {
         
         videoPlayer.resizeClosure = { [unowned self] isExpanded in
             
-            
+            let videoVC = self.storyboard!.instantiateViewController(withIdentifier: "VideoPlayerVC") as! VideoPlayerVC
+            videoVC.url =  "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
+            videoVC.modalPresentationStyle = .fullScreen
+            self.present(videoVC, animated: true, completion: nil)
         }
         videoPlayer.layer.cornerRadius = 6
         videoPlayer.layer.masksToBounds = true
