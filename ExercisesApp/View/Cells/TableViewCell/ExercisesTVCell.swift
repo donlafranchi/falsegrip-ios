@@ -44,6 +44,13 @@ class ExercisesTVCell: UITableViewCell {
         
         self.exercise = exercise
         self.lblName.text = self.exercise.name
+        self.lblSets.text = "\(self.exercise.sets.count)"
+        var reps = 0
+        for item in self.exercise.sets {
+            reps += item.reps
+        }
+        self.lblReps.text = "\(reps)"
+        
         var options = ImageLoadingOptions()
         options.pipeline = pipeline
         options.transition = .fadeIn(duration: 0.25)

@@ -275,8 +275,13 @@ extension WorkoutDetailVC: AddSetVCDelegate{
         self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
     }
     
-    func done(_ reps: [Int]) {
+    func done(_ updated: Bool) {
         self.sheetController.closeSheet()
+        
+        if updated {
+            getWorkout()
+        }
+        
     }
     
     func cancel() {
@@ -297,6 +302,10 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
     func tapAddSet(_ exercise: Exercise) {
         
         self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
+        self.addSetVC.sets = exercise.sets
+        self.addSetVC.workoutId = self.workoutID
+        self.addSetVC.exerciseId = exercise.id
+        self.addSetVC.addedSets.removeAll()
         self.present(sheetController, animated: false, completion: nil)
     }
     

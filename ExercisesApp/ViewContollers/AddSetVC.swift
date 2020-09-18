@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddSetVCDelegate {
     func cancel()
-    func done(_ reps: [Int])
+    func done(_ added: Bool)
     func tapAdd()
     func tapAddMore()
 }
@@ -20,18 +20,23 @@ class AddSetVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    var repes = [6,4,38]{
-        didSet{
-            tableView.reloadData()
-        }
-    }
+    var sets: [SetsModel]?
+    var addedSets = [SetsModel]()
+    var workoutId: String?
+    var exerciseId: String?
+    var num = 0
     
     var delegate: AddSetVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        num = sets!.count + 1
     }
     
 
@@ -40,7 +45,30 @@ class AddSetVC: UIViewController {
     }
     
     @IBAction func didTapDone(_ sender: Any) {
-        delegate?.done(repes)
+        
+        if self.addedSets.count == 0 {
+            delegate?.done(false)
+        }else{
+            self.showHUD()
+            for i in 0...self.addedSets.count - 1 {
+                let params = [
+                    "num": self.addedSets[i].num,
+                    "reps": self.addedSets[i].reps,
+                    "workout": self.addedSets[i].workout,
+                    "exercise": self.addedSets[i].exercise] as [String : Any]
+                ApiService.workoutSets(workoutId: self.workoutId!, params: params) { (success, data) in
+                    
+                    if success {
+                        if i == self.addedSets.count - 1 {
+                            self.delegate?.done(true)
+                        }
+                    }else{
+                        self.dismissHUD()
+                        self.delegate?.done(false)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func didTapAddMore(_ sender: Any) {
@@ -51,20 +79,30 @@ class AddSetVC: UIViewController {
     
     @IBAction func didTapMinuse(_ sender: UIButton) {
         
-        if self.repes[sender.tag] < 1 {
-            return
-        }
+//        if self.repes[sender.tag] < 1 {
+//            return
+//        }
         
-        self.repes[sender.tag] -= 1
+//        self.repes[sender.tag] -= 1
     }
     
     @IBAction func didTapPlus(_ sender: UIButton) {
         
-         self.repes[sender.tag] += 1
+//         self.repes[sender.tag] += 1
     }
     
     @IBAction func didTapAdd(_ sender: Any) {
-        self.repes.append(pickerView.selectedRow(inComponent: 0) + 1)
+        
+        let setModel = SetsModel()
+        setModel.workout = self.workoutId!
+        setModel.exercise = self.exerciseId!
+        setModel.reps = pickerView.selectedRow(inComponent: 0) + 1
+        setModel.num = num
+        
+        addedSets.append(setModel)
+        self.sets?.append(setModel)
+        num += 1
+        self.tableView.reloadData()
         self.tableView.scrollToBottom()
         delegate?.tapAdd()
     }
@@ -72,21 +110,22 @@ class AddSetVC: UIViewController {
 
 extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repes.count
+        return sets!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetTVCell", for: indexPath) as! AddSetTVCell
         cell.lblSet.text = "\(indexPath.row + 1) Set"
-        cell.lblReps.text = "\(repes[indexPath.row])"
+        print(indexPath.row)
+        cell.lblReps.text = "\(sets![indexPath.row].reps)"
         
-        if repes[indexPath.row] > 1 {
+        if sets![indexPath.row].reps > 1 {
             cell.lblSub.text = "reps"
         }else{
             cell.lblSub.text = "rep"
         }
         
-        if indexPath.row < repes.count - 1{
+        if indexPath.row < sets![indexPath.row].reps - 1{
             cell.lblSet.font = UIFont(name: "Mulish-SemiBold", size: 16)
         }else{
             cell.lblSet.font = UIFont(name: "Mulish-Bold", size: 16)

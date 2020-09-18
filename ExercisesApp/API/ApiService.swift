@@ -147,7 +147,7 @@ class ApiService: NSObject {
      
           let url = baseURLPath + "api/workouts/\(id)/"
          
-        AF.request(url, method: .get)
+        AF.request(url, method: .get, encoding: JSONEncoding.default)
            .responseJSON { response in
               switch response.result {
               case .success(let data):
@@ -184,4 +184,27 @@ class ApiService: NSObject {
               }
           }
      }
+    
+    class func workoutSets(workoutId: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+     
+        let url = baseURLPath + "api/workouts/\(workoutId)/sets/"
+         
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+           .responseJSON { response in
+              switch response.result {
+              case .success(let data):
+                  let jsonData = JSON(data).dictionaryObject
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                     
+                      completion(true,jsonData)
+                  }else{
+                     completion(false,["error":response.response.debugDescription])
+                  }
+              case .failure(let error):
+                 completion(false,["error":error])
+              }
+          }
+        
+     }
+    
 }
