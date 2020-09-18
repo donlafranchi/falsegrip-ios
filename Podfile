@@ -26,4 +26,6 @@ target 'ExercisesApp' do
     pod 'iOSDropDown'
     pod 'Nuke'
     pod 'CRNotifications'
+    pod 'Parchment'
+    pod 'SwiftyGif'
 end

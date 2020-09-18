@@ -25,6 +25,8 @@
 		8B33C0F02512606C006618E6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EF2512606C006618E6 /* Utilities.swift */; };
 		8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F32513BD4A006618E6 /* SetsModel.swift */; };
 		8B33C0F62513CE4A006618E6 /* AddExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */; };
+		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
+		8B69B8582515246D00FD0598 /* GifVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* GifVC.swift */; };
 		8BD8B9082503C4EF00688B57 /* MainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B9072503C4EF00688B57 /* MainNav.swift */; };
 		8BD8B90C2506CC8500688B57 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90B2506CC8500688B57 /* GradientButton.swift */; };
 		8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */; };
@@ -80,6 +82,8 @@
 		8B33C0EF2512606C006618E6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8B33C0F32513BD4A006618E6 /* SetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsModel.swift; sourceTree = "<group>"; };
 		8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercisesVC.swift; sourceTree = "<group>"; };
+		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
+		8B69B8572515246D00FD0598 /* GifVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVC.swift; sourceTree = "<group>"; };
 		8BD8B9072503C4EF00688B57 /* MainNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNav.swift; sourceTree = "<group>"; };
 		8BD8B90B2506CC8500688B57 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExercisesVC.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */,
 				8B17E566250A6F2D00EE1DBA /* AddSetVC.swift */,
 				8B17E58C250BAE7500EE1DBA /* StatusVC.swift */,
+				8B69B8552515245A00FD0598 /* VideoVC.swift */,
+				8B69B8572515246D00FD0598 /* GifVC.swift */,
 			);
 			path = ViewContollers;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				8BD8B9082503C4EF00688B57 /* MainNav.swift in Sources */,
 				8BED7FFB25030644001F2BBE /* WorkoutHistoryTVCell.swift in Sources */,
 				8BD8B91F2507D05800688B57 /* ExercisesDetailVC.swift in Sources */,
+				8B69B8582515246D00FD0598 /* GifVC.swift in Sources */,
 				8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */,
 				8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */,
 				8B17E567250A6F2D00EE1DBA /* AddSetVC.swift in Sources */,
@@ -494,6 +501,7 @@
 				8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */,
 				8B17E569250A7B5F00EE1DBA /* Extension+UITableView.swift in Sources */,
 				8B17E58F250BDEE900EE1DBA /* NoteModel.swift in Sources */,
+				8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */,
 				8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */,
 				8BED7FFD25030A51001F2BBE /* WorkoutHistoryVC.swift in Sources */,
 				8BED7FF3250300EC001F2BBE /* HeaderCell.swift in Sources */,
