@@ -1823,6 +1823,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-ZI-Cea">
                                             <rect key="frame" x="333" y="301.5" width="28" height="22"/>
                                             <state key="normal" image="youtube icon"/>
+                                            <connections>
+                                                <action selector="didTapYoutube:" destination="2ch-Hm-ZJS" eventType="touchUpInside" id="k4e-ST-b4L"/>
+                                            </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ar8-zD-baa">
                                             <rect key="frame" x="16" y="342.5" width="382" height="60"/>
@@ -2070,6 +2073,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="mqE-DN-Zmw" id="6J8-Dj-e0c"/>
+                        <outlet property="lblCreator" destination="fFS-us-iVi" id="jfk-ig-fKu"/>
+                        <outlet property="lblPrimaryMusel" destination="ZYh-IR-LWI" id="UmN-vT-r9C"/>
+                        <outlet property="lblSecondaryMusel" destination="HOi-y3-bVF" id="RzC-2Q-u0B"/>
                         <outlet property="tableView" destination="BU5-Sf-kek" id="ApL-ct-YAK"/>
                     </connections>
                 </viewController>

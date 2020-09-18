@@ -368,6 +368,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
                 seletedCount = count
              }else{
                 let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
+                vc.exercise = self.exercises[indexPath.item]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }else{
