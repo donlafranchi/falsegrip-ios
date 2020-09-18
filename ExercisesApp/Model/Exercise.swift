@@ -21,6 +21,7 @@ class Exercise: NSObject {
     var primary_muscle = ""
     var secondary_muscle = ""
     var isSelected = false
+    var sets = [SetsModel]()
 
     
     override init() {
@@ -40,5 +41,12 @@ class Exercise: NSObject {
         primary_muscle = json["primary_muscle"] as? String ?? ""
         secondary_muscle = json["secondary_muscle"] as? String ?? ""
 
+        let sets = json["sets"] as?  [[String: Any]] ?? []
+        var setsList = [SetsModel]()
+        for item in sets {
+            setsList.append(SetsModel(item))
+        }
+        self.sets = setsList
+        
     }
 }
