@@ -53,6 +53,7 @@ class ExercisesTVCell: UITableViewCell {
         
         var options = ImageLoadingOptions()
         options.pipeline = pipeline
+        options.placeholder = UIImage(named: "placeholder")
         options.transition = .fadeIn(duration: 0.25)
 
         let url = URL(string: "\(baseURL)\(self.exercise.imagePath)")

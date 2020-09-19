@@ -32,6 +32,7 @@ class ExercisesCell2: UICollectionViewCell {
         self.lblMuscle.text = self.exercise.primary_muscle
         var options = ImageLoadingOptions()
         options.pipeline = pipeline
+        options.placeholder = UIImage(named: "placeholder")
         options.transition = .fadeIn(duration: 0.25)
 
         let url = URL(string: "\(self.exercise.imagePath)")

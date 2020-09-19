@@ -129,7 +129,6 @@ extension Locale
 {
    var measurementSystem : String?
    {
-    UnitMass.kilograms
     return (self as NSLocale).object(forKey: NSLocale.Key.measurementSystem) as? String
    }
 }

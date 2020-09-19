@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "default-placeholder-fitness-trainer-in-a-t-shirt-vector-20773475.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
