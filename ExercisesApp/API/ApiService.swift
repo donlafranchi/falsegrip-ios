@@ -14,6 +14,7 @@ class ApiService: NSObject {
 
     static let baseURLPath = "http://humblerings.com/"
     
+    // MARK: - Auth -
     class func register(params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
         AF.request(APIRouter.register(params)).responseJSON { (response) in
             switch response.result {
@@ -26,7 +27,6 @@ class ApiService: NSObject {
                 }
                 break
             case .failure(let error):
-                
                 completion(false, ["error": error])
                 break
             }
@@ -43,7 +43,6 @@ class ApiService: NSObject {
              case .success(let data):
                  let jsonData = JSON(data).dictionaryObject
                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                    
                      completion(true,jsonData)
                  }else{
                     completion(false,["error":response.response.debugDescription])
@@ -52,8 +51,9 @@ class ApiService: NSObject {
                 completion(false,["error":error])
              }
          }
-       
     }
+    
+    // MARK: - Workout -
     
     class func getWorkouts(page: Int,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
@@ -65,7 +65,6 @@ class ApiService: NSObject {
               case .success(let data):
                   let jsonData = JSON(data).dictionaryObject
                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
                       completion(true,jsonData)
                   }else{
                      completion(false,["error":response.response.debugDescription])
@@ -74,8 +73,70 @@ class ApiService: NSObject {
                  completion(false,["error":error])
               }
           }
-        
      }
+    
+    class func createWorkout(params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+      
+           let url = baseURLPath + "api/workouts/"
+          
+         AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+               switch response.result {
+               case .success(let data):
+                   let jsonData = JSON(data).dictionaryObject
+                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                       completion(true,jsonData)
+                   }else{
+                      completion(false,["error":response.response.debugDescription])
+                   }
+               case .failure(let error):
+                  completion(false,["error":error])
+               }
+           }
+      }
+     
+     class func updateWorkout(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+      
+         let url = baseURLPath + "api/workouts/\(id)/"
+          
+         AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+               switch response.result {
+               case .success(let data):
+                   let jsonData = JSON(data).dictionaryObject
+                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                       completion(true,jsonData)
+                   }else{
+                      completion(false,["error":response.response.debugDescription])
+                   }
+               case .failure(let error):
+                  completion(false,["error":error])
+               }
+           }
+      }
+     
+     class func getWorkout(id: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+      
+           let url = baseURLPath + "api/workouts/\(id)/"
+          
+         AF.request(url, method: .get, encoding: JSONEncoding.default)
+            .responseJSON { response in
+               switch response.result {
+               case .success(let data):
+                   let jsonData = JSON(data).dictionaryObject
+                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      
+                       completion(true,jsonData)
+                   }else{
+                      completion(false,["error":response.response.debugDescription])
+                   }
+               case .failure(let error):
+                  completion(false,["error":error])
+               }
+           }
+      }
+    
+    // MARK: - Exercises -
     
     class func getAllExercises(page: Int,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
@@ -87,7 +148,6 @@ class ApiService: NSObject {
               case .success(let data):
                   let jsonData = JSON(data).dictionaryObject
                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
                       completion(true,jsonData)
                   }else{
                      completion(false,["error":response.response.debugDescription])
@@ -99,70 +159,7 @@ class ApiService: NSObject {
         
      }
     
-    class func createWorkout(params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
-     
-          let url = baseURLPath + "api/workouts/"
-         
-        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
-           .responseJSON { response in
-              switch response.result {
-              case .success(let data):
-                  let jsonData = JSON(data).dictionaryObject
-                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
-                      completion(true,jsonData)
-                  }else{
-                     completion(false,["error":response.response.debugDescription])
-                  }
-              case .failure(let error):
-                 completion(false,["error":error])
-              }
-          }
-        
-     }
-    
-    class func updateWorkout(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
-     
-        let url = baseURLPath + "api/workouts/\(id)/"
-         
-        AF.request(url, method: .put, parameters: params, encoding: JSONEncoding.default)
-           .responseJSON { response in
-              switch response.result {
-              case .success(let data):
-                  let jsonData = JSON(data).dictionaryObject
-                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
-                      completion(true,jsonData)
-                  }else{
-                     completion(false,["error":response.response.debugDescription])
-                  }
-              case .failure(let error):
-                 completion(false,["error":error])
-              }
-          }
-        
-     }
-    
-    class func getWorkout(id: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
-     
-          let url = baseURLPath + "api/workouts/\(id)/"
-         
-        AF.request(url, method: .get, encoding: JSONEncoding.default)
-           .responseJSON { response in
-              switch response.result {
-              case .success(let data):
-                  let jsonData = JSON(data).dictionaryObject
-                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
-                      completion(true,jsonData)
-                  }else{
-                     completion(false,["error":response.response.debugDescription])
-                  }
-              case .failure(let error):
-                 completion(false,["error":error])
-              }
-          }
-     }
+ // MARK: - Sets -
     
     class func getWorkoutSets(parent_workout: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
@@ -174,7 +171,6 @@ class ApiService: NSObject {
               case .success(let data):
                   let jsonData = JSON(data).dictionaryObject
                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
                       completion(true,jsonData)
                   }else{
                      completion(false,["error":response.response.debugDescription])
@@ -195,7 +191,6 @@ class ApiService: NSObject {
               case .success(let data):
                   let jsonData = JSON(data).dictionaryObject
                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
-                     
                       completion(true,jsonData)
                   }else{
                      completion(false,["error":response.response.debugDescription])
@@ -204,7 +199,5 @@ class ApiService: NSObject {
                  completion(false,["error":error])
               }
           }
-        
-     }
-    
+     }    
 }

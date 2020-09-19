@@ -188,10 +188,8 @@ class AllExercisesVC: UIViewController {
                 self.back()
             }
         }
-    }
-    
-    
-    
+    }    
+        
     // MARK: - Layout
     
     internal override func viewDidLayoutSubviews() {
@@ -226,8 +224,6 @@ class AllExercisesVC: UIViewController {
                 createWorkout()
             }
         }
-        
-
     }
 }
 

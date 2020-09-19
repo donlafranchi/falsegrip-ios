@@ -29,7 +29,9 @@ class ExercisesDetailVC: UIViewController {
     var gifVC: GifVC?
     var pagingVC: PagingViewController?
     var exercise: Exercise?
-    
+    var exerciseDict = [String: [SetsModel]]()
+    var sections = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,7 @@ class ExercisesDetailVC: UIViewController {
         setupPageView()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
+//        sortHistory()
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -62,8 +65,6 @@ class ExercisesDetailVC: UIViewController {
         pagingVC!.indicatorColor = COLOR2!
         pagingVC!.indicatorOptions = PagingIndicatorOptions.visible(height: 2, zIndex: 0, spacing:.zero, insets: .init(top: 0, left: 0, bottom: 0, right: 0))
         pagingVC!.borderColor = UIColor.clear
-        // Make sure you add the PagingViewController as a child view
-        // controller and contrain it to the edges of the view.
         addChild(pagingVC!)
         containerView.addSubview(pagingVC!.view)
         pagingVC!.view.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +75,30 @@ class ExercisesDetailVC: UIViewController {
             pagingVC!.view.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
         pagingVC!.didMove(toParent: self)
+    }
+    
+    func sortHistory(){
+        
+        self.exerciseDict.removeAll()
+        self.sections.removeAll()
+        for item in self.exercise!.sets {
+             
+             let dateFormatter = DateFormatter()
+             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+             let date = dateFormatter.date(from:item.modifiedDate)!
+             dateFormatter.dateFormat = "LLLL"
+             let monthName = dateFormatter.string(from: date)
+             print(monthName)
+             
+             if self.exerciseDict.keys.contains(monthName) {
+                 self.exerciseDict[monthName]?.append(item)
+             }else{
+                 self.exerciseDict[monthName] = [item]
+                 self.sections.append(monthName)
+             }
+        }
+        self.tableView.reloadData()
+         
     }
     
     @IBAction func didTapBack(_ sender: Any) {
@@ -101,7 +126,7 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

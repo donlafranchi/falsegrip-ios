@@ -37,6 +37,12 @@ class AddSetVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         num = sets!.count + 1
+        self.tableView.reloadData()
+        if self.sets!.count > 0 {
+            self.tableView.scrollToBottom()
+        }
+       
+        self.pickerView.selectRow(0, inComponent: 0, animated: true)
     }
     
 
@@ -103,7 +109,9 @@ class AddSetVC: UIViewController {
         self.sets?.append(setModel)
         num += 1
         self.tableView.reloadData()
-        self.tableView.scrollToBottom()
+        if self.sets!.count > 0 {
+            self.tableView.scrollToBottom()
+        }
         delegate?.tapAdd()
     }
 }

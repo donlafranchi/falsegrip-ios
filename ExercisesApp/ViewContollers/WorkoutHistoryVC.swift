@@ -24,8 +24,7 @@ class WorkoutHistoryVC: UIViewController {
         super.viewDidLoad()
         setupNotification()
         setUpTableView()
-        getWorkouts()
-        
+        getWorkouts()        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -137,9 +136,6 @@ class WorkoutHistoryVC: UIViewController {
                 self.sections.append(monthName)
             }
         }
-        
-       
-        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL"

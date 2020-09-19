@@ -15,7 +15,8 @@ class SetsModel: NSObject {
     var reps = 0
     var workout = ""
     var exercise = ""
-    
+    var modifiedDate = ""
+
     override init() {
         super.init()
     }
@@ -27,6 +28,7 @@ class SetsModel: NSObject {
         reps = json["reps"] as? Int ?? 0
         workout = json["workout"] as? String ?? ""
         exercise = json["exercise"] as? String ?? ""
+        modifiedDate = json[" modified"] as? String ?? ""
 
     }
 }

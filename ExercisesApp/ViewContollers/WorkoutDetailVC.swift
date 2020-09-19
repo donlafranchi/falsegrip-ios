@@ -84,8 +84,6 @@ class WorkoutDetailVC: UIViewController {
         
         tagView.textFont = UIFont(name: "Mulish-Medium", size: 16)!
         tagView.alignment = .left
-//        tagView.removeAllTags()
-//        tagView.addTags(titles)
     }
     
     func setupNotification(){
@@ -263,6 +261,13 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
+        vc.exercise = self.exercises[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 
@@ -302,6 +307,7 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
     func tapAddSet(_ exercise: Exercise) {
         
         self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
+        self.addSetVC.sets?.removeAll()
         self.addSetVC.sets = exercise.sets
         self.addSetVC.workoutId = self.workoutID
         self.addSetVC.exerciseId = exercise.id

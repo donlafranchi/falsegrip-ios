@@ -27,9 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for name in UIFont.fontNames(forFamilyName: family) {
                 print("   \(name)")
             }
-        }
-        
-   
+        }   
         window?.makeKeyAndVisible()
         return true
     }
