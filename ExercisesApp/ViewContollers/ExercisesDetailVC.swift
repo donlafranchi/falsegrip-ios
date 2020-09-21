@@ -39,12 +39,10 @@ class ExercisesDetailVC: UIViewController {
         setupPageView()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
-//        sortHistory()
+        sortHistory()
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+
     
     func initView(){
         
@@ -81,13 +79,15 @@ class ExercisesDetailVC: UIViewController {
         
         self.exerciseDict.removeAll()
         self.sections.removeAll()
+        
+        self.exercise!.sets = self.exercise!.sets.sorted(by: { $0.modified! > $1.modified! })
+
+        
         for item in self.exercise!.sets {
              
              let dateFormatter = DateFormatter()
-             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-             let date = dateFormatter.date(from:item.modifiedDate)!
-             dateFormatter.dateFormat = "LLLL"
-             let monthName = dateFormatter.string(from: date)
+             dateFormatter.dateFormat = "yyyy LLLL"
+             let monthName = dateFormatter.string(from: item.modified!)
              print(monthName)
              
              if self.exerciseDict.keys.contains(monthName) {
@@ -122,6 +122,7 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
+        headerView.lblMonth.text = String(self.sections[section].split(separator: " ")[1])
         return headerView
     }
 
@@ -136,11 +137,30 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryContainerTVCell", for: indexPath) as! HistoryContainerTVCell
-        cell.tableView.reloadData()
+        cell.initCell(self.exerciseDict[sections[indexPath.section]]!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32 * 4 + 68
+        
+        var setDict = [String: Int]()
+        
+        for item in self.exerciseDict[sections[indexPath.section]]! {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd EEE"
+            let dayStr = dateFormatter.string(from: item.modified!)
+            
+            if setDict.keys.contains(dayStr) {
+                
+                var reps = setDict[dayStr]
+                reps! += item.reps
+                setDict[dayStr] = reps
+            }else{
+                setDict[dayStr] = item.reps
+            }
+        }
+        
+        return CGFloat(32 * setDict.count + 68)
     }
 }

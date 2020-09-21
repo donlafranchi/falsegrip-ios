@@ -10,6 +10,10 @@ import UIKit
 
 class HistoryTVCell: UITableViewCell {
 
+    @IBOutlet weak var lblDay: UILabel!
+    @IBOutlet weak var lblWeekday: UILabel!
+    @IBOutlet weak var lblReps: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +24,6 @@ class HistoryTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
     
 }

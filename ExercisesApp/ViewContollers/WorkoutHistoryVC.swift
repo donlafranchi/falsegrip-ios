@@ -125,7 +125,7 @@ class WorkoutHistoryVC: UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             let date = dateFormatter.date(from:item.datetime)!
-            dateFormatter.dateFormat = "LLLL"
+            dateFormatter.dateFormat = "yyyy LLLL"
             let monthName = dateFormatter.string(from: date)
             print(monthName)
             
@@ -138,7 +138,7 @@ class WorkoutHistoryVC: UIViewController {
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLLL"
+        dateFormatter.dateFormat = "yyyy LLLL"
         let monthName = dateFormatter.string(from: Date())
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -204,7 +204,7 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
-        headerView.lblMonth.text = self.sections[section]
+        headerView.lblMonth.text = String(self.sections[section].split(separator: " ")[1])
         return headerView
     }
 

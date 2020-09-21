@@ -16,6 +16,8 @@ class SetsModel: NSObject {
     var workout = ""
     var exercise = ""
     var modifiedDate = ""
+    var modified: Date?
+
 
     override init() {
         super.init()
@@ -28,7 +30,12 @@ class SetsModel: NSObject {
         reps = json["reps"] as? Int ?? 0
         workout = json["workout"] as? String ?? ""
         exercise = json["exercise"] as? String ?? ""
-        modifiedDate = json[" modified"] as? String ?? ""
+        modifiedDate = json["modified"] as? String ?? ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        modified = dateFormatter.date(from:modifiedDate)!
+        
 
     }
 }
