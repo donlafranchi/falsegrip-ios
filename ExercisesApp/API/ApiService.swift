@@ -136,6 +136,25 @@ class ApiService: NSObject {
            }
       }
     
+    class func deleteWorkout(id: String, completion: @escaping (_ success: Bool) -> Void) {
+     
+          let url = baseURLPath + "api/workouts/\(id)/"
+         
+        AF.request(url, method: .delete)
+           .responseJSON { response in
+              switch response.result {
+              case .success( _):
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true)
+                  }else{
+                     completion(false)
+                  }
+              case .failure( _):
+                 completion(false)
+              }
+          }
+    }
+    
     // MARK: - Exercises -
     
     class func getAllExercises(page: Int,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {

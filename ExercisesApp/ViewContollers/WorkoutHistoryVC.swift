@@ -18,7 +18,7 @@ class WorkoutHistoryVC: UIViewController {
     var pageNum = 1
     var nextPage = ""
     var workouts = [WorkoutModel]()
-    var workoutDict = [String: [WorkoutModel]]()
+    var workoutDict: [String: [WorkoutModel]] = [:]
     var sections = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +120,7 @@ class WorkoutHistoryVC: UIViewController {
 
         self.workoutDict.removeAll()
         self.sections.removeAll()
+        
         for item in self.workouts {
             
             let dateFormatter = DateFormatter()
@@ -130,7 +131,7 @@ class WorkoutHistoryVC: UIViewController {
             print(monthName)
             
             if self.workoutDict.keys.contains(monthName) {
-                self.workoutDict[monthName]?.append(item)
+                self.workoutDict[monthName]!.append(item)
             }else{
                 self.workoutDict[monthName] = [item]
                 self.sections.append(monthName)
@@ -143,12 +144,15 @@ class WorkoutHistoryVC: UIViewController {
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         var isTodayExsit = false
-        for item in self.workoutDict[monthName]! {
-            
-            let date = dateFormatter.date(from: item.datetime)!            
-            if  Calendar.current.isDateInToday(date) {
-                isTodayExsit = true
-                break
+        
+        if self.sections.contains(monthName) {
+            for item in self.workoutDict[monthName]! {
+                
+                let date = dateFormatter.date(from: item.datetime)!
+                if  Calendar.current.isDateInToday(date) {
+                    isTodayExsit = true
+                    break
+                }
             }
         }
         
@@ -160,10 +164,11 @@ class WorkoutHistoryVC: UIViewController {
             todayWorkout.datetime = dateTime
             
             if sections.contains(monthName) {
-                self.workoutDict[monthName]?.insert(todayWorkout, at: 0)
+                self.workoutDict[monthName]!.insert(todayWorkout, at: 0)
             }else{
+                self.workoutDict[monthName] = [todayWorkout]
                 self.sections.insert(monthName, at: 0)
-                self.workoutDict[monthName]? = [todayWorkout]
+
             }
         }
         
@@ -236,10 +241,27 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
             vc.workoutID = self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if self.workoutDict[self.sections[indexPath.section]]![indexPath.row].isToday {
+            return
+        }
+        
+        if editingStyle == .delete {
+            showHUD()
+            ApiService.deleteWorkout(id: self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id) { (deleted) in
+                self.dismissHUD()
+                if deleted {
+                    self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
     
 }
