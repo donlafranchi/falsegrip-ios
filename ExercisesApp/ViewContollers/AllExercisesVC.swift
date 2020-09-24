@@ -10,6 +10,7 @@ import UIKit
 import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
 import CRRefresh
+import iOSDropDown
 
 class AllExercisesVC: UIViewController {
 
@@ -44,7 +45,7 @@ class AllExercisesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initView()
         setupCollectionView()
         getAllExercises()
     }
@@ -62,6 +63,18 @@ class AllExercisesVC: UIViewController {
 //            navigationController.stopFollowingScrollView()
 //        }
     }
+    
+    func initView(){
+        
+        let field = DropDown(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
+        field.text = "All category"
+        field.textColor = MAIN_COLOR
+        field.arrowColor = MAIN_COLOR!
+        field.font = UIFont(name: "Mulish-Bold", size: 18)
+        field.isSearchEnable = false
+        self.navigationItem.titleView = field
+    }
+    
     
     func setupCollectionView(){
         

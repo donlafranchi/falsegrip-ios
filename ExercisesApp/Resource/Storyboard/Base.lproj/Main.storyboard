@@ -64,7 +64,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make your self Perfect!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="333-Xs-maw">
                                 <rect key="frame" x="20" y="351.5" width="374" height="33"/>
                                 <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="28"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="BackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -395,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LBE-iZ-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185.507246376812" y="105.80357142857143"/>
+            <point key="canvasLocation" x="2096" y="106"/>
         </scene>
         <!--Status-->
         <scene sceneID="fr4-uG-GCF">
@@ -2570,7 +2570,7 @@
         <image name="apple" width="15" height="17"/>
         <image name="award icon" width="12" height="16"/>
         <image name="battery_empty" width="35" height="24"/>
-        <image name="bg_splash" width="375" height="812"/>
+        <image name="bg_splash" width="5184" height="3888"/>
         <image name="check" width="20" height="20"/>
         <image name="check1" width="24" height="24"/>
         <image name="clock" width="13" height="16"/>
