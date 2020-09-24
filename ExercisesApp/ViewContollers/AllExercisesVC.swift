@@ -265,7 +265,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             }
             
         default:
-            assert(false)
+            return UICollectionViewCell()
         }
 
     }
@@ -281,7 +281,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return self.exercises.count
             
         default:
-            assert(false)
+            return 0
         }
     }
     
@@ -313,7 +313,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return UIEdgeInsets.zero
 
         default:
-            assert(false)
+            return .zero
         }
     }
     
@@ -340,7 +340,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return CGSize(width: itemWidth, height: itemHeight)
             
         default:
-            assert(false)
+            return .zero
         }
         
         
