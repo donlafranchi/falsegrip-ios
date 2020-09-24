@@ -385,7 +385,7 @@
                             <constraint firstItem="d7q-mR-C6W" firstAttribute="top" secondItem="lux-Gs-cIf" secondAttribute="top" id="pFr-oM-2Yh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Workout history" id="1Ek-gx-aD4"/>
+                    <navigationItem key="navigationItem" title="WORKOUT HISTORY" id="1Ek-gx-aD4"/>
                     <connections>
                         <outlet property="historyTableView" destination="d7q-mR-C6W" id="0bY-x1-3db"/>
                         <segue destination="Xft-Y8-eni" kind="show" id="kvj-qj-oaL"/>
@@ -1405,7 +1405,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-sE-f7f">
                                                     <rect key="frame" x="322.5" y="19.5" width="13.5" height="28"/>
                                                     <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="MainColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="reps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKm-qP-a3D">
@@ -1442,7 +1442,7 @@
                             </tableView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aC-nZ-qbM">
                                 <rect key="frame" x="0.0" y="384" width="414" height="166"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="166" id="I5O-zm-rgB"/>
                                 </constraints>
@@ -1465,7 +1465,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="SubColor"/>
+                                <color key="backgroundColor" name="Color4"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="APc-tD-PYl"/>
                                     <constraint firstAttribute="trailing" secondItem="9RI-Ic-d4v" secondAttribute="trailing" constant="16" id="SLz-zu-erm"/>
@@ -2587,6 +2587,9 @@
         <namedColor name="Color2">
             <color red="0.027450980392156862" green="0.40784313725490196" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Color4">
+            <color red="0.63529411764705879" green="0.83529411764705885" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color5">
             <color red="0.93725490196078431" green="0.94117647058823528" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2610,9 +2613,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

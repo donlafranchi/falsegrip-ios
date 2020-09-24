@@ -84,3 +84,20 @@ func HIDDEN_IMAGES_THUMBNAIL_DIRECTORY() -> String {
     return aProductDirectory!
 }
 
+
+func removeDuplicates(array: [String]) -> [String] {
+    var encountered = Set<String>()
+    var result: [String] = []
+    for value in array {
+        if encountered.contains(value) {
+            // Do not add a duplicate element.
+        }
+        else {
+            // Add value to the set.
+            encountered.insert(value)
+            // ... Append the value.
+            result.append(value)
+        }
+    }
+    return result
+}

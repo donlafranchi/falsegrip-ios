@@ -40,16 +40,31 @@ class WorkoutHistoryTVCell: UITableViewCell {
         
         self.workout = workout
         
-        self.lblMain.isHidden = workout.isToday
         self.lblSub.isHidden = workout.isToday
+        if self.workout.isToday {
+            self.lblMain.text = "What will you work on today?"
+        }else{
+            
+            let categories = self.workout.title.split(separator: "/")
+            var cats : [String] = []
+            for item in categories {
+                if !cats.contains(String(item)) {
+                    cats.append(String(item))
+                }
+            }
+            let title = cats.joined(separator: "/")
+            self.lblMain.text = title
+        }
         
-        self.lblMain.text = self.workout.title
         self.lblSub.isHidden = self.workout.exercises.count == 0
         
         if self.workout.exercises.count > 0 {
             var names = [String]()
             for item in self.workout.exercises {
-                names.append(item.name)
+                
+                if !names.contains(item.name) {
+                    names.append(item.name)
+                }
             }
             self.lblSub.text = names.joined(separator: ", ")
         }
