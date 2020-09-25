@@ -52,7 +52,10 @@ class WorkoutHistoryTVCell: UITableViewCell {
                     cats.append(String(item))
                 }
             }
-            let title = cats.joined(separator: "/")
+            var title = cats.joined(separator: "/")
+            if cats.count == 5 {
+                title = "Full Body"
+            }
             self.lblMain.text = title
         }
         
