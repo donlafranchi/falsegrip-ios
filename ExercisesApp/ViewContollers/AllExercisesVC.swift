@@ -10,7 +10,6 @@ import UIKit
 import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
 import CRRefresh
-import iOSDropDown
 
 class AllExercisesVC: UIViewController {
 
@@ -19,14 +18,14 @@ class AllExercisesVC: UIViewController {
     @IBOutlet weak var lblSelectedCount: UILabel!
     @IBOutlet weak var selectionView: DropShadowView!
     
-    var isSelectionMode = false{
+    var isSelectionMode = true{
         didSet{
             if !isSelectionMode {
-                for item in self.exercises {
+                for item in self.filteredExercises {
                     item.isSelected = false
                 }
                 self.collectionView.reloadData()
-                seletedCount = 0
+                seletedCount = 0                
             }
         }
     }
@@ -41,7 +40,11 @@ class AllExercisesVC: UIViewController {
     var pageNum = 1
     var nextPage = ""
     var exercises = [Exercise]()
+    var filteredExercises = [Exercise]()
+
     var isFromDetail = false
+    var categoryField = DropDown()
+    var selectedCategory = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,13 +69,38 @@ class AllExercisesVC: UIViewController {
     
     func initView(){
         
-        let field = DropDown(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
-        field.text = "All category"
-        field.textColor = MAIN_COLOR
-        field.arrowColor = MAIN_COLOR!
-        field.font = UIFont(name: "Mulish-Bold", size: 18)
-        field.isSearchEnable = false
-        self.navigationItem.titleView = field
+        categoryField = DropDown(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
+        categoryField.sizeToFit()
+        categoryField.text = "All Exercises"
+        categoryField.textColor = MAIN_COLOR
+        categoryField.arrowColor = MAIN_COLOR!
+        categoryField.font = UIFont(name: "Mulish-Bold", size: 18)
+        categoryField.isSearchEnable = false
+//        categoryField.optionArray = ["push","pull"]
+        categoryField.checkMarkEnabled = false
+        categoryField.selectedRowColor = COLOR4!
+        categoryField.rowHeight = 40
+        categoryField.textAlignment = .center
+        self.navigationItem.titleView = categoryField
+        
+        categoryField.didSelect { (category, index, id) in
+            
+            if index > 0 {
+                self.selectedCategory = category
+                var exercises: [Exercise] = []
+                for item in self.filteredExercises {
+                    if item.primary_muscle == category {
+                        exercises.append(item)
+                    }
+                }
+                self.filteredExercises = exercises
+                self.collectionView.reloadData()
+            }else{
+                self.filteredExercises = self.exercises
+                self.selectedCategory = ""
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     
@@ -112,6 +140,7 @@ class AllExercisesVC: UIViewController {
                 if self.pageNum == 1 {
                     self.seletedCount = 0
                     self.exercises.removeAll()
+                    self.filteredExercises.removeAll()
                 }
                 
                 if let next = data!["next"] as? String, !next.isEmpty {
@@ -132,7 +161,27 @@ class AllExercisesVC: UIViewController {
                     
                     for item in results {
                         self.exercises.append(Exercise(item))
+                        self.filteredExercises.append(Exercise(item))
                     }
+                    
+                    if !self.selectedCategory.isEmpty {
+                        var exercises: [Exercise] = []
+                        for item in self.filteredExercises {
+                            if item.primary_muscle == self.selectedCategory {
+                                exercises.append(item)
+                            }
+                        }
+                        self.filteredExercises = exercises
+                    }
+                    
+                    var categories: [String] = []
+                    categories.append("All Exercises")
+                    for item in self.filteredExercises {
+                        if !categories.contains(item.primary_muscle) {
+                            categories.append(item.primary_muscle)
+                        }
+                    }
+                    self.categoryField.optionArray = categories
                     
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
@@ -161,7 +210,7 @@ class AllExercisesVC: UIViewController {
         
         var titles = [String]()
         var ids = [String]()
-        for item in self.exercises {
+        for item in self.filteredExercises {
             if item.isSelected && !item.primary_muscle.isEmpty {
                 titles.append(item.primary_muscle)
             }
@@ -260,7 +309,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             if indexPath.item % 2 == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell1", for: indexPath) as! ExercisesCell1
                 
-                cell.initCell(self.exercises[indexPath.item])
+                cell.initCell(self.filteredExercises[indexPath.item])
                 if !isSelectionMode {
                     cell.imgCheck.isHidden = true
                     cell.overlayView.isHidden  = true
@@ -269,7 +318,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
                 return cell
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell2", for: indexPath) as! ExercisesCell2
-                cell.initCell(self.exercises[indexPath.item])
+                cell.initCell(self.filteredExercises[indexPath.item])
                 if !isSelectionMode {
                     cell.overlayView.isHidden = true
                     cell.imgCheck.isHidden = true
@@ -291,7 +340,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return 1
             
         case 1:
-            return self.exercises.count
+            return self.filteredExercises.count
             
         default:
             return 0
@@ -365,11 +414,11 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
         if indexPath.section == 1 {
              if isSelectionMode {
                 
-                self.exercises[indexPath.item].isSelected = !self.exercises[indexPath.item].isSelected
+                self.filteredExercises[indexPath.item].isSelected = !self.filteredExercises[indexPath.item].isSelected
                 self.collectionView.reloadItems(at: [indexPath])
                 
                 var count = 0
-                for item in self.exercises {
+                for item in self.filteredExercises {
                     if item.isSelected {
                         count += 1
                     }
@@ -377,7 +426,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
                 seletedCount = count
              }else{
                 let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
-                vc.exercise = self.exercises[indexPath.item]
+                vc.exercise = self.filteredExercises[indexPath.item]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }else{

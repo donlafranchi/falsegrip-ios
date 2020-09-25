@@ -28,6 +28,7 @@
 		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
 		8B69B8582515246D00FD0598 /* GifVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* GifVC.swift */; };
 		8B69B85A251540C300FD0598 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B859251540C300FD0598 /* VideoPlayerVC.swift */; };
+		8B9A6B9D251D645000F7AA3B /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */; };
 		8BD8B9082503C4EF00688B57 /* MainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B9072503C4EF00688B57 /* MainNav.swift */; };
 		8BD8B90C2506CC8500688B57 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90B2506CC8500688B57 /* GradientButton.swift */; };
 		8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */; };
@@ -85,6 +86,7 @@
 		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		8B69B8572515246D00FD0598 /* GifVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVC.swift; sourceTree = "<group>"; };
 		8B69B859251540C300FD0598 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
+		8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
 		8BD8B9072503C4EF00688B57 /* MainNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNav.swift; sourceTree = "<group>"; };
 		8BD8B90B2506CC8500688B57 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExercisesVC.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		8BED7FEF25030099001F2BBE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */,
 				8BED7FF6250303EB001F2BBE /* DropShadowView.swift */,
 				8BED7FF0250300A2001F2BBE /* Cells */,
 				8BD8B90B2506CC8500688B57 /* GradientButton.swift */,
@@ -480,6 +483,7 @@
 				8B17E5572509511500EE1DBA /* WorkoutDetailVC.swift in Sources */,
 				8B69B85A251540C300FD0598 /* VideoPlayerVC.swift in Sources */,
 				8B33C0F62513CE4A006618E6 /* AddExercisesVC.swift in Sources */,
+				8B9A6B9D251D645000F7AA3B /* iOSDropDown.swift in Sources */,
 				8BED7FDA2502DFA1001F2BBE /* SigninVC.swift in Sources */,
 				8BD8B91D2507C35500688B57 /* SearchCollectionViewCell.swift in Sources */,
 				8BED7FF7250303EB001F2BBE /* DropShadowView.swift in Sources */,

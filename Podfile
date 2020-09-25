@@ -23,7 +23,6 @@ target 'ExercisesApp' do
     pod 'EasyTipView'
     pod 'SwipeTransition'
     pod 'StepSlider'
-    pod 'iOSDropDown'
     pod 'Nuke'
     pod 'CRNotifications'
     pod 'Parchment'

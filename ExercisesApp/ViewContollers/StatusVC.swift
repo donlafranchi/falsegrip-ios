@@ -9,7 +9,6 @@
 import UIKit
 import GrowingTextView
 import StepSlider
-import iOSDropDown
 
 protocol StatusVCDelegate {
     func saveNote(_ workout: WorkoutModel)
