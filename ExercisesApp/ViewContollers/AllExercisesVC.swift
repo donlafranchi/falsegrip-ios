@@ -35,7 +35,7 @@ class AllExercisesVC: UIViewController {
     var isFromDetail = false
     var categoryField = DropDown()
     var selectedCategory = ""
-
+    var categories: [String] = ["All Exercises","Push","Pull","Legs","Core","Other"]
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -70,6 +70,8 @@ class AllExercisesVC: UIViewController {
         categoryField.selectedRowColor = COLOR4!
         categoryField.rowHeight = 40
         categoryField.textAlignment = .center
+        categoryField.optionArray = self.categories
+
         self.navigationItem.titleView = categoryField
         
         categoryField.didSelect { (category, index, id) in
@@ -77,8 +79,8 @@ class AllExercisesVC: UIViewController {
             if index > 0 {
                 self.selectedCategory = category
                 var exercises: [Exercise] = []
-                for item in self.filteredExercises {
-                    if item.primary_muscle == category {
+                for item in self.exercises {
+                    if item.category == category {
                         exercises.append(item)
                     }
                 }
@@ -156,21 +158,14 @@ class AllExercisesVC: UIViewController {
                     if !self.selectedCategory.isEmpty {
                         var exercises: [Exercise] = []
                         for item in self.filteredExercises {
-                            if item.primary_muscle == self.selectedCategory {
+                            if item.category == self.selectedCategory {
                                 exercises.append(item)
                             }
                         }
                         self.filteredExercises = exercises
                     }
                     
-                    var categories: [String] = []
-                    categories.append("All Exercises")
-                    for item in self.filteredExercises {
-                        if !categories.contains(item.primary_muscle) {
-                            categories.append(item.primary_muscle)
-                        }
-                    }
-                    self.categoryField.optionArray = categories
+         
                     
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
@@ -200,8 +195,8 @@ class AllExercisesVC: UIViewController {
         var titles = [String]()
         var ids = [String]()
         for item in self.filteredExercises {
-            if item.isSelected && !item.primary_muscle.isEmpty {
-                titles.append(item.primary_muscle)
+            if item.isSelected && !item.category.isEmpty {
+                titles.append(item.category)
             }
             if item.isSelected {
                 ids.append(item.id)

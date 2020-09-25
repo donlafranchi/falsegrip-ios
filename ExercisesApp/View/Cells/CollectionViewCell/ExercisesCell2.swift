@@ -29,7 +29,7 @@ class ExercisesCell2: UICollectionViewCell {
         
         self.exercise = exercise
         self.lblName.text = self.exercise.name
-        self.lblMuscle.text = self.exercise.primary_muscle
+        self.lblMuscle.text = self.exercise.category
         var options = ImageLoadingOptions()
         options.pipeline = pipeline
         options.placeholder = UIImage(named: "placeholder")

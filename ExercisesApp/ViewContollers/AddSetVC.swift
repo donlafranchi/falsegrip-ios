@@ -13,17 +13,24 @@ protocol AddSetVCDelegate {
     func done(_ added: Bool)
     func tapAdd()
     func tapAddMore()
+    func deletedSet()
 }
 
 class AddSetVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var lblSet: UILabel!
+    @IBOutlet weak var setField: UITextField!
+    @IBOutlet weak var setView: UIView!
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var moreBtn: UIButton!
+    @IBOutlet weak var lblTitle: UILabel!
     
-    var sets: [SetsModel]?
+    var sets: [SetsModel]? = []
     var addedSets = [SetsModel]()
     var workoutId: String?
     var exerciseId: String?
+    var exerciseName: String?
     var num = 0
     
     var delegate: AddSetVCDelegate?
@@ -41,8 +48,12 @@ class AddSetVC: UIViewController {
         if self.sets!.count > 0 {
             self.tableView.scrollToBottom()
         }
-       
-        self.pickerView.selectRow(0, inComponent: 0, animated: true)
+        setField.resignFirstResponder()
+        self.setView.isHidden = true
+        self.lblSet.text = ""
+        self.setField.text = ""
+        self.moreBtn.isHidden = false
+        self.lblTitle.text = self.exerciseName
     }
     
 
@@ -80,7 +91,12 @@ class AddSetVC: UIViewController {
     @IBAction func didTapAddMore(_ sender: Any) {
 //        self.repes.append(0)
 //        self.tableView.scrollToBottom()
-        delegate?.tapAddMore()
+//        delegate?.tapAddMore()
+        self.setField.becomeFirstResponder()
+        self.setView.isHidden = false
+        self.lblSet.text = ""
+        self.setField.text = ""
+        self.moreBtn.isHidden = true
     }
     
     @IBAction func didTapMinuse(_ sender: UIButton) {
@@ -97,12 +113,43 @@ class AddSetVC: UIViewController {
 //         self.repes[sender.tag] += 1
     }
     
+    
+    @IBAction func didTapRemove(_ sender: UIButton) {
+        
+        showConfirmAlert("Warning", msg: "Do you want to delete Set?") { (ok) in
+            if ok {
+                for item in self.addedSets {
+                    if item == self.sets![sender.tag] {
+                        self.sets?.remove(at: sender.tag)
+                        self.tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+                        self.tableView.reloadData()
+                        return
+                    }
+                }
+                
+                self.showHUD()
+                ApiService.deleteSets(workoutId: self.workoutId!,id: self.sets![sender.tag].id) { (deleted) in
+                    self.dismissHUD()
+                    if deleted {
+                        self.sets?.remove(at: sender.tag)
+                        self.tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+                        self.tableView.reloadData()
+                        self.delegate?.deletedSet()
+                        
+                    }
+                }
+            }
+        }
+        
+
+    }
+    
     @IBAction func didTapAdd(_ sender: Any) {
         
         let setModel = SetsModel()
         setModel.workout = self.workoutId!
         setModel.exercise = self.exerciseId!
-        setModel.reps = pickerView.selectedRow(inComponent: 0) + 1
+        setModel.reps = Int(self.lblSet.text!)!
         setModel.num = num
         
         addedSets.append(setModel)
@@ -112,7 +159,12 @@ class AddSetVC: UIViewController {
         if self.sets!.count > 0 {
             self.tableView.scrollToBottom()
         }
-        delegate?.tapAdd()
+        self.setView.isHidden = true
+        self.lblSet.text = ""
+        self.setField.text = ""
+        self.setField.resignFirstResponder()
+        self.moreBtn.isHidden = false
+//        delegate?.tapAdd()
     }
 }
 
@@ -123,7 +175,7 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetTVCell", for: indexPath) as! AddSetTVCell
-        cell.lblSet.text = "\(indexPath.row + 1) Set"
+        cell.lblSet.text = "Set \(indexPath.row + 1)"
         print(indexPath.row)
         cell.lblReps.text = "\(sets![indexPath.row].reps)"
         
@@ -138,6 +190,7 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
         }else{
             cell.lblSet.font = UIFont(name: "Mulish-Bold", size: 16)
         }
+        cell.delBtn.tag = indexPath.row
         
         return cell
     }
@@ -145,6 +198,7 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+
     
 }
 
@@ -160,4 +214,27 @@ extension AddSetVC: UIPickerViewDataSource,UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(row + 1)"
     }
+}
+
+extension AddSetVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let str = textField.text,
+            let textRange = Range(range, in: str) {
+            let updatedText = str.replacingCharacters(in: textRange,
+                                                       with: string)
+            
+            if updatedText.count > 3 {
+                return false
+            }
+            
+            self.lblSet.text = updatedText
+            self.addBtn.isEnabled = updatedText.count > 0
+            
+            
+        
+        }
+        return true
+    }
+    
 }

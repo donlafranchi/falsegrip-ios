@@ -43,6 +43,16 @@ extension UIViewController {
     func back(){
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func showConfirmAlert(_ title: String, msg: String, completion: @escaping (_ ok: Bool) -> Void) {
+        
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            completion(true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
 

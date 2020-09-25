@@ -14,6 +14,7 @@ class AddSetTVCell: UITableViewCell {
     @IBOutlet weak var lblSet: UILabel!
     @IBOutlet weak var lblSub: UILabel!
     @IBOutlet weak var lblReps: UILabel!
+    @IBOutlet weak var delBtn: UIButton!
     
     
     override func awakeFromNib() {

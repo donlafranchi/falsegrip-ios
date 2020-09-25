@@ -8,7 +8,6 @@
 
 import UIKit
 import FittedSheets
-import TagListView
 import EasyTipView
 import CRRefresh
 import CRNotifications
@@ -18,7 +17,7 @@ class WorkoutDetailVC: UIViewController {
 
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tagView: TagListView!
+    @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var noteBtn: UIButton!
     @IBOutlet weak var batteryImgView: UIImageView!    
     @IBOutlet weak var weightImgView: UIImageView!
@@ -41,7 +40,6 @@ class WorkoutDetailVC: UIViewController {
         setupTablveView()
         setupNotification()
         setUpBottomSlider()
-        initTagView()
         setTipView()
         getWorkout()
     }
@@ -49,8 +47,8 @@ class WorkoutDetailVC: UIViewController {
     func reloadView(){
         
         self.tableView.reloadData()
-        self.tagView.removeAllTags()
-        self.tagView.addTags(sections)
+        let category = sections.joined(separator: "/")
+        self.lblCategory.text = category
         self.reloadNoteView()
 
         
@@ -78,12 +76,6 @@ class WorkoutDetailVC: UIViewController {
         weightView.isHidden = !(self.workout.body_weight > 0)
         lblWeight.text = "\(self.workout.body_weight)"
         noteImgView.image = self.workout.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes")
-    }
-    
-    func initTagView(){
-        
-        tagView.textFont = UIFont(name: "Mulish-Medium", size: 16)!
-        tagView.alignment = .left
     }
     
     func setupNotification(){
@@ -169,8 +161,8 @@ class WorkoutDetailVC: UIViewController {
                     self.sections.removeAll()
                     for item in self.exercises {
                         
-                        if !self.sections.contains(item.primary_muscle) {
-                            self.sections.append(item.primary_muscle)
+                        if !self.sections.contains(item.category) {
+                            self.sections.append(item.category)
                         }
                     }
                     self.reloadView()
@@ -258,15 +250,61 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
         vc.exercise = self.exercises[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+//            showHUD()
+//            ApiService.deleteWorkout(id: self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id) { (deleted) in
+//                self.dismissHUD()
+//                if deleted {
+//                    self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                }
+//            }
+            
+            self.showConfirmAlert("Warning", msg: "Do you want to delete Exercise from Workout?") { (ok) in
+                if ok {
+                    self.showHUD()
+                    var ids = [String]()
+                    for item in self.exercises {
+                        
+                        if item.id == self.exercises[indexPath.row].id {
+                            continue
+                        }
+                        ids.append(item.id)
+                    }
+                    let params = [
+                        "exercises":ids] as [String : Any]
+                    
+                    ApiService.deleteExercise(id: self.workout.id,params: params) { (success) in
+                        
+                        if success {
+                            self.getWorkout()
+                            let nc = NotificationCenter.default
+                            nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                            
+                        }else{
+                            self.dismissHUD()
+                        }
+                    }
+                    
+                }
+            }
+
+        }
+        
+
     }
 
 }
@@ -292,6 +330,19 @@ extension WorkoutDetailVC: AddSetVCDelegate{
     func cancel() {
         self.sheetController.closeSheet()
     }
+    
+    func deletedSet() {
+        ApiService.getWorkout(id: self.workoutID) { (success, data) in
+            if success {
+                if let results = data {
+                                        
+                    self.workout = WorkoutModel(results)
+                    self.exercises = self.workout.exercises
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 extension WorkoutDetailVC: StatusVCDelegate{
@@ -306,11 +357,12 @@ extension WorkoutDetailVC: StatusVCDelegate{
 extension WorkoutDetailVC: ExercisesTVCellDelegate{
     func tapAddSet(_ exercise: Exercise) {
         
-        self.sheetController.setSizes([.fixed(CGFloat(360 + 200))])
+        self.sheetController.setSizes([.fixed(CGFloat(360))])
         self.addSetVC.sets?.removeAll()
         self.addSetVC.sets = exercise.sets
         self.addSetVC.workoutId = self.workoutID
         self.addSetVC.exerciseId = exercise.id
+        self.addSetVC.exerciseName = exercise.name
         self.addSetVC.addedSets.removeAll()
         self.present(sheetController, animated: false, completion: nil)
     }

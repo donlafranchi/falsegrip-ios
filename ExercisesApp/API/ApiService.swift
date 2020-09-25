@@ -200,6 +200,25 @@ class ApiService: NSObject {
           }
      }
     
+    class func deleteExercise(id: String,params: [String: Any], completion: @escaping (_ success: Bool) -> Void) {
+     
+        let url = baseURLPath + "api/workouts/\(id)/"
+         
+        AF.request(url, method: .patch, parameters: params, encoding: JSONEncoding.default)
+           .responseJSON { response in
+              switch response.result {
+              case .success( _):
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true)
+                  }else{
+                     completion(false)
+                  }
+              case .failure( _):
+                 completion(false)
+              }
+          }
+     }
+    
     class func workoutSets(workoutId: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
         let url = baseURLPath + "api/workouts/\(workoutId)/sets/"
@@ -218,5 +237,24 @@ class ApiService: NSObject {
                  completion(false,["error":error])
               }
           }
-     }    
+     }
+    
+    class func deleteSets(workoutId: String, id: Int, completion: @escaping (_ success: Bool) -> Void) {
+     
+        let url = baseURLPath + "api/workouts/\(workoutId)/sets/\(id)/"
+         
+        AF.request(url, method: .delete)
+           .responseJSON { response in
+              switch response.result {
+              case .success( _):
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true)
+                  }else{
+                     completion(false)
+                  }
+              case .failure( _):
+                 completion(false)
+              }
+          }
+     }
 }

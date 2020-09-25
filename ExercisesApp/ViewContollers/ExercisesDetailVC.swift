@@ -48,8 +48,8 @@ class ExercisesDetailVC: UIViewController {
         
         self.title = self.exercise?.name
         self.lblCreator.text = self.exercise?.creators
-        self.lblPrimaryMusel.text = self.exercise?.primary_muscle
-        self.lblSecondaryMusel.text = self.exercise?.secondary_muscle
+        self.lblPrimaryMusel.text = self.exercise?.category
+        self.lblSecondaryMusel.text = self.exercise?.muscle_category
     }
 
     func setupPageView(){

@@ -35,7 +35,8 @@ class AddExercisesVC: UIViewController {
     var categoryField = DropDown()
     var selectedCategory = ""
     var workout = WorkoutModel()
-    
+    var categories: [String] = ["All Exercises","Push","Pull","Legs","Core","Other"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,6 +72,7 @@ class AddExercisesVC: UIViewController {
         categoryField.selectedRowColor = COLOR4!
         categoryField.rowHeight = 40
         categoryField.textAlignment = .center
+        categoryField.optionArray = categories
         self.navigationItem.titleView = categoryField
         
         categoryField.didSelect { (category, index, id) in
@@ -78,8 +80,8 @@ class AddExercisesVC: UIViewController {
             if index > 0 {
                 self.selectedCategory = category
                 var exercises: [Exercise] = []
-                for item in self.filteredExercises {
-                    if item.primary_muscle == category {
+                for item in self.exercises {
+                    if item.category == category {
                         exercises.append(item)
                     }
                 }
@@ -167,21 +169,12 @@ class AddExercisesVC: UIViewController {
                     if !self.selectedCategory.isEmpty {
                         var exercises: [Exercise] = []
                         for item in self.filteredExercises {
-                            if item.primary_muscle == self.selectedCategory {
+                            if item.category == self.selectedCategory {
                                 exercises.append(item)
                             }
                         }
                         self.filteredExercises = exercises
-                    }
-                    
-                    var categories: [String] = []
-                    categories.append("All Exercises")
-                    for item in self.filteredExercises {
-                        if !categories.contains(item.primary_muscle) {
-                            categories.append(item.primary_muscle)
-                        }
-                    }
-                    self.categoryField.optionArray = categories
+                    }           
                     
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
