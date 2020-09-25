@@ -105,7 +105,7 @@ class WorkoutDetailVC: UIViewController {
         }else{
             self.getWorkout()
         }
-        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully add exercises to Workout.", dismissDelay: 5)
+        CRNotifications.showNotification(textColor: MAIN_COLOR!, backgroundColor: BACKGROUND_COLOR!, image: UIImage(named: "success"), title: "Success!", message: "You successfully add exercises to Workout.", dismissDelay: 2.0)
     }
     
     func setupTablveView(){
@@ -299,7 +299,7 @@ extension WorkoutDetailVC: StatusVCDelegate{
     func saveNote(_ workout: WorkoutModel) {
         self.workout = workout
         self.reloadNoteView()
-        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully updated Note.", dismissDelay: 5)
+        CRNotifications.showNotification(textColor: MAIN_COLOR!, backgroundColor: BACKGROUND_COLOR!, image: UIImage(named: "success"), title: "Success!", message: "You successfully updated Note.", dismissDelay: 2.0)
     }
 }
 

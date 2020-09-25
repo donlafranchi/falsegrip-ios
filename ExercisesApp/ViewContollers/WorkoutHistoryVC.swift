@@ -183,8 +183,8 @@ class WorkoutHistoryVC: UIViewController {
         
         self.pageNum = 1
         self.getWorkouts()
-        CRNotifications.showNotification(type: CRNotifications.success, title: "Success!", message: "You successfully created Workout.", dismissDelay: 5)
-        
+        CRNotifications.showNotification(textColor: MAIN_COLOR!, backgroundColor: BACKGROUND_COLOR!, image: UIImage(named: "success"), title: "Success!", message: "You successfully created Workout.", dismissDelay: 2.0)
+
     }
     
     @objc func workoutUpdated(notification: Notification) {
