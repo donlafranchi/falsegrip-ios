@@ -17,7 +17,7 @@ protocol StatusVCDelegate {
 class StatusVC: UIViewController {
 
     @IBOutlet weak var energySlider: StepSlider!
-    @IBOutlet weak var lblWeight: UILabel!
+    @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var notesTextView: GrowingTextView!
     @IBOutlet weak var unitDropDown: DropDown!
     var minusTimer: Timer?
@@ -28,7 +28,7 @@ class StatusVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initDropDown()
-        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.weightField.text = "\(self.workout.body_weight)"
         self.energySlider.index = UInt(self.workout.energy_level)
         self.notesTextView.text = self.workout.comments
     }
@@ -70,12 +70,12 @@ class StatusVC: UIViewController {
         }
         
         self.workout.body_weight -= 0.5
-        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.weightField.text = "\(self.workout.body_weight)"
     }
     
     @objc func plusPress() {
         self.workout.body_weight += 0.5
-        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.weightField.text = "\(self.workout.body_weight)"
     }
 
     @IBAction func didTapBack(_ sender: Any) {
@@ -95,13 +95,13 @@ class StatusVC: UIViewController {
         }
         
         self.workout.body_weight -= 0.5
-        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.weightField.text = "\(self.workout.body_weight)"
     }
     
     @IBAction func didTapPlus(_ sender: Any) {
         
         self.workout.body_weight += 0.5
-        self.lblWeight.text = "\(self.workout.body_weight)"
+        self.weightField.text = "\(self.workout.body_weight)"
         
     }
     
@@ -155,6 +155,46 @@ class StatusVC: UIViewController {
             }
         }        
         
+    }
+    
+}
+
+extension StatusVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let str = textField.text,
+            let textRange = Range(range, in: str) {
+            let updatedText = str.replacingCharacters(in: textRange,
+                                                       with: string)
+            
+            if updatedText.count > 5 {
+                return false
+            }
+            
+            if updatedText.isEmpty {
+                self.workout.body_weight = 0.0
+            }else{
+                var count = 0
+                for item in updatedText {
+                    if item == "." {
+                        count += 1
+                    }
+                }
+                if count > 1 {
+                    return false
+                }
+                self.workout.body_weight = Double(updatedText)!
+            }
+        
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField.text!.isEmpty {
+            textField.text = "0.0"
+        }
     }
     
 }

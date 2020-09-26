@@ -112,37 +112,7 @@ class AddSetVC: UIViewController {
         
 //         self.repes[sender.tag] += 1
     }
-    
-    
-    @IBAction func didTapRemove(_ sender: UIButton) {
-        
-        showConfirmAlert("Warning", msg: "Do you want to delete Set?") { (ok) in
-            if ok {
-                for item in self.addedSets {
-                    if item == self.sets![sender.tag] {
-                        self.sets?.remove(at: sender.tag)
-                        self.tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
-                        self.tableView.reloadData()
-                        return
-                    }
-                }
-                
-                self.showHUD()
-                ApiService.deleteSets(workoutId: self.workoutId!,id: self.sets![sender.tag].id) { (deleted) in
-                    self.dismissHUD()
-                    if deleted {
-                        self.sets?.remove(at: sender.tag)
-                        self.tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
-                        self.tableView.reloadData()
-                        self.delegate?.deletedSet()
-                        
-                    }
-                }
-            }
-        }
-        
 
-    }
     
     @IBAction func didTapAdd(_ sender: Any) {
         
@@ -190,13 +160,46 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
         }else{
             cell.lblSet.font = UIFont(name: "Mulish-Bold", size: 16)
         }
-        cell.delBtn.tag = indexPath.row
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+        if editingStyle == .delete {
+           
+            showConfirmAlert("Warning", msg: "Do you want to delete Set?") { (ok) in
+                if ok {
+                    for item in self.addedSets {
+                        if item == self.sets![indexPath.row] {
+                            self.sets?.remove(at: indexPath.row)
+                            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                            self.tableView.reloadData()
+                            return
+                        }
+                    }
+                    
+                    self.showHUD()
+                    ApiService.deleteSets(workoutId: self.workoutId!,id: self.sets![indexPath.row].id) { (deleted) in
+                        self.dismissHUD()
+                        if deleted {
+                            self.sets?.remove(at: indexPath.row)
+                            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                            self.tableView.reloadData()
+                            self.delegate?.deletedSet()
+                            
+                        }
+                    }
+                }
+            }
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
     }
 
     

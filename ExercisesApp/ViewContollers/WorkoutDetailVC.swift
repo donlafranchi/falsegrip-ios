@@ -139,6 +139,7 @@ class WorkoutDetailVC: UIViewController {
         sheetController.containerView.layer.shadowOpacity = 0.4
         sheetController.dismissOnPan = true
         sheetController.dismissOnBackgroundTap = true
+        sheetController.view.gestureRecognizers?.removeAll()
         addSetVC.delegate = self
         sheetController.willDismiss = { _ in
             print("Will dismiss")
