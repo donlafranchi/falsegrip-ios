@@ -12,11 +12,14 @@ import SwiftyGif
 class GifVC: UIViewController {
 
     @IBOutlet weak var gifView: UIImageView!
-    var gifUrl = "https://portal.vpworkouts.com/Media/Image/E305_Male_Motion.gif?t=01%2F01%2F0001%2000%3A00%3A00"
+    var gifUrl:String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.gifView?.setGifFromURL(URL(string: gifUrl)!)
+        if !gifUrl!.isEmpty {
+            self.gifView?.setGifFromURL(URL(string: gifUrl!)!)
+        }
+        
     }
     
 

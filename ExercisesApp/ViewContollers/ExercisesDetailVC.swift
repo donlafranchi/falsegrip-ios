@@ -55,7 +55,9 @@ class ExercisesDetailVC: UIViewController {
     func setupPageView(){
         
         videoVC = (storyboard?.instantiateViewController(withIdentifier: "VideoVC") as! VideoVC)
+        videoVC!.videoPath = URL(string: self.exercise!.videoPath)
         gifVC = (storyboard?.instantiateViewController(withIdentifier: "GifVC") as! GifVC)
+        gifVC?.gifUrl = self.exercise!.short_demo
         pagingVC = PagingViewController(viewControllers: [videoVC!,gifVC!])
         
         pagingVC!.textColor = MAIN_COLOR!

@@ -28,5 +28,5 @@ target 'ExercisesApp' do
     pod 'Parchment'
     pod 'SwiftyGif'
     pod 'MBVideoPlayer', :git => 'https://github.com/mwaqasbhati/MBVideoPlayer.git'
-
+    pod 'YouTubePlayer'
 end

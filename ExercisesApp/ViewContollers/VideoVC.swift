@@ -9,31 +9,42 @@
 import UIKit
 import ASPVideoPlayer
 import AVFoundation
+import YouTubePlayer
 
 class VideoVC: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var videoPlayerBackgroundView: UIView!
-    @IBOutlet weak var videoPlayer: ASPVideoPlayer!
+//    @IBOutlet weak var videoPlayer: ASPVideoPlayer!
+    @IBOutlet weak var videoPlayer: YouTubePlayerView!
     
     let firstNetworkURL = URL(string: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8")
+    var videoPath: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let firstAsset = AVURLAsset(url: firstNetworkURL!)
-        videoPlayer.videoAssets = [firstAsset]
+//        let firstAsset = AVURLAsset(url: URL(string: "https://youtu.be/x-WosgklhR0?t=189s")!)
+//        videoPlayer.videoAssets = [firstAsset]
+//
+//
+//        videoPlayer.resizeClosure = { [unowned self] isExpanded in
+//
+//            let videoVC = self.storyboard!.instantiateViewController(withIdentifier: "VideoPlayerVC") as! VideoPlayerVC
+//            videoVC.url =  "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
+//            videoVC.modalPresentationStyle = .fullScreen
+//            self.present(videoVC, animated: true, completion: nil)
+//        }
+//        videoPlayer.layer.cornerRadius = 6
+//        videoPlayer.layer.masksToBounds = true
+//        videoPlayer.delegate = self
         
-        
-        videoPlayer.resizeClosure = { [unowned self] isExpanded in
-            
-            let videoVC = self.storyboard!.instantiateViewController(withIdentifier: "VideoPlayerVC") as! VideoPlayerVC
-            videoVC.url =  "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
-            videoVC.modalPresentationStyle = .fullScreen
-            self.present(videoVC, animated: true, completion: nil)
+        print(videoPath)
+        if self.videoPath != nil {
+            videoPlayer.layer.cornerRadius = 6
+            videoPlayer.layer.masksToBounds = true
+            videoPlayer.loadVideoURL(videoPath!)
+            videoPlayer.play()
         }
-        videoPlayer.layer.cornerRadius = 6
-        videoPlayer.layer.masksToBounds = true
-        videoPlayer.delegate = self
     }
 
 }
