@@ -48,7 +48,7 @@ class WorkoutDetailVC: UIViewController {
         
         self.tableView.reloadData()
         let category = sections.joined(separator: "/")
-        self.lblCategory.text = category
+        self.lblCategory.text = self.workout.title
         self.reloadNoteView()
 
         
