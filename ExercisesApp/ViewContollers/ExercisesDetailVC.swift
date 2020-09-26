@@ -47,7 +47,7 @@ class ExercisesDetailVC: UIViewController {
     func initView(){
         
         self.title = self.exercise?.name
-        self.lblCreator.text = self.exercise?.creators
+        self.lblCreator.text = self.exercise?.trainer_obj.name
         self.lblPrimaryMusel.text = self.exercise?.category
         self.lblSecondaryMusel.text = self.exercise?.muscle_category
     }
@@ -109,11 +109,16 @@ class ExercisesDetailVC: UIViewController {
     
     @IBAction func didTapYoutube(_ sender: Any) {
         
-        if let url = URL(string: "https://www.youtube.com/watch?v=aVk7duHInNE") {
+        if let url = URL(string: self.exercise!.trainer_obj.youtube_url) {
             UIApplication.shared.open(url)
         }
     }
     
+    @IBAction func didTapInsta(_ sender: Any) {
+        if let url = URL(string: self.exercise!.trainer_obj.instagram_url) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 

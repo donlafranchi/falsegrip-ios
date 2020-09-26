@@ -10,6 +10,8 @@ import UIKit
 import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
 import CRRefresh
+import TTGTagCollectionView
+
 
 class AllExercisesVC: UIViewController {
 
@@ -17,7 +19,8 @@ class AllExercisesVC: UIViewController {
     @IBOutlet weak var workoutBtn: GradientButton!
     @IBOutlet weak var lblSelectedCount: UILabel!
     @IBOutlet weak var selectionView: DropShadowView!
-
+    @IBOutlet weak var tagView: TTGTextTagCollectionView!
+    
     var seletedCount = 0 {
         didSet{
             selectionView.isHidden = seletedCount == 0
@@ -35,10 +38,10 @@ class AllExercisesVC: UIViewController {
     var isFromDetail = false
     var categoryField = DropDown()
     var selectedCategory = ""
-    var categories: [String] = ["All Exercises","Push","Pull","Legs","Core","Other"]
+    var categories: [String] = ["Push","Pull","Legs","Core"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
+        initTagView()
         setupCollectionView()
         getAllExercises()
     }
@@ -57,43 +60,29 @@ class AllExercisesVC: UIViewController {
 //        }
     }
     
-    func initView(){
+    func initTagView(){
         
-        categoryField = DropDown(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
-        categoryField.sizeToFit()
-        categoryField.text = "All Exercises"
-        categoryField.textColor = MAIN_COLOR
-        categoryField.arrowColor = MAIN_COLOR!
-        categoryField.font = UIFont(name: "Mulish-Bold", size: 18)
-        categoryField.isSearchEnable = false
-        categoryField.checkMarkEnabled = false
-        categoryField.selectedRowColor = COLOR4!
-        categoryField.rowHeight = 40
-        categoryField.textAlignment = .center
-        categoryField.optionArray = self.categories
-
-        self.navigationItem.titleView = categoryField
+        let configure = TTGTextTagConfig()
+        configure.textFont = UIFont(name: "Mulish-Medium.ttf", size: 16)
+        configure.textColor = UIColor(red: 0.17, green: 0.17, blue: 0.22, alpha: 0.7)
+        configure.selectedTextColor = .white
+        configure.selectedBackgroundColor = COLOR2
+        configure.borderColor = .clear
+        configure.cornerRadius = 4
+        configure.backgroundColor = UIColor(red: 239.0/255, green: 240.0/255, blue: 239.0/255, alpha: 0.5)
+        configure.borderWidth = 0
+        configure.extraSpace = CGSize(width: 40, height: 15)
+        configure.exactHeight = 32
+        configure.shadowColor = .clear
+        tagView.defaultConfig = configure
+        tagView.scrollDirection = .vertical
+        tagView.enableTagSelection = true
+        tagView.showsHorizontalScrollIndicator = false
+        tagView.horizontalSpacing = 16
+        tagView.delegate = self
+        tagView.addTags(categories)
         
-        categoryField.didSelect { (category, index, id) in
-            
-            if index > 0 {
-                self.selectedCategory = category
-                var exercises: [Exercise] = []
-                for item in self.exercises {
-                    if item.category == category {
-                        exercises.append(item)
-                    }
-                }
-                self.filteredExercises = exercises
-                self.collectionView.reloadData()
-            }else{
-                self.filteredExercises = self.exercises
-                self.selectedCategory = ""
-                self.collectionView.reloadData()
-            }
-        }
     }
-    
     
     func setupCollectionView(){
         
@@ -124,7 +113,8 @@ class AllExercisesVC: UIViewController {
     func getAllExercises(){
         self.showHUD()
         let params = [
-            "order_by": "-created"] as [String : Any]
+            "order_by": "-created",
+            "category": selectedCategory] as [String : Any]
         ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
             self.dismissHUD()
             if success {
@@ -154,18 +144,6 @@ class AllExercisesVC: UIViewController {
                         self.exercises.append(Exercise(item))
                         self.filteredExercises.append(Exercise(item))
                     }
-                    
-                    if !self.selectedCategory.isEmpty {
-                        var exercises: [Exercise] = []
-                        for item in self.filteredExercises {
-                            if item.category == self.selectedCategory {
-                                exercises.append(item)
-                            }
-                        }
-                        self.filteredExercises = exercises
-                    }
-                    
-         
                     
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
@@ -465,4 +443,25 @@ extension AllExercisesVC: UISearchBarDelegate{
 //             
 //         }, completion: nil)
      }
+}
+
+extension AllExercisesVC: TTGTextTagCollectionViewDelegate {
+    func textTagCollectionView(_ textTagCollectionView: TTGTextTagCollectionView!, didTapTag tagText: String!, at index: UInt, selected: Bool, tagConfig config: TTGTextTagConfig!) {
+        
+        for i in 0...self.tagView.allTags()!.count - 1 {
+            
+            if i != index {
+                self.tagView.setTagAt(UInt(i), selected: false)
+            }
+            
+        }
+        
+        if selected {
+            self.selectedCategory = tagText
+            self.getAllExercises()
+        }else{
+            self.selectedCategory = ""
+            self.getAllExercises()
+        }
+    }
 }
