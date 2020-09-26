@@ -49,10 +49,10 @@ class AddSetVC: UIViewController {
             self.tableView.scrollToBottom()
         }
         setField.becomeFirstResponder()
-        self.setView.isHidden = true
+        self.setView.isHidden = false
         self.lblSet.text = ""
         self.setField.text = ""
-        self.moreBtn.isHidden = false
+        self.moreBtn.isHidden = true
         self.lblTitle.text = self.exerciseName
     }
     

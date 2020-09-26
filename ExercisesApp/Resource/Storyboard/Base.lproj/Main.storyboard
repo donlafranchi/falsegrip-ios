@@ -909,9 +909,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBw-JE-zDH">
-                                                            <rect key="frame" x="317" y="8" width="55" height="26"/>
+                                                            <rect key="frame" x="314" y="8" width="58" height="26"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="55" id="FLA-Ld-hJi"/>
+                                                                <constraint firstAttribute="width" constant="58" id="FLA-Ld-hJi"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="12"/>
                                                             <state key="normal" title="+ Add Set">
