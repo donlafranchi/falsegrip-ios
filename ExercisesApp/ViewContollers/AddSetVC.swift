@@ -48,7 +48,7 @@ class AddSetVC: UIViewController {
         if self.sets!.count > 0 {
             self.tableView.scrollToBottom()
         }
-        setField.resignFirstResponder()
+        setField.becomeFirstResponder()
         self.setView.isHidden = true
         self.lblSet.text = ""
         self.setField.text = ""
