@@ -1788,7 +1788,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BU5-Sf-kek">
-                                <rect key="frame" x="0.0" y="425.5" width="414" height="382.5"/>
+                                <rect key="frame" x="0.0" y="377" width="414" height="431"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HistoryContainerTVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HistoryContainerTVCell" rowHeight="211" id="gVj-Gs-GMH" customClass="HistoryContainerTVCell" customModule="ExercisesApp" customModuleProvider="target">
@@ -1858,13 +1858,23 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lA2-Ov-NuT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="425.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="377"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqE-DN-Zmw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="292"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="243.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1P-pC-V4e" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                                                <rect key="frame" x="16" y="8" width="382" height="227.5"/>
+                                                <color key="backgroundColor" name="MainColor"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="mqE-DN-Zmw" secondAttribute="height" multiplier="340:240" id="fgn-Md-WhO"/>
+                                            <constraint firstAttribute="trailing" secondItem="i1P-pC-V4e" secondAttribute="trailing" constant="16" id="Mea-2J-CP6"/>
+                                            <constraint firstAttribute="width" secondItem="mqE-DN-Zmw" secondAttribute="height" multiplier="340:200" id="fgn-Md-WhO"/>
+                                            <constraint firstAttribute="bottom" secondItem="i1P-pC-V4e" secondAttribute="bottom" constant="8" id="gT4-14-v5p"/>
+                                            <constraint firstItem="i1P-pC-V4e" firstAttribute="leading" secondItem="mqE-DN-Zmw" secondAttribute="leading" constant="16" id="owq-R5-GoC"/>
+                                            <constraint firstItem="i1P-pC-V4e" firstAttribute="top" secondItem="mqE-DN-Zmw" secondAttribute="top" constant="8" id="pvf-cd-hv2"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1874,13 +1884,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Courtney Henry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFS-us-iVi">
-                                        <rect key="frame" x="16" y="302" width="119" height="20.5"/>
+                                        <rect key="frame" x="16" y="253.5" width="119" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                         <color key="textColor" name="SubColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdV-fk-zbh">
-                                        <rect key="frame" x="357" y="292.5" width="40" height="40"/>
+                                        <rect key="frame" x="357" y="244" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="ZdY-uZ-kRf"/>
                                             <constraint firstAttribute="height" constant="40" id="kEp-mg-UYc"/>
@@ -1891,7 +1901,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-ZI-Cea">
-                                        <rect key="frame" x="305" y="292.5" width="40" height="40"/>
+                                        <rect key="frame" x="305" y="244" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="3Nt-tn-KYK"/>
                                             <constraint firstAttribute="height" constant="40" id="BNx-mS-ocq"/>
@@ -1902,7 +1912,7 @@
                                         </connections>
                                     </button>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ar8-zD-baa">
-                                        <rect key="frame" x="16" y="342.5" width="382" height="52"/>
+                                        <rect key="frame" x="16" y="294" width="382" height="52"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp1-Kn-qol">
                                                 <rect key="frame" x="0.0" y="0.0" width="191" height="52"/>
@@ -1965,13 +1975,13 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yd1-id-egP">
-                                        <rect key="frame" x="16" y="338.5" width="55.5" height="20.5"/>
+                                        <rect key="frame" x="16" y="290" width="55.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Mulish-Bold" family="Mulish" pointSize="16"/>
                                         <color key="textColor" name="MainColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="X0L-us-F6T">
-                                        <rect key="frame" x="16" y="373" width="382" height="52.5"/>
+                                        <rect key="frame" x="16" y="324.5" width="382" height="52.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvo-Kn-J1q">
                                                 <rect key="frame" x="0.0" y="0.0" width="191" height="52.5"/>
@@ -2091,16 +2101,17 @@
                         <outlet property="lblPrimaryMusel" destination="ZYh-IR-LWI" id="UmN-vT-r9C"/>
                         <outlet property="lblSecondaryMusel" destination="HOi-y3-bVF" id="RzC-2Q-u0B"/>
                         <outlet property="tableView" destination="BU5-Sf-kek" id="ApL-ct-YAK"/>
+                        <outlet property="videoPlayer" destination="i1P-pC-V4e" id="OEv-59-JeE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQo-m8-51v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3579.7101449275365" y="101.78571428571428"/>
         </scene>
-        <!--VIDEO-->
+        <!--VideoVC-->
         <scene sceneID="vud-x4-T0e">
             <objects>
-                <viewController storyboardIdentifier="VideoVC" title="VIDEO" id="yIe-2q-TwV" customClass="VideoVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoVC" id="yIe-2q-TwV" customClass="VideoVC" customModule="ExercisesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0XL-3K-NIz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

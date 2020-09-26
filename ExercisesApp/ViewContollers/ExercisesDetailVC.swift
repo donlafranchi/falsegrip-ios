@@ -8,6 +8,7 @@
 
 import UIKit
 import Parchment
+import YouTubePlayer
 //import ASPVideoPlayer
 //import AVFoundation
 
@@ -21,7 +22,8 @@ class ExercisesDetailVC: UIViewController {
     @IBOutlet weak var lblCreator: UILabel!
     @IBOutlet weak var lblPrimaryMusel: UILabel!
     @IBOutlet weak var lblSecondaryMusel: UILabel!
-    
+    @IBOutlet weak var videoPlayer: YouTubePlayerView!
+
 
     let firstNetworkURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4")
 
@@ -36,7 +38,8 @@ class ExercisesDetailVC: UIViewController {
         super.viewDidLoad()
         
         initView()
-        setupPageView()
+        initVideoView()
+//        setupPageView()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
         sortHistory()
@@ -51,6 +54,14 @@ class ExercisesDetailVC: UIViewController {
         self.lblPrimaryMusel.text = self.exercise?.category
         self.lblSecondaryMusel.text = self.exercise?.muscle_category
     }
+    
+    func initVideoView(){
+        
+        if let url = URL(string: self.exercise!.videoPath) {
+            videoPlayer.loadVideoURL(url)
+            videoPlayer.play()
+        }
+    }
 
     func setupPageView(){
         
@@ -58,12 +69,11 @@ class ExercisesDetailVC: UIViewController {
         videoVC!.videoPath = URL(string: self.exercise!.videoPath)
         gifVC = (storyboard?.instantiateViewController(withIdentifier: "GifVC") as! GifVC)
         gifVC?.gifUrl = self.exercise!.short_demo
-        pagingVC = PagingViewController(viewControllers: [videoVC!,gifVC!])
-        
+        pagingVC = PagingViewController(viewControllers: [videoVC!])
         pagingVC!.textColor = MAIN_COLOR!
         pagingVC!.selectedTextColor = COLOR2!
         pagingVC!.indicatorColor = COLOR2!
-        pagingVC!.indicatorOptions = PagingIndicatorOptions.visible(height: 2, zIndex: 0, spacing:.zero, insets: .init(top: 0, left: 0, bottom: 0, right: 0))
+        pagingVC!.indicatorOptions = PagingIndicatorOptions.visible(height: 0, zIndex: 0, spacing:.zero, insets: .init(top: 0, left: 0, bottom: 0, right: 0))
         pagingVC!.borderColor = UIColor.clear
         addChild(pagingVC!)
         containerView.addSubview(pagingVC!.view)
