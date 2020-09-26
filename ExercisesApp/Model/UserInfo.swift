@@ -12,6 +12,7 @@ enum UserField {
     case appleID
     case token
     case name
+    case unit
 }
 
 class UserInfo: NSObject {
@@ -22,7 +23,8 @@ class UserInfo: NSObject {
     var appleID: String = ""
     var username: String = ""
     var token: String = ""
-    
+    var unit: Int = 0
+
     override init() {
         super.init()
         
@@ -40,6 +42,7 @@ class UserInfo: NSObject {
         if let token = defaults.string(forKey: "token") {
             self.token = token
         }
+        self.unit = defaults.integer(forKey: "unit")
     }
     
     func setUserInfo(_ key: UserField, value: Any) {
@@ -55,7 +58,12 @@ class UserInfo: NSObject {
         case .token:
             token = value as? String ?? ""
             defaults.set(token, forKey: "token")
+        case .unit:
+            unit = value as? Int ?? 0
+            defaults.set(unit, forKey: "unit")
         }
+        
+        
     }
     
 }

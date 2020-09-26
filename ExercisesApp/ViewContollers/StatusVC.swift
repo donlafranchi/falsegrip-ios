@@ -25,6 +25,7 @@ class StatusVC: UIViewController {
     var workout = WorkoutModel()
     var delegate : StatusVCDelegate?
     var units = ["kg","lb"]
+    var selectedUnit = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         initDropDown()
@@ -47,11 +48,12 @@ class StatusVC: UIViewController {
         unitDropDown.optionArray = units
         unitDropDown.selectedIndex = 0
         unitDropDown.isSearchEnable = false
-        unitDropDown.text = units[0]
+        unitDropDown.selectedRowColor = .clear
+        unitDropDown.text = units[UserInfo.shared.unit]
        
         unitDropDown.didSelect { (unit, index, id) in
-            
-//            self.note.unit = index
+            UserInfo.shared.setUserInfo(.unit, value: index)
+            self.selectedUnit = index
         }
     }
 
@@ -132,6 +134,7 @@ class StatusVC: UIViewController {
     
     @IBAction func didTapSave(_ sender: Any) {
         
+        UserInfo.shared.setUserInfo(.unit, value: selectedUnit)
         self.workout.comments = notesTextView.text
         self.showHUD()
         var ids = [String]()
@@ -167,7 +170,7 @@ extension StatusVC: UITextFieldDelegate {
             let updatedText = str.replacingCharacters(in: textRange,
                                                        with: string)
             
-            if updatedText.count > 5 {
+            if updatedText.count > 8 {
                 return false
             }
             

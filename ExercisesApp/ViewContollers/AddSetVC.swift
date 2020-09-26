@@ -175,9 +175,10 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
            
             showConfirmAlert("Warning", msg: "Do you want to delete Set?") { (ok) in
                 if ok {
-                    for item in self.addedSets {
+                    for (index,item) in self.addedSets.enumerated() {
                         if item == self.sets![indexPath.row] {
                             self.sets?.remove(at: indexPath.row)
+                            self.addedSets.remove(at: index)
                             self.tableView.deleteRows(at: [indexPath], with: .fade)
                             self.tableView.reloadData()
                             return
