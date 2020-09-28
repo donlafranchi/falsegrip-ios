@@ -156,23 +156,7 @@ class WorkoutHistoryVC: UIViewController {
             }
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy LLLL"
-        let monthName = dateFormatter.string(from: Date())
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        isTodayExsit = false
-        
-        if self.sections.contains(monthName) {
-            for item in self.workoutDict[monthName]! {
-                
-                let date = dateFormatter.date(from: item.datetime)!
-                if  Calendar.current.isDateInToday(date) {
-                    isTodayExsit = true
-                    break
-                }
-            }
-        }
+        checkIsTodayCreadted()
         
 //        let dateTime = dateFormatter.string(from: Date())
 //
@@ -194,6 +178,26 @@ class WorkoutHistoryVC: UIViewController {
         self.historyTableView.cr.endLoadingMore()
 
         
+    }
+    
+    func checkIsTodayCreadted(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy LLLL"
+        let monthName = dateFormatter.string(from: Date())
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        isTodayExsit = false
+        
+        if self.sections.contains(monthName) {
+            for item in self.workoutDict[monthName]! {
+                
+                let date = dateFormatter.date(from: item.datetime)!
+                if  Calendar.current.isDateInToday(date) {
+                    isTodayExsit = true
+                    break
+                }
+            }
+        }
     }
     
     @objc func workoutCreatedNotification(notification: Notification) {
@@ -284,6 +288,7 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
                 if deleted {
                     self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.checkIsTodayCreadted()
                 }
             }
 
