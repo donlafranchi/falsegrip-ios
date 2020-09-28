@@ -56,6 +56,19 @@ class WorkoutHistoryTVCell: UITableViewCell {
             if cats.count == 5 {
                 title = "Full Body"
             }
+            
+//            var categories = [String]()
+//            for item in self.workout.exercises {
+//
+//                if !categories.contains(item.category) {
+//                    categories.append(item.category)
+//                }
+//            }
+//            var title = categories.joined(separator: "/")
+//            if categories.count == 5 {
+//                title = "Full Body"
+//            }
+            
             self.lblMain.text = title
         }
         

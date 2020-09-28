@@ -43,6 +43,8 @@
 		8BD8B92225082B1500688B57 /* HistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B92025082B1500688B57 /* HistoryTVCell.swift */; };
 		8BD8B92325082B1500688B57 /* HistoryTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD8B92125082B1500688B57 /* HistoryTVCell.xib */; };
 		8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B92425082EB000688B57 /* HistoryContainerTVCell.swift */; };
+		8BDA5776252253A40033EFAE /* CreateWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA5775252253A30033EFAE /* CreateWorkoutCell.swift */; };
+		8BDA57792522651F0033EFAE /* ExercisesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA57782522651F0033EFAE /* ExercisesViewVC.swift */; };
 		8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */; };
 		8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */; };
 		8BED7FCB2502D8BF001F2BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BED7FC92502D8BF001F2BBE /* Main.storyboard */; };
@@ -103,6 +105,8 @@
 		8BD8B92025082B1500688B57 /* HistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVCell.swift; sourceTree = "<group>"; };
 		8BD8B92125082B1500688B57 /* HistoryTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTVCell.xib; sourceTree = "<group>"; };
 		8BD8B92425082EB000688B57 /* HistoryContainerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerTVCell.swift; sourceTree = "<group>"; };
+		8BDA5775252253A30033EFAE /* CreateWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutCell.swift; sourceTree = "<group>"; };
+		8BDA57782522651F0033EFAE /* ExercisesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewVC.swift; sourceTree = "<group>"; };
 		8BED7FC02502D8BF001F2BBE /* ExercisesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExercisesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				8BED7FFC25030A51001F2BBE /* WorkoutHistoryVC.swift */,
 				8BD8B9072503C4EF00688B57 /* MainNav.swift */,
 				8BD8B90D2506E6AA00688B57 /* AllExercisesVC.swift */,
+				8BDA57782522651F0033EFAE /* ExercisesViewVC.swift */,
 				8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */,
 				8BD8B91E2507D05800688B57 /* ExercisesDetailVC.swift */,
 				8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */,
@@ -317,6 +322,7 @@
 				8BD8B92425082EB000688B57 /* HistoryContainerTVCell.swift */,
 				8B17E55A250982C100EE1DBA /* ExercisesTVCell.swift */,
 				8B17E564250A6EF400EE1DBA /* AddSetTVCell.swift */,
+				8BDA5775252253A30033EFAE /* CreateWorkoutCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				8BED7FDA2502DFA1001F2BBE /* SigninVC.swift in Sources */,
 				8BD8B91D2507C35500688B57 /* SearchCollectionViewCell.swift in Sources */,
 				8BED7FF7250303EB001F2BBE /* DropShadowView.swift in Sources */,
+				8BDA5776252253A40033EFAE /* CreateWorkoutCell.swift in Sources */,
 				8B17E565250A6EF400EE1DBA /* AddSetTVCell.swift in Sources */,
 				8BD8B92225082B1500688B57 /* HistoryTVCell.swift in Sources */,
 				8B17E55325091C3D00EE1DBA /* SignupAlertVC.swift in Sources */,
@@ -507,6 +514,7 @@
 				8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */,
 				8B17E567250A6F2D00EE1DBA /* AddSetVC.swift in Sources */,
 				8B33C0F02512606C006618E6 /* Utilities.swift in Sources */,
+				8BDA57792522651F0033EFAE /* ExercisesViewVC.swift in Sources */,
 				8B1CE339250CF53700EECE4E /* ApiService.swift in Sources */,
 				8B17E58D250BAE7500EE1DBA /* StatusVC.swift in Sources */,
 				8BD8B9112507014600688B57 /* ExercisesCell1.swift in Sources */,

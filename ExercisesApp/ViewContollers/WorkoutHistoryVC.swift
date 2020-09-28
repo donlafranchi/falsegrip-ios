@@ -14,12 +14,30 @@ import CRNotifications
 class WorkoutHistoryVC: UIViewController {
 
     @IBOutlet weak var historyTableView: UITableView!
+    @IBOutlet weak var createBtn: UIButton!{
+        didSet{
+            createBtn.layer.borderWidth = 2
+            createBtn.layer.borderColor = COLOR3?.cgColor
+        }
+    }
     var rowCount = 0
     var pageNum = 1
     var nextPage = ""
     var workouts = [WorkoutModel]()
     var workoutDict: [String: [WorkoutModel]] = [:]
     var sections = [String]()
+    var isTodayExsit = false{
+        didSet{
+            if !isTodayExsit {
+                createBtn.layer.borderColor = COLOR3?.cgColor
+                createBtn.setTitleColor(COLOR3, for: .normal)
+            }else{
+                createBtn.layer.borderColor = SUB_COLOR?.cgColor
+                createBtn.setTitleColor(SUB_COLOR, for: .normal)
+            }
+            createBtn.isEnabled = !isTodayExsit
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotification()
@@ -143,7 +161,7 @@ class WorkoutHistoryVC: UIViewController {
         let monthName = dateFormatter.string(from: Date())
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        var isTodayExsit = false
+        isTodayExsit = false
         
         if self.sections.contains(monthName) {
             for item in self.workoutDict[monthName]! {
@@ -156,21 +174,20 @@ class WorkoutHistoryVC: UIViewController {
             }
         }
         
-        if !isTodayExsit {
-            let dateTime = dateFormatter.string(from: Date())
-            
-            let todayWorkout = WorkoutModel()
-            todayWorkout.isToday = true
-            todayWorkout.datetime = dateTime
-            
-            if sections.contains(monthName) {
-                self.workoutDict[monthName]!.insert(todayWorkout, at: 0)
-            }else{
-                self.workoutDict[monthName] = [todayWorkout]
-                self.sections.insert(monthName, at: 0)
-
-            }
-        }
+//        let dateTime = dateFormatter.string(from: Date())
+//
+//        let todayWorkout = WorkoutModel()
+//        todayWorkout.isToday = true
+//        todayWorkout.isCreated = isTodayExsit
+//        todayWorkout.datetime = dateTime
+//
+//        if sections.contains(monthName) {
+//            self.workoutDict[monthName]!.insert(todayWorkout, at: 0)
+//        }else{
+//            self.workoutDict[monthName] = [todayWorkout]
+//            self.sections.insert(monthName, at: 0)
+//
+//        }
         
         self.historyTableView.reloadData()
         self.historyTableView.cr.endHeaderRefresh()
@@ -198,7 +215,13 @@ class WorkoutHistoryVC: UIViewController {
         let vc = storyboard?.instantiateViewController(identifier: "AllExercisesVC") as! AllExercisesVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+ 
+    @IBAction func didTapViewExercises(_ sender: Any) {
+        
+        let vc = storyboard?.instantiateViewController(identifier: "ExercisesViewVC") as! ExercisesViewVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }
 
 extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
@@ -222,6 +245,11 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+//        if self.workoutDict[self.sections[indexPath.section]]![indexPath.row].isToday {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateWorkoutCell") as! CreateWorkoutCell
+//            return cell
+//        }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutHistoryTVCell", for: indexPath) as! WorkoutHistoryTVCell
         

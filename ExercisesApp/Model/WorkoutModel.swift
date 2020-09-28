@@ -20,6 +20,7 @@ class WorkoutModel: NSObject {
     var energy_level = 0
     var comments = ""
     var isToday = false
+    var isCreated = false
     var exercises = [Exercise]()
     
     override init() {
