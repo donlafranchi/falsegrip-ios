@@ -45,6 +45,8 @@
 		8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8B92425082EB000688B57 /* HistoryContainerTVCell.swift */; };
 		8BDA5776252253A40033EFAE /* CreateWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA5775252253A30033EFAE /* CreateWorkoutCell.swift */; };
 		8BDA57792522651F0033EFAE /* ExercisesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA57782522651F0033EFAE /* ExercisesViewVC.swift */; };
+		8BDA577E252399C40033EFAE /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA577C252399C40033EFAE /* FooterView.swift */; };
+		8BDA577F252399C40033EFAE /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BDA577D252399C40033EFAE /* FooterView.xib */; };
 		8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */; };
 		8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */; };
 		8BED7FCB2502D8BF001F2BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BED7FC92502D8BF001F2BBE /* Main.storyboard */; };
@@ -107,6 +109,8 @@
 		8BD8B92425082EB000688B57 /* HistoryContainerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerTVCell.swift; sourceTree = "<group>"; };
 		8BDA5775252253A30033EFAE /* CreateWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutCell.swift; sourceTree = "<group>"; };
 		8BDA57782522651F0033EFAE /* ExercisesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewVC.swift; sourceTree = "<group>"; };
+		8BDA577C252399C40033EFAE /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		8BDA577D252399C40033EFAE /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		8BED7FC02502D8BF001F2BBE /* ExercisesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExercisesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 				8BD8B91C2507C35500688B57 /* SearchCollectionViewCell.swift */,
 				8BD8B9102507014600688B57 /* ExercisesCell1.swift */,
 				8BD8B9122507015B00688B57 /* ExercisesCell2.swift */,
+				8BDA577C252399C40033EFAE /* FooterView.swift */,
+				8BDA577D252399C40033EFAE /* FooterView.xib */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 				8BD8B91B2507B39600688B57 /* Rectangle 5.png in Resources */,
 				8BED7FEE2502FB1F001F2BBE /* Mulish-Bold.ttf in Resources */,
 				8BED7FED2502FB1F001F2BBE /* Mulish-SemiBold.ttf in Resources */,
+				8BDA577F252399C40033EFAE /* FooterView.xib in Resources */,
 				8BD8B92325082B1500688B57 /* HistoryTVCell.xib in Resources */,
 				8BED7FEC2502FB1F001F2BBE /* Mulish-Regular.ttf in Resources */,
 				8BD8B9192507B38E00688B57 /* Rectangle 5 (1).png in Resources */,
@@ -486,6 +493,7 @@
 				8BED7FE12502E734001F2BBE /* extension+viewcontroller.swift in Sources */,
 				8B17E55B250982C100EE1DBA /* ExercisesTVCell.swift in Sources */,
 				8BD8B9132507015B00688B57 /* ExercisesCell2.swift in Sources */,
+				8BDA577E252399C40033EFAE /* FooterView.swift in Sources */,
 				8B33C0ED25112327006618E6 /* Exercise.swift in Sources */,
 				8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */,
 				8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */,

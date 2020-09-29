@@ -381,7 +381,6 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
         }else{
 
         }
-              
     }
     
     // MARK: - UIScrollViewDelegate
