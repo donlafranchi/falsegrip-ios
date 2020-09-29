@@ -71,6 +71,7 @@ class WorkoutHistoryTVCell: UITableViewCell {
             
             self.lblMain.text = title
         }
+        self.lblMain.text = self.workout.title
         
         self.lblSub.isHidden = self.workout.exercises.count == 0
         

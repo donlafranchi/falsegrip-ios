@@ -17,13 +17,14 @@ class WorkoutDetailVC: UIViewController {
 
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var noteBtn: UIButton!
     @IBOutlet weak var batteryImgView: UIImageView!    
     @IBOutlet weak var weightImgView: UIImageView!
     @IBOutlet weak var lblWeight: UILabel!
     @IBOutlet weak var noteImgView: UIImageView!
     @IBOutlet weak var weightView: UIStackView!
+    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var editBtn: UIButton!
     
     var workoutID = ""
     var workout = WorkoutModel()
@@ -49,7 +50,7 @@ class WorkoutDetailVC: UIViewController {
         
         self.tableView.reloadData()
         let category = sections.joined(separator: "/")
-        self.lblCategory.text = self.workout.title
+        self.titleField.text = self.workout.title
         self.reloadNoteView()
 
         
@@ -230,6 +231,43 @@ class WorkoutDetailVC: UIViewController {
         didTapNote(self)
     }
 
+    @IBAction func didTapEdit(_ sender: Any) {
+        
+        if self.editBtn.isSelected {
+            
+            if titleField.text!.isEmpty {
+                return
+            }
+            
+            if self.workout.title == self.titleField.text {
+                self.titleField.isEnabled = false
+                self.titleField.resignFirstResponder()
+                self.editBtn.isSelected = !self.editBtn.isSelected
+                return
+            }
+            
+            let params = [
+                "title": self.titleField.text] as! [String : String]
+            
+            ApiService.updateWorkoutTitle(id: self.workout.id,params: params) { (success, data) in
+                if success {
+                    self.workout.title = self.titleField.text!
+                    self.titleField.isEnabled = false
+                    self.titleField.resignFirstResponder()
+                    self.editBtn.isSelected = !self.editBtn.isSelected
+                    let nc = NotificationCenter.default
+                    nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                }
+            }
+            
+
+        }else{
+            self.titleField.isEnabled = true
+            self.titleField.becomeFirstResponder()
+            self.editBtn.isSelected = !self.editBtn.isSelected
+        }
+        
+    }
 }
 
 
@@ -376,6 +414,23 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
         let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
         vc.exercise = exercise
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+extension WorkoutDetailVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let str = textField.text,
+            let textRange = Range(range, in: str) {
+            let updatedText = str.replacingCharacters(in: textRange,
+                                                       with: string)
+           
+//            editBtn.isSelected = !updatedText.elementsEqual(self.workout.title)
+            
+        
+        }
+        return true
     }
     
 }

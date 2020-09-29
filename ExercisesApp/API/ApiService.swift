@@ -114,6 +114,26 @@ class ApiService: NSObject {
                }
            }
       }
+    
+     class func updateWorkoutTitle(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+     
+         let url = baseURLPath + "api/workouts/\(id)/"
+         
+         AF.request(url, method: .patch, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+               switch response.result {
+               case .success(let data):
+                   let jsonData = JSON(data).dictionaryObject
+                   if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                       completion(true,jsonData)
+                   }else{
+                      completion(false,["error":response.response.debugDescription])
+                   }
+               case .failure(let error):
+                  completion(false,["error":error])
+               }
+           }
+      }
      
      class func getWorkout(id: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
       
