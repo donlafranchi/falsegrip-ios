@@ -115,7 +115,7 @@ class ApiService: NSObject {
            }
       }
     
-     class func updateWorkoutTitle(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+     class func updateWorkout2(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
          let url = baseURLPath + "api/workouts/\(id)/"
          
