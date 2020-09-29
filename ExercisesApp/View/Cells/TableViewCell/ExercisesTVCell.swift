@@ -11,6 +11,7 @@ import Nuke
 
 protocol ExercisesTVCellDelegate {
     func tapAddSet(_ exercise: Exercise)
+    func tapExercise(_ exercise: Exercise)
 }
 
 class ExercisesTVCell: UITableViewCell {
@@ -31,13 +32,22 @@ class ExercisesTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let imgTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        imgView.addGestureRecognizer(imgTap)
+        
+        let lblTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        lblName.addGestureRecognizer(lblTap)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        delegate?.tapExercise(self.exercise)
     }
     
     func initCell(_ exercise: Exercise){
@@ -70,5 +80,7 @@ class ExercisesTVCell: UITableViewCell {
     @IBAction func didTapAddSet(_ sender: Any) {
         delegate?.tapAddSet(self.exercise)
     }
+    
+    
 
 }

@@ -263,9 +263,7 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
-        vc.exercise = self.exercises[indexPath.item]
-        self.navigationController?.pushViewController(vc, animated: true)
+ 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -372,6 +370,12 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
         self.addSetVC.exerciseName = exercise.name
         self.addSetVC.addedSets.removeAll()
         self.present(sheetController, animated: false, completion: nil)
+    }
+    
+    func tapExercise(_ exercise: Exercise) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ExercisesDetailVC") as! ExercisesDetailVC
+        vc.exercise = exercise
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -1007,7 +1007,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIo-6g-N0u" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="8" width="382" height="129"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upj-aQ-xfJ">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upj-aQ-xfJ">
                                                             <rect key="frame" x="10" y="10" width="98" height="109"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="98" id="QVU-GF-Nnh"/>
@@ -1020,7 +1020,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Archer Push Ups" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGP-2F-U6b">
+                                                        <label opaque="NO" contentMode="left" text="Archer Push Ups" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGP-2F-U6b">
                                                             <rect key="frame" x="124" y="10" width="125.5" height="26.5"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
@@ -1109,6 +1109,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPa-g7-LxG">
                                                             <rect key="frame" x="247.5" y="63.5" width="1" height="56"/>
                                                             <color key="backgroundColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="1" id="UDr-Ll-FBu"/>
                                                             </constraints>
