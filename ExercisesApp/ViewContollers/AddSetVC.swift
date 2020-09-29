@@ -25,6 +25,7 @@ class AddSetVC: UIViewController {
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
     
     var sets: [SetsModel]? = []
     var addedSets = [SetsModel]()
@@ -53,6 +54,7 @@ class AddSetVC: UIViewController {
         self.lblSet.text = ""
         self.setField.text = ""
         self.moreBtn.isHidden = true
+        self.lblDesc.isHidden = false
         self.lblTitle.text = self.exerciseName
     }
     
@@ -97,6 +99,7 @@ class AddSetVC: UIViewController {
         self.lblSet.text = ""
         self.setField.text = ""
         self.moreBtn.isHidden = true
+        self.lblDesc.isHidden = false
     }
     
     @IBAction func didTapMinuse(_ sender: UIButton) {
@@ -134,6 +137,7 @@ class AddSetVC: UIViewController {
         self.setField.text = ""
         self.setField.resignFirstResponder()
         self.moreBtn.isHidden = false
+        self.lblDesc.isHidden = true
 //        delegate?.tapAdd()
     }
 }

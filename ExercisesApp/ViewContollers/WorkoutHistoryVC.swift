@@ -41,7 +41,13 @@ class WorkoutHistoryVC: UIViewController {
         super.viewDidLoad()
         setupNotification()
         setUpTableView()
-        getWorkouts()        
+        getWorkouts()
+        
+        if !UserInfo.shared.showOnboarding1 {
+            showOnboarding()
+        }
+        
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +68,13 @@ class WorkoutHistoryVC: UIViewController {
     
     deinit {
        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showOnboarding(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnboardingVC1") as! OnboardingVC1
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
     }
     
     func setUpTableView(){
@@ -295,4 +308,10 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+}
+
+extension WorkoutHistoryVC: OnboardingVC1Delegate {
+    func tapCreate() {
+        self.didTapCreateWorkout(self)
+    }
 }
