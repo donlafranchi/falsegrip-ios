@@ -11,6 +11,7 @@ import FittedSheets
 import EasyTipView
 import CRRefresh
 import CRNotifications
+import SwiftReorder
 
 
 class WorkoutDetailVC: UIViewController {
@@ -110,6 +111,7 @@ class WorkoutDetailVC: UIViewController {
         self.tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
             self?.getWorkout()
         }
+        self.tableView.reorder.delegate = self
     }
     
     func setTipView(){
@@ -249,7 +251,7 @@ class WorkoutDetailVC: UIViewController {
             let params = [
                 "title": self.titleField.text] as! [String : String]
             
-            ApiService.updateWorkoutTitle(id: self.workout.id,params: params) { (success, data) in
+            ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
                 if success {
                     self.workout.title = self.titleField.text!
                     self.titleField.isEnabled = false
@@ -288,6 +290,10 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let spacer = tableView.reorder.spacerCell(for: indexPath) {
+            return spacer
+        }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExercisesTVCell", for: indexPath) as! ExercisesTVCell
         cell.initCell(self.exercises[indexPath.row])
@@ -432,5 +438,30 @@ extension WorkoutDetailVC: UITextFieldDelegate {
         }
         return true
     }
+    
+}
+
+extension WorkoutDetailVC: TableViewReorderDelegate {
+    func tableView(_ tableView: UITableView, reorderRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        self.exercises.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        
+        var ids = [String]()
+        
+        for item in self.exercises {
+            ids.append(item.id)
+        }
+        
+        let params = [
+            "exercises": ids] as [String : Any]
+        
+        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
+            if success {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
     
 }
