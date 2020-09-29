@@ -34,6 +34,7 @@ class WorkoutDetailVC: UIViewController {
     var sheetController = SheetViewController()
     var addSetVC = AddSetVC()
     var preferences = EasyTipView.Preferences()
+    var isFromCreate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,7 +176,12 @@ class WorkoutDetailVC: UIViewController {
     }
    
     @IBAction func didTapBack(_ sender: Any) {
-        back()
+        
+        if isFromCreate {
+            self.navigationController?.popToRootViewController(animated: true)
+        }else{
+            back()
+        }        
     }
     @IBAction func noteCancel(_ sender: Any) {
         noteBtn.backgroundColor = UNSELECT_COLOR

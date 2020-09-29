@@ -11,6 +11,7 @@ import AMScrollingNavbar
 import RSKCollectionViewRetractableFirstItemLayout
 import CRRefresh
 import TTGTagCollectionView
+import CRNotifications
 
 
 class AllExercisesVC: UIViewController {
@@ -208,8 +209,15 @@ class AllExercisesVC: UIViewController {
                     
                 }else{
                     nc.post(name: Notification.Name("WorkoutCreated"), object: nil)
+                    CRNotifications.showNotification(textColor: MAIN_COLOR!, backgroundColor: BACKGROUND_COLOR!, image: UIImage(named: "success"), title: "Success!", message: "You successfully created Workout.", dismissDelay: 2.0)
+                    
+                    if let id = data!["id"] as? String {
+                        let vc = self.storyboard?.instantiateViewController(identifier: "WorkoutDetailVC") as! WorkoutDetailVC
+                        vc.workoutID = id
+                        vc.isFromCreate = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
-                self.back()
             }
         }
     }    
