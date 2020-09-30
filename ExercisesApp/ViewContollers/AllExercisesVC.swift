@@ -116,7 +116,7 @@ class AllExercisesVC: UIViewController {
         let params = [
             "order_by": "-created",
             "category": selectedCategory] as [String : Any]
-        ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
+        ApiService.getAllExercises(page: pageNum, params: params) { [self] (success, data) in
             self.dismissHUD()
             if success {
                 if self.pageNum == 1 {
@@ -145,7 +145,11 @@ class AllExercisesVC: UIViewController {
                         self.exercises.append(Exercise(item))
                         self.filteredExercises.append(Exercise(item))
                     }
-                    
+                    if !UserInfo.shared.showOnboarding2 {
+                        DispatchQueue.main.async {
+                            self.showOnboarding()
+                        }
+                    }
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
                     self.collectionView.cr.endLoadingMore()
@@ -220,7 +224,15 @@ class AllExercisesVC: UIViewController {
                 }
             }
         }
-    }    
+    }
+    
+    func showOnboarding(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnboardingVC2") as! OnboardingVC2
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        vc.exercise = self.filteredExercises.first!
+        self.present(vc, animated: true, completion: nil)
+    }
         
     // MARK: - Layout
     
@@ -471,4 +483,22 @@ extension AllExercisesVC: TTGTextTagCollectionViewDelegate {
             self.getAllExercises()
         }
     }
+}
+
+extension AllExercisesVC: OnboardingVC2Delegate {
+    
+    func tapExercise(){
+        
+        self.filteredExercises[0].isSelected = true
+        self.collectionView.reloadItems(at: [IndexPath(item: 0, section: 1)])
+        
+        var count = 0
+        for item in self.filteredExercises {
+            if item.isSelected {
+                count += 1
+            }
+        }
+        seletedCount = count
+    }
+    
 }

@@ -49,6 +49,7 @@
 		8BDA577F252399C40033EFAE /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BDA577D252399C40033EFAE /* FooterView.xib */; };
 		8BDA57832523B7F90033EFAE /* OnboardingVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA57822523B7F70033EFAE /* OnboardingVC1.swift */; };
 		8BDA57872523C5090033EFAE /* up_arrow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8BDA57862523C5080033EFAE /* up_arrow.gif */; };
+		8BDA57A42523E5230033EFAE /* OnboardingVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA57A32523E5220033EFAE /* OnboardingVC2.swift */; };
 		8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */; };
 		8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */; };
 		8BED7FCB2502D8BF001F2BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BED7FC92502D8BF001F2BBE /* Main.storyboard */; };
@@ -115,6 +116,7 @@
 		8BDA577D252399C40033EFAE /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		8BDA57822523B7F70033EFAE /* OnboardingVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC1.swift; sourceTree = "<group>"; };
 		8BDA57862523C5080033EFAE /* up_arrow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = up_arrow.gif; sourceTree = "<group>"; };
+		8BDA57A32523E5220033EFAE /* OnboardingVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC2.swift; sourceTree = "<group>"; };
 		8BED7FC02502D8BF001F2BBE /* ExercisesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExercisesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BED7FC32502D8BF001F2BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BED7FC52502D8BF001F2BBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				8BDA57822523B7F70033EFAE /* OnboardingVC1.swift */,
+				8BDA57A32523E5220033EFAE /* OnboardingVC2.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				8BD8B9112507014600688B57 /* ExercisesCell1.swift in Sources */,
 				8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */,
 				8B17E569250A7B5F00EE1DBA /* Extension+UITableView.swift in Sources */,
+				8BDA57A42523E5230033EFAE /* OnboardingVC2.swift in Sources */,
 				8B17E58F250BDEE900EE1DBA /* NoteModel.swift in Sources */,
 				8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */,
 				8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */,
@@ -705,7 +709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -727,7 +731,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
