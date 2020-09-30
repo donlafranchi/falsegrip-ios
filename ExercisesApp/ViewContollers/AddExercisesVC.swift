@@ -208,6 +208,13 @@ class AddExercisesVC: UIViewController {
         ApiService.updateWorkout(id: self.workout.id,params: params) { (success, data) in
             self.dismissHUD()
             if success {
+                
+                for item in self.filteredExercises {
+                    item.isSelected = false
+                }
+                self.seletedCount = 0
+                self.collectionView.reloadData()
+                
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil)
                 nc.post(name: Notification.Name("workoutUpdated"), object: nil)

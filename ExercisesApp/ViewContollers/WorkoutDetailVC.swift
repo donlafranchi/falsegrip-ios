@@ -164,6 +164,13 @@ class WorkoutDetailVC: UIViewController {
                     self.workout = WorkoutModel(results)
                     self.exercises = self.workout.exercises
                     self.sections.removeAll()
+                    
+                    if !UserInfo.shared.showOnboarding4 && self.exercises.count > 0{
+                        DispatchQueue.main.async {
+                            self.showOnboarding()
+                        }
+                    }
+                    
                     for item in self.exercises {
                         
                         if !self.sections.contains(item.category) {
@@ -176,6 +183,14 @@ class WorkoutDetailVC: UIViewController {
             }
             self.tableView.cr.endHeaderRefresh()
         }
+    }
+    
+    func showOnboarding(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnboardingVC4") as! OnboardingVC4
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        vc.exercise = self.exercises.first!
+        self.present(vc, animated: true, completion: nil)
     }
    
     @IBAction func didTapBack(_ sender: Any) {
@@ -461,7 +476,19 @@ extension WorkoutDetailVC: TableViewReorderDelegate {
             }
         }
     }
+}
+
+extension WorkoutDetailVC: OnboardingVC4Delegate{
     
-    
-    
+    func tapAddset(){
+        
+        self.sheetController.setSizes([.fixed(CGFloat(360))])
+        self.addSetVC.sets?.removeAll()
+        self.addSetVC.sets = self.exercises.first?.sets
+        self.addSetVC.workoutId = self.workoutID
+        self.addSetVC.exerciseId = self.exercises.first?.id
+        self.addSetVC.exerciseName = self.exercises.first?.name
+        self.addSetVC.addedSets.removeAll()
+        self.present(sheetController, animated: false, completion: nil)
+    }
 }

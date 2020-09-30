@@ -219,6 +219,13 @@ class AllExercisesVC: UIViewController {
         ApiService.createWorkout(params: params) { (success, data) in
             self.dismissHUD()
             if success {
+                
+                for item in self.filteredExercises {
+                    item.isSelected = false
+                }
+                self.seletedCount = 0
+                self.collectionView.reloadData()
+                
                 let nc = NotificationCenter.default
                 if self.isFromDetail {
                     

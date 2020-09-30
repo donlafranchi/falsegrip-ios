@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4704F144DD4A41B56C37357C /* Pods_ExercisesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */; };
 		8B10E3FF2524C44800DD1A4D /* OnboardingVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */; };
+		8B10E4022524F67200DD1A4D /* OnboardingVC4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E4012524F67200DD1A4D /* OnboardingVC4.swift */; };
 		8B17E55325091C3D00EE1DBA /* SignupAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */; };
 		8B17E5552509257000EE1DBA /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5542509257000EE1DBA /* Extension+UITextField.swift */; };
 		8B17E5572509511500EE1DBA /* WorkoutDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */; };
@@ -77,6 +78,7 @@
 		72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExercisesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752D3903EAAD58D3399EF562 /* Pods-ExercisesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExercisesApp.release.xcconfig"; path = "Target Support Files/Pods-ExercisesApp/Pods-ExercisesApp.release.xcconfig"; sourceTree = "<group>"; };
 		8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC3.swift; sourceTree = "<group>"; };
+		8B10E4012524F67200DD1A4D /* OnboardingVC4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC4.swift; sourceTree = "<group>"; };
 		8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAlertVC.swift; sourceTree = "<group>"; };
 		8B17E5542509257000EE1DBA /* Extension+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailVC.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				8BDA57822523B7F70033EFAE /* OnboardingVC1.swift */,
 				8BDA57A32523E5220033EFAE /* OnboardingVC2.swift */,
 				8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */,
+				8B10E4012524F67200DD1A4D /* OnboardingVC4.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */,
 				8B33C0EB251120AC006618E6 /* WorkoutModel.swift in Sources */,
 				8BED7FFD25030A51001F2BBE /* WorkoutHistoryVC.swift in Sources */,
+				8B10E4022524F67200DD1A4D /* OnboardingVC4.swift in Sources */,
 				8BED7FF3250300EC001F2BBE /* HeaderCell.swift in Sources */,
 				8B17E5552509257000EE1DBA /* Extension+UITextField.swift in Sources */,
 				8BED7FF9250304F2001F2BBE /* Constants.swift in Sources */,
