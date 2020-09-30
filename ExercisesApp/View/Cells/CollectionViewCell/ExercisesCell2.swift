@@ -8,7 +8,7 @@
 
 import UIKit
 import Nuke
-
+import SDWebImage
 
 class ExercisesCell2: UICollectionViewCell {
     @IBOutlet weak var container: DropShadowView!
@@ -30,20 +30,21 @@ class ExercisesCell2: UICollectionViewCell {
         self.exercise = exercise
         self.lblName.text = self.exercise.name
         self.lblMuscle.text = self.exercise.category
-        var options = ImageLoadingOptions()
-        options.pipeline = pipeline
-        options.placeholder = UIImage(named: "placeholder")
-        options.transition = .fadeIn(duration: 0.25)
+//        var options = ImageLoadingOptions()
+//        options.pipeline = pipeline
+//        options.placeholder = UIImage(named: "placeholder")
+//        options.transition = .fadeIn(duration: 0.25)
 
         let url = URL(string: "\(self.exercise.imagePath)")
-        loadImage(
-            with: ImageRequest(url: url!, processors: [_ProgressiveBlurImageProcessor()]),
-            options: options,
-            into: self.imgView!,
-            progress: { _, completed, total in
-
-            }
-        )        
+//        loadImage(
+//            with: ImageRequest(url: url!, processors: [_ProgressiveBlurImageProcessor()]),
+//            options: options,
+//            into: self.imgView!,
+//            progress: { _, completed, total in
+//
+//            }
+//        )
+        self.imgView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
         self.overlayView.isHidden = !self.exercise.isSelected
         self.imgCheck.isHidden = !self.exercise.isSelected
     }

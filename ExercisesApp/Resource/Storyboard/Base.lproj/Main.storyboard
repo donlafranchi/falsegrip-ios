@@ -2559,7 +2559,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVb-xh-RGS" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="156" height="254"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 5.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h45-yd-qAL">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ring" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h45-yd-qAL">
                                                             <rect key="frame" x="0.0" y="0.0" width="156" height="189.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="h45-yd-qAL" secondAttribute="height" multiplier="164:199" id="3UQ-29-KkV"/>
@@ -2571,13 +2571,13 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksTobounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twisting" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-05-JdZ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push-Up" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-05-JdZ">
                                                             <rect key="frame" x="10" y="194.5" width="136" height="33"/>
                                                             <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
                                                             <color key="textColor" name="MainColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Press" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feu-Kx-pUF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Push" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feu-Kx-pUF">
                                                             <rect key="frame" x="10" y="227.5" width="136" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="14"/>
                                                             <color key="textColor" name="SubColor"/>
@@ -3567,6 +3567,7 @@
         <image name="minus" width="24" height="24"/>
         <image name="notes_empty" width="32" height="28"/>
         <image name="plus" width="24" height="24"/>
+        <image name="ring" width="967" height="725"/>
         <image name="up_arrow.gif" width="400" height="400"/>
         <image name="weight_empty" width="28" height="28"/>
         <image name="youtube icon" width="28" height="20"/>

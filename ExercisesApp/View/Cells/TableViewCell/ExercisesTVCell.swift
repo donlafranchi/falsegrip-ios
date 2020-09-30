@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import SDWebImage
 
 protocol ExercisesTVCellDelegate {
     func tapAddSet(_ exercise: Exercise)
@@ -61,20 +62,21 @@ class ExercisesTVCell: UITableViewCell {
         }
         self.lblReps.text = "\(reps)"
         
-        var options = ImageLoadingOptions()
-        options.pipeline = pipeline
-        options.placeholder = UIImage(named: "placeholder")
-        options.transition = .fadeIn(duration: 0.25)
+//        var options = ImageLoadingOptions()
+//        options.pipeline = pipeline
+//        options.placeholder = UIImage(named: "placeholder")
+//        options.transition = .fadeIn(duration: 0.25)
 
         let url = URL(string: "\(baseURL)\(self.exercise.imagePath)")
-        loadImage(
-            with: ImageRequest(url: url!, processors: [_ProgressiveBlurImageProcessor()]),
-            options: options,
-            into: self.imgView!,
-            progress: { _, completed, total in
-
-            }
-        )
+//        loadImage(
+//            with: ImageRequest(url: url!, processors: [_ProgressiveBlurImageProcessor()]),
+//            options: options,
+//            into: self.imgView!,
+//            progress: { _, completed, total in
+//
+//            }
+//        )
+        self.imgView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
     }
     
     @IBAction func didTapAddSet(_ sender: Any) {

@@ -45,12 +45,14 @@ class AllExercisesVC: UIViewController {
         initTagView()
         setupCollectionView()
         getAllExercises()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-
+        self.showIntro()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -60,6 +62,7 @@ class AllExercisesVC: UIViewController {
 //            navigationController.stopFollowingScrollView()
 //        }
     }
+
     
     func initTagView(){
         
@@ -83,6 +86,31 @@ class AllExercisesVC: UIViewController {
         tagView.delegate = self
         tagView.addTags(categories)
         
+    }
+    
+    func showIntro(){
+        
+        if !UserInfo.shared.showOnboarding2{
+            DispatchQueue.main.async {
+                self.showOnboarding()
+            }
+        }else{
+            if !UserInfo.shared.showOnboarding3 && self.filteredExercises.count > 0{
+                DispatchQueue.main.async {
+                    self.filteredExercises[0].isSelected = true
+                    self.collectionView.reloadItems(at: [IndexPath(item: 0, section: 1)])
+                    
+                    var count = 0
+                    for item in self.filteredExercises {
+                        if item.isSelected {
+                            count += 1
+                        }
+                    }
+                    self.seletedCount = count
+                    self.showOnboarding3()
+                }
+            }
+        }
     }
     
     func setupCollectionView(){
@@ -146,27 +174,9 @@ class AllExercisesVC: UIViewController {
                         self.exercises.append(Exercise(item))
                         self.filteredExercises.append(Exercise(item))
                     }
-                    if !UserInfo.shared.showOnboarding2 && self.filteredExercises.count > 0{
-                        DispatchQueue.main.async {
-                            self.showOnboarding()
-                        }
-                    }else{
-                        if !UserInfo.shared.showOnboarding3 && self.filteredExercises.count > 0{
-                            DispatchQueue.main.async {
-                                self.filteredExercises[0].isSelected = true
-                                self.collectionView.reloadItems(at: [IndexPath(item: 0, section: 1)])
-                                
-                                var count = 0
-                                for item in self.filteredExercises {
-                                    if item.isSelected {
-                                        count += 1
-                                    }
-                                }
-                                seletedCount = count
-                                self.showOnboarding3()
-                            }
-                        }
-                    }
+                    
+
+
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
                     self.collectionView.cr.endLoadingMore()
@@ -254,7 +264,6 @@ class AllExercisesVC: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnboardingVC2") as! OnboardingVC2
         vc.modalPresentationStyle = .overCurrentContext
         vc.delegate = self
-        vc.exercise = self.filteredExercises.first!
         self.present(vc, animated: true, completion: nil)
     }
     

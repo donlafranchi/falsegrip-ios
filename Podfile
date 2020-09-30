@@ -30,4 +30,6 @@ target 'ExercisesApp' do
     pod 'MBVideoPlayer', :git => 'https://github.com/mwaqasbhati/MBVideoPlayer.git'
     pod 'YouTubePlayer'
     pod 'SwiftReorder', '~> 7.2'
+    pod 'SDWebImage'
+
 end

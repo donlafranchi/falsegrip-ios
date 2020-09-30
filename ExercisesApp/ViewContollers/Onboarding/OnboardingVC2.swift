@@ -114,7 +114,7 @@ extension OnboardingVC2: UICollectionViewDataSource,UICollectionViewDelegate,UIC
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell1", for: indexPath) as! ExercisesCell1
-                cell.initCell(exercise)
+//            cell.initCell(exercise)
             return cell
             
         default:
