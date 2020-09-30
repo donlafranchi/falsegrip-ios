@@ -300,6 +300,8 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
                     self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     self.checkIsTodayCreadted()
+                    self.pageNum = 1
+                    self.getWorkouts()
                 }
             }
 

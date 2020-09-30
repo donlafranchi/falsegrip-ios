@@ -39,7 +39,7 @@ class OnboardingVC1: UIViewController {
     }
 
     @IBAction func tapBackground(_ sender: Any) {
-        UserInfo.shared.setUserInfo(.showOnboarding1, value: true)
-        self.dismiss(animated: true, completion: nil)
+//        UserInfo.shared.setUserInfo(.showOnboarding1, value: true)
+//        self.dismiss(animated: true, completion: nil)
     }
 }

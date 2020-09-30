@@ -76,8 +76,8 @@ class OnboardingVC2: UIViewController {
     }
     
     @IBAction func tapBackground(_ sender: Any) {
-        UserInfo.shared.setUserInfo(.showOnboarding2, value: true)
-        self.dismiss(animated: true, completion: nil)
+//        UserInfo.shared.setUserInfo(.showOnboarding2, value: true)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Layout
@@ -203,7 +203,7 @@ extension OnboardingVC2: UICollectionViewDataSource,UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         UserInfo.shared.setUserInfo(.showOnboarding2, value: true)
-        delegate?.tapExercise()
         self.dismiss(animated: true, completion: nil)
+        delegate?.tapExercise()
     }
 }

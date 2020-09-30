@@ -114,6 +114,7 @@ class AddExercisesVC: UIViewController {
         self.showHUD()
         let params = [
             "order_by": "-created",
+            "active": true,
             "category": selectedCategory] as [String : Any]
         ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
             self.dismissHUD()

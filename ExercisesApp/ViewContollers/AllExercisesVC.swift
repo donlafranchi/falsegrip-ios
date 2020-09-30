@@ -115,6 +115,7 @@ class AllExercisesVC: UIViewController {
         self.showHUD()
         let params = [
             "order_by": "-created",
+            "active": true,
             "category": selectedCategory] as [String : Any]
         ApiService.getAllExercises(page: pageNum, params: params) { [self] (success, data) in
             self.dismissHUD()
@@ -145,9 +146,25 @@ class AllExercisesVC: UIViewController {
                         self.exercises.append(Exercise(item))
                         self.filteredExercises.append(Exercise(item))
                     }
-                    if !UserInfo.shared.showOnboarding2 {
+                    if !UserInfo.shared.showOnboarding2 && self.filteredExercises.count > 0{
                         DispatchQueue.main.async {
                             self.showOnboarding()
+                        }
+                    }else{
+                        if !UserInfo.shared.showOnboarding3 && self.filteredExercises.count > 0{
+                            DispatchQueue.main.async {
+                                self.filteredExercises[0].isSelected = true
+                                self.collectionView.reloadItems(at: [IndexPath(item: 0, section: 1)])
+                                
+                                var count = 0
+                                for item in self.filteredExercises {
+                                    if item.isSelected {
+                                        count += 1
+                                    }
+                                }
+                                seletedCount = count
+                                self.showOnboarding3()
+                            }
                         }
                     }
                     self.collectionView.reloadData()
@@ -178,7 +195,7 @@ class AllExercisesVC: UIViewController {
         var titles = [String]()
         var ids = [String]()
         for item in self.filteredExercises {
-            if item.isSelected && !item.category.isEmpty {
+            if item.isSelected && !item.category.isEmpty && !titles.contains(item.category) {
                 titles.append(item.category)
             }
             if item.isSelected {
@@ -231,6 +248,14 @@ class AllExercisesVC: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         vc.delegate = self
         vc.exercise = self.filteredExercises.first!
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func showOnboarding3(){
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnboardingVC3") as! OnboardingVC3
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
         
@@ -499,6 +524,15 @@ extension AllExercisesVC: OnboardingVC2Delegate {
             }
         }
         seletedCount = count
+        self.showOnboarding3()
+        
+    }
+    
+}
+
+extension AllExercisesVC: OnboardingVC3Delegate {
+    func tapStart() {
+        self.didTapWorkout(self)
     }
     
 }

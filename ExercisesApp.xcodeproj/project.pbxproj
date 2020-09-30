@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4704F144DD4A41B56C37357C /* Pods_ExercisesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */; };
+		8B10E3FF2524C44800DD1A4D /* OnboardingVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */; };
 		8B17E55325091C3D00EE1DBA /* SignupAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */; };
 		8B17E5552509257000EE1DBA /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5542509257000EE1DBA /* Extension+UITextField.swift */; };
 		8B17E5572509511500EE1DBA /* WorkoutDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */; };
@@ -75,6 +76,7 @@
 /* Begin PBXFileReference section */
 		72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExercisesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752D3903EAAD58D3399EF562 /* Pods-ExercisesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExercisesApp.release.xcconfig"; path = "Target Support Files/Pods-ExercisesApp/Pods-ExercisesApp.release.xcconfig"; sourceTree = "<group>"; };
+		8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC3.swift; sourceTree = "<group>"; };
 		8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAlertVC.swift; sourceTree = "<group>"; };
 		8B17E5542509257000EE1DBA /* Extension+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailVC.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				8BDA57822523B7F70033EFAE /* OnboardingVC1.swift */,
 				8BDA57A32523E5220033EFAE /* OnboardingVC2.swift */,
+				8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				8BD8B91F2507D05800688B57 /* ExercisesDetailVC.swift in Sources */,
 				8B9A6BD3251E5BCD00F7AA3B /* EquipmentModel.swift in Sources */,
 				8B69B8582515246D00FD0598 /* GifVC.swift in Sources */,
+				8B10E3FF2524C44800DD1A4D /* OnboardingVC3.swift in Sources */,
 				8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */,
 				8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */,
 				8B17E567250A6F2D00EE1DBA /* AddSetVC.swift in Sources */,

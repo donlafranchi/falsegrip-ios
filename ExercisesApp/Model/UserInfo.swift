@@ -15,7 +15,7 @@ enum UserField {
     case unit
     case showOnboarding1
     case showOnboarding2
-
+    case showOnboarding3
 }
 
 class UserInfo: NSObject {
@@ -29,6 +29,7 @@ class UserInfo: NSObject {
     var unit: Int = 0
     var showOnboarding1: Bool = false
     var showOnboarding2: Bool = false
+    var showOnboarding3: Bool = false
 
 
     override init() {
@@ -52,6 +53,7 @@ class UserInfo: NSObject {
         
         self.showOnboarding1 = defaults.bool(forKey: "showOnboarding1")
         self.showOnboarding2 = defaults.bool(forKey: "showOnboarding2")
+        self.showOnboarding3 = defaults.bool(forKey: "showOnboarding3")
 
     }
     
@@ -77,6 +79,9 @@ class UserInfo: NSObject {
         case .showOnboarding2:
             showOnboarding2 = value as? Bool ?? false
             defaults.set(showOnboarding2, forKey: "showOnboarding2")
+        case .showOnboarding3:
+            showOnboarding3 = value as? Bool ?? false
+            defaults.set(showOnboarding3, forKey: "showOnboarding3")
         }
         
         
