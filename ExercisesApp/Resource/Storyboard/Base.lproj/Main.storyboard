@@ -2847,13 +2847,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="56"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3M-Cr-Ntb">
-                                                                            <rect key="frame" x="6" y="0.0" width="112" height="28"/>
+                                                                            <rect key="frame" x="6" y="0.0" width="112" height="32"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdf-sS-1iz">
-                                                                            <rect key="frame" x="6" y="32" width="112" height="18"/>
+                                                                            <rect key="frame" x="6" y="36" width="112" height="14"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                             <color key="textColor" name="SubColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2874,13 +2874,13 @@
                                                                     <rect key="frame" x="124" y="0.0" width="124" height="56"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFw-Vg-dWr">
-                                                                            <rect key="frame" x="6" y="0.0" width="112" height="28"/>
+                                                                            <rect key="frame" x="6" y="0.0" width="112" height="32"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="24"/>
                                                                             <color key="textColor" name="MainColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Reps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJn-AA-hBb">
-                                                                            <rect key="frame" x="6" y="32" width="112" height="18"/>
+                                                                            <rect key="frame" x="6" y="36" width="112" height="14"/>
                                                                             <fontDescription key="fontDescription" name="Mulish-Medium" family="Mulish" pointSize="12"/>
                                                                             <color key="textColor" name="SubColor"/>
                                                                             <nil key="highlightedColor"/>

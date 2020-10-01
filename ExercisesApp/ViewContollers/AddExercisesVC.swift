@@ -34,8 +34,17 @@ class AddExercisesVC: UIViewController {
     var exercises = [Exercise]()
     var selectedExercises = [Exercise]()
     var filteredExercises = [Exercise]()
+    var checkedExercises = [Exercise]()
     var categoryField = DropDown()
-    var selectedCategory = ""
+    var selectedCategory = ""{
+        didSet{
+            if selectedCategory.isEmpty {
+                self.navigationItem.title = "All Exercises"
+            }else{
+                self.navigationItem.title = "Exercises"
+            }
+        }
+    }
     var workout = WorkoutModel()
     var categories: [String] = ["Push","Pull","Legs","Core"]
 
@@ -120,7 +129,7 @@ class AddExercisesVC: UIViewController {
             self.dismissHUD()
             if success {
                 if self.pageNum == 1 {
-                    self.seletedCount = 0
+//                    self.seletedCount = 0
                     self.exercises.removeAll()
                     self.filteredExercises.removeAll()
                 }
@@ -191,10 +200,8 @@ class AddExercisesVC: UIViewController {
             ids.append(item.id)
         }
         
-        for item in self.filteredExercises {
-            if item.isSelected {
-                ids.append(item.id)
-            }
+        for item in self.checkedExercises {
+            ids.append(item.id)
         }
         
         let params = [
@@ -213,6 +220,7 @@ class AddExercisesVC: UIViewController {
                     item.isSelected = false
                 }
                 self.seletedCount = 0
+                self.checkedExercises.removeAll()
                 self.collectionView.reloadData()
                 
                 let nc = NotificationCenter.default
@@ -275,11 +283,22 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
         case 1:
             if indexPath.item % 2 == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell1", for: indexPath) as! ExercisesCell1
-                
+                for item in self.checkedExercises {
+                    if self.filteredExercises[indexPath.item].id == item.id {
+                        self.filteredExercises[indexPath.item].isSelected = true
+                        break
+                    }
+                }
                 cell.initCell(self.filteredExercises[indexPath.item])
                 return cell
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell2", for: indexPath) as! ExercisesCell2
+                for item in self.checkedExercises {
+                    if self.filteredExercises[indexPath.item].id == item.id {
+                        self.filteredExercises[indexPath.item].isSelected = true
+                        break
+                    }
+                }
                 cell.initCell(self.filteredExercises[indexPath.item])
                 return cell
             }
@@ -371,15 +390,19 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
 
         if indexPath.section == 1 {
             self.filteredExercises[indexPath.item].isSelected = !self.filteredExercises[indexPath.item].isSelected
-            self.collectionView.reloadItems(at: [indexPath])
             
-            var count = 0
+            
             for item in self.filteredExercises {
                 if item.isSelected {
-                    count += 1
+                    if !self.checkedExercises.contains(item) {
+                        self.checkedExercises.append(item)
+                    }
+                }else{
+                    self.checkedExercises.removeAll{ $0.id == item.id}
                 }
             }
-            seletedCount = count
+            self.collectionView.reloadItems(at: [indexPath])
+            seletedCount = self.checkedExercises.count
         }else{
 
         }

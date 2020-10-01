@@ -25,7 +25,15 @@ class ExercisesViewVC: UIViewController {
     var filteredExercises = [Exercise]()
 
     var categoryField = DropDown()
-    var selectedCategory = ""
+    var selectedCategory = ""{
+        didSet{
+            if selectedCategory.isEmpty {
+                self.navigationItem.title = "All Exercises"
+            }else{
+                self.navigationItem.title = "Exercises"
+            }
+        }
+    }
     var categories: [String] = ["Push","Pull","Legs","Core"]
     override func viewDidLoad() {
         super.viewDidLoad()

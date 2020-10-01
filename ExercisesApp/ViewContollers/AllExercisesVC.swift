@@ -35,10 +35,19 @@ class AllExercisesVC: UIViewController {
     var nextPage = ""
     var exercises = [Exercise]()
     var filteredExercises = [Exercise]()
+    var selectedExercises = [Exercise]()
 
     var isFromDetail = false
     var categoryField = DropDown()
-    var selectedCategory = ""
+    var selectedCategory = ""{
+        didSet{
+            if selectedCategory.isEmpty {
+                self.navigationItem.title = "All Exercises"
+            }else{
+                self.navigationItem.title = "Exercises"
+            }
+        }
+    }
     var categories: [String] = ["Push","Pull","Legs","Core"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,7 +158,7 @@ class AllExercisesVC: UIViewController {
             self.dismissHUD()
             if success {
                 if self.pageNum == 1 {
-                    self.seletedCount = 0
+//                    self.seletedCount = 0
                     self.exercises.removeAll()
                     self.filteredExercises.removeAll()
                 }
@@ -175,8 +184,6 @@ class AllExercisesVC: UIViewController {
                         self.filteredExercises.append(Exercise(item))
                     }
                     
-
-
                     self.collectionView.reloadData()
                     self.collectionView.cr.endHeaderRefresh()
                     self.collectionView.cr.endLoadingMore()
@@ -204,13 +211,11 @@ class AllExercisesVC: UIViewController {
         
         var titles = [String]()
         var ids = [String]()
-        for item in self.filteredExercises {
-            if item.isSelected && !item.category.isEmpty && !titles.contains(item.category) {
+        for item in self.selectedExercises {
+            if !item.category.isEmpty && !titles.contains(item.category) {
                 titles.append(item.category)
             }
-            if item.isSelected {
-                ids.append(item.id)
-            }
+            ids.append(item.id)
         }
         
         var title = ""
@@ -234,6 +239,7 @@ class AllExercisesVC: UIViewController {
                     item.isSelected = false
                 }
                 self.seletedCount = 0
+                self.selectedExercises.removeAll()
                 self.collectionView.reloadData()
                 
                 let nc = NotificationCenter.default
@@ -324,12 +330,27 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             if indexPath.item % 2 == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell1", for: indexPath) as! ExercisesCell1
                 
+                for item in self.selectedExercises {
+                    if self.filteredExercises[indexPath.item].id == item.id {
+                        self.filteredExercises[indexPath.item].isSelected = true
+                        break
+                    }
+                }
+                
                 cell.initCell(self.filteredExercises[indexPath.item])
                
                 
                 return cell
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExercisesCell2", for: indexPath) as! ExercisesCell2
+                
+                for item in self.selectedExercises {
+                    if self.filteredExercises[indexPath.item].id == item.id {
+                        self.filteredExercises[indexPath.item].isSelected = true
+                        break
+                    }
+                }
+                
                 cell.initCell(self.filteredExercises[indexPath.item])
                 
                 return cell
@@ -422,15 +443,19 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
 
         if indexPath.section == 1 {
             self.filteredExercises[indexPath.item].isSelected = !self.filteredExercises[indexPath.item].isSelected
-            self.collectionView.reloadItems(at: [indexPath])
             
-            var count = 0
+            
             for item in self.filteredExercises {
                 if item.isSelected {
-                    count += 1
+                    if !self.selectedExercises.contains(item) {
+                        self.selectedExercises.append(item)
+                    }
+                }else{
+                    self.selectedExercises.removeAll{ $0.id == item.id}
                 }
             }
-            seletedCount = count
+            self.collectionView.reloadItems(at: [indexPath])
+            seletedCount = self.selectedExercises.count
         }else{
 
         }
@@ -533,15 +558,9 @@ extension AllExercisesVC: OnboardingVC2Delegate {
     func tapExercise(){
         
         self.filteredExercises[0].isSelected = true
+        self.selectedExercises.append(self.filteredExercises[0])
         self.collectionView.reloadItems(at: [IndexPath(item: 0, section: 1)])
-        
-        var count = 0
-        for item in self.filteredExercises {
-            if item.isSelected {
-                count += 1
-            }
-        }
-        seletedCount = count
+        seletedCount = 1
         self.showOnboarding3()
         
     }
