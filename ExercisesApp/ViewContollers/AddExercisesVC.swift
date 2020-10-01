@@ -45,6 +45,7 @@ class AddExercisesVC: UIViewController {
             }
         }
     }
+    var query = ""
     var workout = WorkoutModel()
     var categories: [String] = ["Push","Pull","Legs","Core"]
 
@@ -124,7 +125,8 @@ class AddExercisesVC: UIViewController {
         let params = [
             "order_by": "-created",
             "active": true,
-            "category": selectedCategory] as [String : Any]
+            "category": selectedCategory,
+            "q": query] as [String : Any]
         ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
             self.dismissHUD()
             if success {
@@ -277,7 +279,7 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             cell.searchBar.delegate = self
             cell.searchBar.searchBarStyle = .minimal
             cell.searchBar.placeholder = "Search"
-            
+            cell.searchBar.text = query
             return cell
             
         case 1:
@@ -362,7 +364,7 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             
         case 0:
             let itemWidth = collectionView.frame.width
-            let itemHeight: CGFloat = 1.0
+            let itemHeight: CGFloat = 40.0
             
             return CGSize(width: itemWidth, height: itemHeight)
         
@@ -436,46 +438,11 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
 
 extension AddExercisesVC: UISearchBarDelegate{
     
-    // MARK: - UISearchBarDelegate
-     
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-         
-//         let oldFilteredNames = self.filteredNames!
-//
-//         if searchText.isEmpty {
-//
-//             self.filteredNames = self.names
-//         }
-//         else {
-//
-//             self.filteredNames = self.names.filter({ (name) -> Bool in
-//
-//                 return name.hasPrefix(searchText)
-//             })
-//         }
-//
-//         self.collectionView.performBatchUpdates({
-//
-//             for (oldIndex, oldName) in oldFilteredNames.enumerated() {
-//
-//                 if self.filteredNames.contains(oldName) == false {
-//
-//                     let indexPath = IndexPath(item: oldIndex, section: 1)
-//                     self.collectionView.deleteItems(at: [indexPath])
-//                 }
-//             }
-//
-//             for (index, name) in self.filteredNames.enumerated() {
-//
-//                 if oldFilteredNames.contains(name) == false {
-//
-//                     let indexPath = IndexPath(item: index, section: 1)
-//                     self.collectionView.insertItems(at: [indexPath])
-//                 }
-//             }
-//
-//         }, completion: nil)
-     }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.query = searchBar.searchTextField.text!
+        self.pageNum = 1
+        self.getAllExercises()
+    }
 }
 
 extension AddExercisesVC: TTGTextTagCollectionViewDelegate {

@@ -29,7 +29,9 @@ internal final class SearchCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.searchBar = UISearchBar()
-        
+        self.searchBar.searchTextField.textColor = MAIN_COLOR
+        self.searchBar.searchTextField.leftView?.tintColor = MAIN_COLOR
+        self.searchBar.tintColor = MAIN_COLOR
         self.contentView.addSubview(self.searchBar)
     }
     
