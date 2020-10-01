@@ -10,6 +10,7 @@
 		4704F144DD4A41B56C37357C /* Pods_ExercisesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */; };
 		8B10E3FF2524C44800DD1A4D /* OnboardingVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */; };
 		8B10E4022524F67200DD1A4D /* OnboardingVC4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E4012524F67200DD1A4D /* OnboardingVC4.swift */; };
+		8B10E42225268DEC00DD1A4D /* WorkoutMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10E42125268DE800DD1A4D /* WorkoutMoreVC.swift */; };
 		8B17E55325091C3D00EE1DBA /* SignupAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */; };
 		8B17E5552509257000EE1DBA /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5542509257000EE1DBA /* Extension+UITextField.swift */; };
 		8B17E5572509511500EE1DBA /* WorkoutDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */; };
@@ -79,6 +80,7 @@
 		752D3903EAAD58D3399EF562 /* Pods-ExercisesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExercisesApp.release.xcconfig"; path = "Target Support Files/Pods-ExercisesApp/Pods-ExercisesApp.release.xcconfig"; sourceTree = "<group>"; };
 		8B10E3FE2524C44800DD1A4D /* OnboardingVC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC3.swift; sourceTree = "<group>"; };
 		8B10E4012524F67200DD1A4D /* OnboardingVC4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC4.swift; sourceTree = "<group>"; };
+		8B10E42125268DE800DD1A4D /* WorkoutMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutMoreVC.swift; sourceTree = "<group>"; };
 		8B17E55225091C3D00EE1DBA /* SignupAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAlertVC.swift; sourceTree = "<group>"; };
 		8B17E5542509257000EE1DBA /* Extension+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		8B17E5562509511500EE1DBA /* WorkoutDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailVC.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				8B69B8552515245A00FD0598 /* VideoVC.swift */,
 				8B69B859251540C300FD0598 /* VideoPlayerVC.swift */,
 				8B69B8572515246D00FD0598 /* GifVC.swift */,
+				8B10E42125268DE800DD1A4D /* WorkoutMoreVC.swift */,
 			);
 			path = ViewContollers;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				8B17E58D250BAE7500EE1DBA /* StatusVC.swift in Sources */,
 				8BD8B9112507014600688B57 /* ExercisesCell1.swift in Sources */,
 				8BED7FC62502D8BF001F2BBE /* SceneDelegate.swift in Sources */,
+				8B10E42225268DEC00DD1A4D /* WorkoutMoreVC.swift in Sources */,
 				8B17E569250A7B5F00EE1DBA /* Extension+UITableView.swift in Sources */,
 				8BDA57A42523E5230033EFAE /* OnboardingVC2.swift in Sources */,
 				8B17E58F250BDEE900EE1DBA /* NoteModel.swift in Sources */,
@@ -717,7 +721,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -739,7 +743,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

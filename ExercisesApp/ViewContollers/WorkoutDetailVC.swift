@@ -25,7 +25,7 @@ class WorkoutDetailVC: UIViewController {
     @IBOutlet weak var noteImgView: UIImageView!
     @IBOutlet weak var weightView: UIStackView!
     @IBOutlet weak var titleField: UITextField!
-    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var moreBtn: UIBarButtonItem!
     
     var workoutID = ""
     var workout = WorkoutModel()
@@ -35,8 +35,21 @@ class WorkoutDetailVC: UIViewController {
     
     var sheetController = SheetViewController()
     var addSetVC = AddSetVC()
+    var moreSheet = SheetViewController()
+    var moreVC = WorkoutMoreVC()
     var preferences = EasyTipView.Preferences()
     var isFromCreate = false
+    var isEdit = false {
+        didSet{
+            if isEdit {
+                moreBtn.image = nil
+                moreBtn.title = "Done"
+            }else{
+                moreBtn.image = UIImage(named: "ic_more")
+                moreBtn.title = ""
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +138,7 @@ class WorkoutDetailVC: UIViewController {
     
     func setUpBottomSlider(){
         
-        
+        // Add Set
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         addSetVC = storyboard.instantiateViewController(withIdentifier: "AddSetVC") as! AddSetVC
 
@@ -145,13 +158,26 @@ class WorkoutDetailVC: UIViewController {
         sheetController.dismissOnBackgroundTap = true
         sheetController.view.gestureRecognizers?.removeAll()
         addSetVC.delegate = self
-        sheetController.willDismiss = { _ in
-            print("Will dismiss")
-        }
-        sheetController.didDismiss = { _ in
-            
-            print("Will dismiss")
-        }
+        
+        // More Sheet
+        
+        moreVC = storyboard.instantiateViewController(withIdentifier: "WorkoutMoreVC") as! WorkoutMoreVC
+
+        moreSheet = SheetViewController(controller: moreVC, sizes: [.fixed(260)])
+        moreSheet.adjustForBottomSafeArea = false
+        moreSheet.blurBottomSafeArea = false
+        moreSheet.dismissOnBackgroundTap = true
+        moreSheet.extendBackgroundBehindHandle = false
+        moreSheet.topCornersRadius = 20
+        moreSheet.overlayColor = UIColor.init(white: 1, alpha: 0.7)
+        moreSheet.handleSize = .zero
+        moreSheet.containerView.layer.shadowColor = UIColor.gray.cgColor
+        moreSheet.containerView.layer.shadowOffset = CGSize(width: 0, height: -1)
+        moreSheet.containerView.layer.shadowRadius = 8
+        moreSheet.containerView.layer.shadowOpacity = 0.4
+        moreSheet.dismissOnPan = true
+        moreSheet.dismissOnBackgroundTap = true
+        moreVC.delegate = self
     }
     
     func getWorkout(){
@@ -247,19 +273,15 @@ class WorkoutDetailVC: UIViewController {
 //        }
         didTapNote(self)
     }
-
-    @IBAction func didTapEdit(_ sender: Any) {
+    
+    @IBAction func didTapMore(_ sender: Any) {
         
-        if self.editBtn.isSelected {
+        if isEdit {
             
-            if titleField.text!.isEmpty {
-                return
-            }
-            
-            if self.workout.title == self.titleField.text {
+            if self.workout.title == self.titleField.text || titleField.text!.isEmpty{
                 self.titleField.isEnabled = false
                 self.titleField.resignFirstResponder()
-                self.editBtn.isSelected = !self.editBtn.isSelected
+                self.isEdit = false
                 return
             }
             
@@ -271,20 +293,19 @@ class WorkoutDetailVC: UIViewController {
                     self.workout.title = self.titleField.text!
                     self.titleField.isEnabled = false
                     self.titleField.resignFirstResponder()
-                    self.editBtn.isSelected = !self.editBtn.isSelected
+                    self.isEdit = false
                     let nc = NotificationCenter.default
                     nc.post(name: Notification.Name("workoutUpdated"), object: nil)
                 }
             }
-            
-
         }else{
-            self.titleField.isEnabled = true
-            self.titleField.becomeFirstResponder()
-            self.editBtn.isSelected = !self.editBtn.isSelected
+            moreVC.workoutTitle = self.workout.title
+            self.present(moreSheet, animated: true, completion: nil)
         }
         
+
     }
+    
 }
 
 
@@ -491,4 +512,36 @@ extension WorkoutDetailVC: OnboardingVC4Delegate{
         self.addSetVC.addedSets.removeAll()
         self.present(sheetController, animated: false, completion: nil)
     }
+}
+
+extension WorkoutDetailVC: WorkoutMoreVCDelegate{
+    func tapClose() {
+        self.moreSheet.closeSheet()
+    }
+    
+    func tapEdit() {
+        isEdit = true
+        self.moreSheet.closeSheet()
+        
+        self.titleField.isEnabled = true
+        self.titleField.becomeFirstResponder()
+        
+    }
+    
+    func tapRemove() {
+        self.moreSheet.closeSheet()
+        
+        showHUD()
+        ApiService.deleteWorkout(id: self.workout.id) { (deleted) in
+            
+            if deleted {
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                self.back()
+            }else{
+                self.dismissHUD()
+            }
+        }
+    }
+        
 }
