@@ -141,6 +141,8 @@ class WorkoutHistoryVC: UIViewController {
                 self.historyTableView.cr.endHeaderRefresh()
                 self.historyTableView.cr.endLoadingMore()
                 self.historyTableView.cr.noticeNoMoreData()
+                
+                self.showFailureAlert()
             }
         }
     }

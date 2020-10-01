@@ -53,6 +53,13 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+    
+    func showFailureAlert() {
+        
+        let alert = UIAlertController(title: "Warning", message: "The connection failed. Please try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
 

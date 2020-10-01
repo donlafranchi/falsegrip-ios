@@ -518,9 +518,11 @@ extension AllExercisesVC: TTGTextTagCollectionViewDelegate {
         
         if selected {
             self.selectedCategory = tagText
+            self.pageNum = 1
             self.getAllExercises()
         }else{
             self.selectedCategory = ""
+            self.pageNum = 1
             self.getAllExercises()
         }
     }
