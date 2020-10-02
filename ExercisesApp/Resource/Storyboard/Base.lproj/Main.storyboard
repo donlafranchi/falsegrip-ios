@@ -2402,8 +2402,10 @@
                     <connections>
                         <outlet property="containerView" destination="mqE-DN-Zmw" id="6J8-Dj-e0c"/>
                         <outlet property="lblCreator" destination="fFS-us-iVi" id="jfk-ig-fKu"/>
+                        <outlet property="lblPersonalRecord" destination="AsH-xf-drD" id="fY7-8V-YfN"/>
                         <outlet property="lblPrimaryMusel" destination="ZYh-IR-LWI" id="UmN-vT-r9C"/>
                         <outlet property="lblSecondaryMusel" destination="HOi-y3-bVF" id="RzC-2Q-u0B"/>
+                        <outlet property="lblTotalReps" destination="K6f-uD-1Sv" id="NLU-2M-tIR"/>
                         <outlet property="tableView" destination="BU5-Sf-kek" id="ApL-ct-YAK"/>
                         <outlet property="videoPlayer" destination="i1P-pC-V4e" id="OEv-59-JeE"/>
                     </connections>

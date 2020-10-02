@@ -23,7 +23,9 @@ class ExercisesDetailVC: UIViewController {
     @IBOutlet weak var lblPrimaryMusel: UILabel!
     @IBOutlet weak var lblSecondaryMusel: UILabel!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
-
+    @IBOutlet weak var lblPersonalRecord: UILabel!
+    @IBOutlet weak var lblTotalReps: UILabel!
+    
 
     let firstNetworkURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4")
 
@@ -31,7 +33,8 @@ class ExercisesDetailVC: UIViewController {
     var gifVC: GifVC?
     var pagingVC: PagingViewController?
     var exercise: Exercise?
-    var exerciseDict = [String: [SetsModel]]()
+    var exerciseHistory: Exercise?
+    var historyDict = [String: [[String : Any]]]()
     var sections = [String]()
 
     override func viewDidLoad() {
@@ -42,7 +45,7 @@ class ExercisesDetailVC: UIViewController {
 //        setupPageView()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
-        sortHistory()
+        self.getExerciseHistory()
     }
 
 
@@ -86,31 +89,61 @@ class ExercisesDetailVC: UIViewController {
         ])
         pagingVC!.didMove(toParent: self)
     }
+     
     
-    func sortHistory(){
-        
-        self.exerciseDict.removeAll()
-        self.sections.removeAll()
-        
-        self.exercise!.sets = self.exercise!.sets.sorted(by: { $0.modified! > $1.modified! })
+    func getExerciseHistory(){
+        showHUD()
+        ApiService.getExerciseHistory(id: self.exercise!.id) { (success, data) in
+            self.dismissHUD()
+            if let results = data {
+                self.exerciseHistory = Exercise(results)
+                self.lblPersonalRecord.text = "\(self.exerciseHistory!.personal_record)"
+                self.lblTotalReps.text = "\(self.exerciseHistory!.total_reps)"
+                
+                self.historyDict.removeAll()
+                self.sections.removeAll()
+                
+                self.exerciseHistory!.history.forEach({ (key: String, value: Any) in
+                    
+                    let repsData = value as! [[String: Any]]
+                    var repsResult = [[String: Any]]()
 
-        
-        for item in self.exercise!.sets {
-             
-             let dateFormatter = DateFormatter()
-             dateFormatter.dateFormat = "yyyy LLLL"
-             let monthName = dateFormatter.string(from: item.modified!)
-             print(monthName)
-             
-             if self.exerciseDict.keys.contains(monthName) {
-                 self.exerciseDict[monthName]?.append(item)
-             }else{
-                 self.exerciseDict[monthName] = [item]
-                 self.sections.append(monthName)
-             }
+                    var reps = 0
+                    for item in repsData {
+                        reps += item.values.first as! Int
+                        if item.values.first as! Int > 0 {
+                            repsResult.append(item)
+                        }
+                    }
+                    var repsDict = [String: [Int]]()
+                    for item in repsResult {
+                        
+                        if repsDict.keys.contains(item.keys.first!) {
+                            repsDict[item.keys.first!]?.append(item.values.first as! Int)
+                        }else{
+                            repsDict[item.keys.first!] = [item.values.first as! Int]
+                        }
+                    }
+                    repsResult.removeAll()
+                    repsDict.forEach { (key: String, value: [Int]) in
+                        
+                        var sum = 0
+                        for item in value {
+                            sum += item
+                        }
+                        repsResult.append([key : sum])
+                    }
+                    
+                    if reps > 0 {
+                        self.sections.append(key)
+                        self.historyDict[key] = repsResult
+                    }
+                    
+                })
+                
+                self.tableView.reloadData()
+            }
         }
-        self.tableView.reloadData()
-         
     }
     
     @IBAction func didTapBack(_ sender: Any) {
@@ -139,7 +172,15 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderCell" ) as! HeaderCell
-        headerView.lblMonth.text = String(self.sections[section].split(separator: " ")[1])
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-M"
+        let date = dateFormatter.date(from:self.sections[section])!
+        
+        dateFormatter.dateFormat = "yyyy LLLL"
+        let month = dateFormatter.string(from: date)
+        
+        headerView.lblMonth.text = month
         return headerView
     }
 
@@ -154,30 +195,13 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryContainerTVCell", for: indexPath) as! HistoryContainerTVCell
-        cell.initCell(self.exerciseDict[sections[indexPath.section]]!)
+        cell.initCell(self.historyDict[sections[indexPath.section]]!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       
         
-        var setDict = [String: Int]()
-        
-        for item in self.exerciseDict[sections[indexPath.section]]! {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd EEE"
-            let dayStr = dateFormatter.string(from: item.modified!)
-            
-            if setDict.keys.contains(dayStr) {
-                
-                var reps = setDict[dayStr]
-                reps! += item.reps
-                setDict[dayStr] = reps
-            }else{
-                setDict[dayStr] = item.reps
-            }
-        }
-        
-        return CGFloat(32 * setDict.count + 68)
+        return CGFloat(32 * self.historyDict[sections[indexPath.section]]!.count + 68)
     }
 }

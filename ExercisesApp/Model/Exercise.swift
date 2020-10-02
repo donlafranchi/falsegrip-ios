@@ -25,8 +25,10 @@ class Exercise: NSObject {
     var equipments = [String]()
     var trainer = ""
     var type = ""
-    var difficulty_level = ""
-
+    var difficulty_level = ""    
+    var personal_record = 0
+    var total_reps = 0
+    var history = [String: Any]()
     var sets = [SetsModel]()
 
     
@@ -64,7 +66,9 @@ class Exercise: NSObject {
         trainer = json["trainer"] as? String ?? ""
         type = json["type"] as? String ?? ""
         difficulty_level = json["difficulty_level"] as? String ?? ""
-
+        personal_record = json["personal_record"] as? Int ?? 0
+        total_reps = json["total_reps"] as? Int ?? 0
+        history = json["history"] as? [String:Any] ?? [:]
 
     }
 }

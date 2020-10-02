@@ -198,6 +198,26 @@ class ApiService: NSObject {
         
      }
     
+    class func getExerciseHistory(id: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+     
+          let url = baseURLPath + "api/exercises/\(id)/history/"
+         
+        AF.request(url, method: .get)
+           .responseJSON { response in
+              switch response.result {
+              case .success(let data):
+                  let jsonData = JSON(data).dictionaryObject
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true,jsonData)
+                  }else{
+                     completion(false,["error":response.response.debugDescription])
+                  }
+              case .failure(let error):
+                 completion(false,["error":error])
+              }
+          }
+     }
+    
  // MARK: - Sets -
     
     class func getWorkoutSets(parent_workout: String, completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {

@@ -14,7 +14,7 @@ class HistoryContainerTVCell: UITableViewCell {
     @IBOutlet weak var lblTotalReps: UILabel!
     
     let rowCount = 4
-    var sets = [SetsModel]()
+    var sets = [[String:Any]]()
     var dayStrs = [String]()
     var setDict = [String: Int]()
     
@@ -32,37 +32,30 @@ class HistoryContainerTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initCell(_ sets: [SetsModel]){
+    func initCell(_ sets: [[String: Any]]){
         
-        self.sets = sets
+        self.sets = sets        
         
-        self.sets = self.sets.sorted(by: { $0.modified! > $1.modified! })
-        
-        dayStrs.removeAll()
-        setDict.removeAll()
-        
-        for item in self.sets {
+        for i in 0...self.sets.count - 2 {
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-            let date = dateFormatter.date(from:item.modifiedDate)!
-            dateFormatter.dateFormat = "dd EEE"
-            let dayStr = dateFormatter.string(from: date)
-            
-            if setDict.keys.contains(dayStr) {
+            for j in i+1...self.sets.count - 1  {
                 
-                var reps = setDict[dayStr]
-                reps! += item.reps
-                setDict[dayStr] = reps
-            }else{
-                setDict[dayStr] = item.reps
-                self.dayStrs.append(dayStr)
+                if Int((self.sets[i].keys.first?.components(separatedBy: " ").first)!)! <= Int((self.sets[j].keys.first?.components(separatedBy: " ").first)!)!{
+                    self.sets.swapAt(i, j)
+                }
             }
         }
+        
+        
+        
+        
         var totalReps = 0
         for item in self.sets {
-            totalReps += item.reps
+            
+            let reps = item.values.first as! Int
+            totalReps += reps
         }
+        
         self.lblTotalReps.text = "\(totalReps)"
         
         self.tableView.reloadData()
@@ -73,15 +66,16 @@ class HistoryContainerTVCell: UITableViewCell {
 
 extension HistoryContainerTVCell: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.setDict.count
+        return self.sets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTVCell", for: indexPath) as! HistoryTVCell
         
-        cell.lblDay.text = String(self.dayStrs[indexPath.row].split(separator: " ")[0])
-        cell.lblWeekday.text = String(self.dayStrs[indexPath.row].split(separator: " ")[1]).uppercased()
-        cell.lblReps.text = "\(self.setDict[dayStrs[indexPath.row]] ?? 0)"
+        
+        cell.lblDay.text = String(((self.sets[indexPath.row]).keys.first)!.split(separator: " ")[0])
+        cell.lblWeekday.text = String(((self.sets[indexPath.row]).keys.first)!.split(separator: " ")[1]).uppercased()
+        cell.lblReps.text = "\((self.sets[indexPath.row]).values.first as! Int)"
         return cell
     }
     
