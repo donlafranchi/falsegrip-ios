@@ -34,20 +34,19 @@ class HistoryContainerTVCell: UITableViewCell {
     
     func initCell(_ sets: [[String: Any]]){
         
-        self.sets = sets        
+        self.sets = sets
         
-        for i in 0...self.sets.count - 2 {
-            
-            for j in i+1...self.sets.count - 1  {
+        if self.sets.count > 1 {
+            for i in 0...self.sets.count - 2 {
                 
-                if Int((self.sets[i].keys.first?.components(separatedBy: " ").first)!)! <= Int((self.sets[j].keys.first?.components(separatedBy: " ").first)!)!{
-                    self.sets.swapAt(i, j)
+                for j in i+1...self.sets.count - 1  {
+                    
+                    if Int((self.sets[i].keys.first?.components(separatedBy: " ").first)!)! <= Int((self.sets[j].keys.first?.components(separatedBy: " ").first)!)!{
+                        self.sets.swapAt(i, j)
+                    }
                 }
             }
-        }
-        
-        
-        
+        }                        
         
         var totalReps = 0
         for item in self.sets {
