@@ -205,6 +205,12 @@ class AddExercisesVC: UIViewController {
         for item in self.checkedExercises {
             ids.append(item.id)
         }
+      
+        var orders = ""
+        if !self.workout.order.isEmpty {
+            orders = ids.joined(separator: ",")
+            self.workout.order.append(contentsOf: ",\(orders)")
+        }
         
         let params = [
             "datetime": self.workout.datetime,
@@ -212,6 +218,7 @@ class AddExercisesVC: UIViewController {
             "body_weight": self.workout.body_weight,
             "energy_level": self.workout.energy_level,
             "comments": self.workout.comments,
+            "order": orders,
             "exercises":ids] as [String : Any]
         
         ApiService.updateWorkout(id: self.workout.id,params: params) { (success, data) in

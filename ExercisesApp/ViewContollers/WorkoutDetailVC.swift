@@ -206,7 +206,6 @@ class WorkoutDetailVC: UIViewController {
                     }else{
                         self.exercises = self.workout.exercises
                     }
-                    
                     self.sections.removeAll()
                     
                     if !UserInfo.shared.showOnboarding4 && self.exercises.count > 0{
