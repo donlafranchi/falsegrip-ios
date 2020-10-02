@@ -188,7 +188,25 @@ class WorkoutDetailVC: UIViewController {
                 if let results = data {
                                         
                     self.workout = WorkoutModel(results)
-                    self.exercises = self.workout.exercises
+                    
+                    var orders = [String]()
+                    if !self.workout.order.isEmpty {
+                        orders =  self.workout.order.components(separatedBy: ",")
+                        var exercises = [Exercise]()
+                        for item in orders {
+                            for exercise in self.workout.exercises {
+                                if exercise.id == item {
+                                    exercises.append(exercise)
+                                    break
+                                }
+                            }
+                        }
+                        self.exercises = exercises
+                        
+                    }else{
+                        self.exercises = self.workout.exercises
+                    }
+                    
                     self.sections.removeAll()
                     
                     if !UserInfo.shared.showOnboarding4 && self.exercises.count > 0{
@@ -488,8 +506,10 @@ extension WorkoutDetailVC: TableViewReorderDelegate {
             ids.append(item.id)
         }
         
+        let orders = ids.joined(separator: ",")
+        
         let params = [
-            "exercises": ids] as [String : Any]
+            "order": orders] as [String : Any]
         
         ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
             if success {

@@ -19,6 +19,7 @@ class WorkoutModel: NSObject {
     var body_weight: Double = 0.0
     var energy_level = 0
     var comments = ""
+    var order = ""
     var isToday = false
     var isCreated = false
     var exercises = [Exercise]()
@@ -36,7 +37,8 @@ class WorkoutModel: NSObject {
         body_weight = json["body_weight"] as? Double ?? 0.0
         energy_level = json["energy_level"] as? Int ?? 0
         comments = json["comments"] as? String ?? ""
-        
+        order = json["order"] as? String ?? ""
+
         let exercises = json["exercises_obj"] as?  [[String: Any]] ?? []
         var exercisesList = [Exercise]()
         for item in exercises {
