@@ -483,6 +483,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTapViewExercises:" destination="agd-0h-zla" eventType="touchUpInside" id="tg9-Qu-xkZ"/>
+                                    <segue destination="8Bg-A3-usH" kind="show" id="7m5-qa-QQz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -842,8 +843,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-g3-tej">
-                                <rect key="frame" x="0.0" y="181" width="414" height="533"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qlW-g3-tej">
+                                <rect key="frame" x="0.0" y="144" width="414" height="570"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ExercisesTVCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ExercisesTVCell" rowHeight="145" id="4Uz-hC-H1T" customClass="ExercisesTVCell" customModule="ExercisesApp" customModuleProvider="target">
@@ -1406,23 +1407,31 @@
                                     <outlet property="delegate" destination="8Bg-A3-usH" id="2OC-ua-6g6"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48q-q6-kUv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d5m-NT-Uhf"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jNe-Bq-Fso" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" constant="16" id="22h-4v-6xa"/>
+                            <constraint firstItem="48q-q6-kUv" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" id="AWZ-Xc-GqZ"/>
                             <constraint firstItem="U7J-wG-hmR" firstAttribute="top" secondItem="d5m-NT-Uhf" secondAttribute="top" constant="8" id="CTK-Um-Ui9"/>
                             <constraint firstItem="tcU-4R-qEb" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" id="Dco-I9-mMF"/>
                             <constraint firstItem="tcU-4R-qEb" firstAttribute="trailing" secondItem="d5m-NT-Uhf" secondAttribute="trailing" id="Fcz-KN-vwe"/>
+                            <constraint firstItem="48q-q6-kUv" firstAttribute="top" secondItem="d5m-NT-Uhf" secondAttribute="top" id="NgA-Sy-23Q"/>
                             <constraint firstItem="qlW-g3-tej" firstAttribute="trailing" secondItem="d5m-NT-Uhf" secondAttribute="trailing" id="OkT-xL-MpZ"/>
                             <constraint firstItem="d5m-NT-Uhf" firstAttribute="trailing" secondItem="U7J-wG-hmR" secondAttribute="trailing" constant="16" id="PVV-1M-QAb"/>
                             <constraint firstItem="d5m-NT-Uhf" firstAttribute="trailing" secondItem="jNe-Bq-Fso" secondAttribute="trailing" constant="16" id="Rwi-j6-tBn"/>
                             <constraint firstItem="jNe-Bq-Fso" firstAttribute="top" secondItem="qlW-g3-tej" secondAttribute="bottom" constant="16" id="TW3-q4-rId"/>
                             <constraint firstItem="qlW-g3-tej" firstAttribute="leading" secondItem="d5m-NT-Uhf" secondAttribute="leading" id="aUB-QH-eBQ"/>
+                            <constraint firstItem="tcU-4R-qEb" firstAttribute="top" secondItem="48q-q6-kUv" secondAttribute="bottom" id="g90-VT-Qcx"/>
                             <constraint firstItem="U7J-wG-hmR" firstAttribute="centerX" secondItem="d5m-NT-Uhf" secondAttribute="centerX" id="gSO-VT-djh"/>
                             <constraint firstAttribute="bottom" secondItem="jNe-Bq-Fso" secondAttribute="bottom" constant="30" id="taR-Og-nHn"/>
                             <constraint firstItem="tcU-4R-qEb" firstAttribute="top" secondItem="U7J-wG-hmR" secondAttribute="bottom" id="wxL-kY-Tlf"/>
                             <constraint firstItem="qlW-g3-tej" firstAttribute="top" secondItem="tcU-4R-qEb" secondAttribute="bottom" id="zap-Ic-mkd"/>
+                            <constraint firstItem="48q-q6-kUv" firstAttribute="trailing" secondItem="d5m-NT-Uhf" secondAttribute="trailing" id="zba-qE-OuO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Workout Details" id="A7e-vk-U50">
@@ -3774,6 +3783,14 @@
             <point key="canvasLocation" x="3605.7971014492755" y="-565.17857142857144"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="olQ-mV-Kl9">
+            <size key="intrinsicContentSize" width="10" height="35.5"/>
+        </designable>
+    </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="7m5-qa-QQz"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Close" width="20" height="20"/>
         <image name="Rectangle 5 (1).png" width="164" height="199"/>

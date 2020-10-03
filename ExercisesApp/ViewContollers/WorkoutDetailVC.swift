@@ -12,7 +12,7 @@ import EasyTipView
 import CRRefresh
 import CRNotifications
 import SwiftReorder
-
+import TableViewDragger
 
 class WorkoutDetailVC: UIViewController {
 
@@ -26,7 +26,8 @@ class WorkoutDetailVC: UIViewController {
     @IBOutlet weak var weightView: UIStackView!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var moreBtn: UIBarButtonItem!
-    
+    var dragger: TableViewDragger!
+    var initIndexPath = IndexPath()
     var workoutID = ""
     var workout = WorkoutModel()
     var exercises = [Exercise]()
@@ -54,7 +55,14 @@ class WorkoutDetailVC: UIViewController {
     var isSort = false {
         didSet{
             tableView.reloadData()
-            tableView.reorder.isEnabled = isSort
+            if isSort {
+                dragger = TableViewDragger(tableView: tableView)
+                dragger.availableHorizontalScroll = false
+                dragger.dataSource = self
+                dragger.delegate = self
+            }else{
+                dragger = nil
+            }
         }
     }
     
@@ -131,8 +139,20 @@ class WorkoutDetailVC: UIViewController {
         self.tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
             self?.getWorkout()
         }
-        self.tableView.reorder.delegate = self
-        self.tableView.reorder.isEnabled = false
+//        self.tableView.reorder.delegate = self
+//        self.tableView.reorder.isEnabled = false
+        
+        if isSort {
+            dragger = TableViewDragger(tableView: tableView)
+            dragger.availableHorizontalScroll = false
+            dragger.dataSource = self
+            dragger.delegate = self
+        }else{
+            dragger = nil
+        }
+        
+
+        
     }
     
     func setTipView(){
@@ -352,9 +372,9 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let spacer = tableView.reorder.spacerCell(for: indexPath) {
-            return spacer
-        }
+//        if let spacer = tableView.reorder.spacerCell(for: indexPath) {
+//            return spacer
+//        }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExercisesTVCell", for: indexPath) as! ExercisesTVCell
         cell.initCell(self.exercises[indexPath.row])
@@ -510,28 +530,7 @@ extension WorkoutDetailVC: TableViewReorderDelegate {
     }
     
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath: IndexPath) {
-        print("Moved")
-        
-        self.exercises.swapAt(initialSourceIndexPath.row, finalDestinationIndexPath.row)
 
-        var ids = [String]()
-
-        for item in self.exercises {
-            ids.append(item.id)
-        }
-
-        let orders = ids.joined(separator: ",")
-
-        let params = [
-            "order": orders] as [String : Any]
-
-        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
-            if success {
-                self.isSort = false
-            }
-        }
-        
-        
     }
 }
 
@@ -585,4 +584,43 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
         self.isSort = true
     }
         
+}
+
+extension WorkoutDetailVC: TableViewDraggerDataSource, TableViewDraggerDelegate {
+    func dragger(_ dragger: TableViewDragger, moveDraggingAt indexPath: IndexPath, newIndexPath: IndexPath) -> Bool {
+        
+        if isSort {
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+            return true
+        }
+        return false
+
+    }
+    
+    func dragger(_ dragger: TableViewDragger, willBeginDraggingAt indexPath: IndexPath) {
+        self.initIndexPath = indexPath
+    }
+    
+    func dragger(_ dragger: TableViewDragger, didEndDraggingAt indexPath: IndexPath) {
+        
+        self.exercises.swapAt(initIndexPath.row, indexPath.row)
+
+        var ids = [String]()
+
+        for item in self.exercises {
+            ids.append(item.id)
+        }
+
+        let orders = ids.joined(separator: ",")
+
+        let params = [
+            "order": orders] as [String : Any]
+
+        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
+            if success {
+                self.isSort = false
+            }
+        }
+        
+    }
 }
