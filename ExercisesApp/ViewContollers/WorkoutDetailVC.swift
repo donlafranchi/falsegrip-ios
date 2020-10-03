@@ -441,8 +441,12 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
                         }
                         ids.append(item.id)
                     }
+
+                    let orders = ids.joined(separator: ",")
+                    
                     let params = [
-                        "exercises":ids] as [String : Any]
+                        "exercises":ids,
+                        "order": orders] as [String : Any]
                     
                     ApiService.deleteExercise(id: self.workout.id,params: params) { (success) in
                         

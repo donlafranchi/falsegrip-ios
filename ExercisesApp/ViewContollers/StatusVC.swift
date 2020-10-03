@@ -137,20 +137,13 @@ class StatusVC: UIViewController {
         UserInfo.shared.setUserInfo(.unit, value: selectedUnit)
         self.workout.comments = notesTextView.text
         self.showHUD()
-        var ids = [String]()
-        for item in self.workout.exercises {
-           ids.append(item.id)
-        }
         
         let params = [
-            "datetime": self.workout.datetime,
-            "title": self.workout.title,
             "body_weight": self.workout.body_weight,
             "energy_level": self.workout.energy_level,
-            "comments": self.workout.comments,
-            "exercises":ids] as [String : Any]
+            "comments": self.workout.comments] as [String : Any]
         
-        ApiService.updateWorkout(id: self.workout.id,params: params) { (success, data) in
+        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
             self.dismissHUD()
             if success {
                 self.delegate?.saveNote(self.workout)
