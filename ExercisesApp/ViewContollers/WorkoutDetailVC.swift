@@ -321,28 +321,54 @@ class WorkoutDetailVC: UIViewController {
     
     @IBAction func didTapMore(_ sender: Any) {
         
+        
         if isEdit {
-            
-            if self.workout.title == self.titleField.text || titleField.text!.isEmpty{
-                self.titleField.isEnabled = false
-                self.titleField.resignFirstResponder()
-                self.isEdit = false
-                return
-            }
-            
-            let params = [
-                "title": self.titleField.text] as! [String : String]
-            
-            ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
-                if success {
-                    self.workout.title = self.titleField.text!
+            showHUD()
+            if isSort {
+                var ids = [String]()
+
+                for item in self.exercises {
+                    ids.append(item.id)
+                }
+
+                let orders = ids.joined(separator: ",")
+
+                let params = [
+                    "order": orders] as [String : Any]
+
+                ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
+                    if success {
+                        self.isSort = false
+                        self.isEdit = false
+                    }
+                    self.dismissHUD()
+                }
+            }else{
+                if self.workout.title == self.titleField.text || titleField.text!.isEmpty{
                     self.titleField.isEnabled = false
                     self.titleField.resignFirstResponder()
                     self.isEdit = false
-                    let nc = NotificationCenter.default
-                    nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                    self.dismissHUD()
+                    return
+                }
+                
+                let params = [
+                    "title": self.titleField.text] as! [String : String]
+                
+                ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
+                    if success {
+                        self.workout.title = self.titleField.text!
+                        self.titleField.isEnabled = false
+                        self.titleField.resignFirstResponder()
+                        self.isEdit = false
+                        let nc = NotificationCenter.default
+                        nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                    }
+                    self.dismissHUD()
                 }
             }
+            
+
         }else{
             moreVC.workoutTitle = self.workout.title
             self.present(moreSheet, animated: true, completion: nil)
@@ -585,6 +611,7 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
     
     func tapSort() {
         self.moreSheet.closeSheet()
+        self.isEdit = true
         self.isSort = true
     }
         
@@ -595,6 +622,8 @@ extension WorkoutDetailVC: TableViewDraggerDataSource, TableViewDraggerDelegate 
         
         if isSort {
             tableView.moveRow(at: indexPath, to: newIndexPath)
+            self.exercises.swapAt(indexPath.row, newIndexPath.row)
+
             return true
         }
         return false
@@ -606,25 +635,6 @@ extension WorkoutDetailVC: TableViewDraggerDataSource, TableViewDraggerDelegate 
     }
     
     func dragger(_ dragger: TableViewDragger, didEndDraggingAt indexPath: IndexPath) {
-        
-        self.exercises.swapAt(initIndexPath.row, indexPath.row)
-
-        var ids = [String]()
-
-        for item in self.exercises {
-            ids.append(item.id)
-        }
-
-        let orders = ids.joined(separator: ",")
-
-        let params = [
-            "order": orders] as [String : Any]
-
-        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
-            if success {
-                self.isSort = false
-            }
-        }
         
     }
 }
