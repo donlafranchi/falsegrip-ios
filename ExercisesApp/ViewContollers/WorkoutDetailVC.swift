@@ -437,6 +437,10 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         
 
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return !isSort
+    }
 
 }
 
