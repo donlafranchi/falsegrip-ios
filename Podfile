@@ -31,5 +31,4 @@ target 'ExercisesApp' do
     pod 'YouTubePlayer'
     pod 'SwiftReorder', '~> 7.2'
     pod 'SDWebImage'
-
 end

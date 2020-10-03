@@ -51,6 +51,13 @@ class WorkoutDetailVC: UIViewController {
         }
     }
     
+    var isSort = false {
+        didSet{
+            tableView.reloadData()
+            tableView.reorder.isEnabled = isSort
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTablveView()
@@ -125,6 +132,7 @@ class WorkoutDetailVC: UIViewController {
             self?.getWorkout()
         }
         self.tableView.reorder.delegate = self
+        self.tableView.reorder.isEnabled = false
     }
     
     func setTipView(){
@@ -163,7 +171,7 @@ class WorkoutDetailVC: UIViewController {
         
         moreVC = storyboard.instantiateViewController(withIdentifier: "WorkoutMoreVC") as! WorkoutMoreVC
 
-        moreSheet = SheetViewController(controller: moreVC, sizes: [.fixed(260)])
+        moreSheet = SheetViewController(controller: moreVC, sizes: [.fixed(270)])
         moreSheet.adjustForBottomSafeArea = false
         moreSheet.blurBottomSafeArea = false
         moreSheet.dismissOnBackgroundTap = true
@@ -351,6 +359,7 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExercisesTVCell", for: indexPath) as! ExercisesTVCell
         cell.initCell(self.exercises[indexPath.row])
         cell.delegate = self
+        cell.sortView.isHidden = !self.isSort
         return cell
     }
     
@@ -497,24 +506,32 @@ extension WorkoutDetailVC: UITextFieldDelegate {
 extension WorkoutDetailVC: TableViewReorderDelegate {
     func tableView(_ tableView: UITableView, reorderRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        self.exercises.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+
+    }
+    
+    func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath: IndexPath) {
+        print("Moved")
         
+        self.exercises.swapAt(initialSourceIndexPath.row, finalDestinationIndexPath.row)
+
         var ids = [String]()
-        
+
         for item in self.exercises {
             ids.append(item.id)
         }
-        
+
         let orders = ids.joined(separator: ",")
-        
+
         let params = [
             "order": orders] as [String : Any]
-        
+
         ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
             if success {
-                self.tableView.reloadData()
+                self.isSort = false
             }
         }
+        
+        
     }
 }
 
@@ -561,6 +578,11 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
                 self.dismissHUD()
             }
         }
+    }
+    
+    func tapSort() {
+        self.moreSheet.closeSheet()
+        self.isSort = true
     }
         
 }

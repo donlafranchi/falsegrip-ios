@@ -22,6 +22,7 @@ class ExercisesTVCell: UITableViewCell {
     @IBOutlet weak var lblPersonalReps: UILabel!
     @IBOutlet weak var lblSets: UILabel!
     @IBOutlet weak var lblReps: UILabel!
+    @IBOutlet weak var sortView: UIView!
     
     var exercise = Exercise()
     private let pipeline = ImagePipeline {

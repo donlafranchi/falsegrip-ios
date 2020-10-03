@@ -12,6 +12,7 @@ protocol WorkoutMoreVCDelegate {
     func tapClose()
     func tapEdit()
     func tapRemove()
+    func tapSort()
 }
 
 class WorkoutMoreVC: UIViewController {
@@ -40,5 +41,9 @@ class WorkoutMoreVC: UIViewController {
     
     @IBAction func didTapRemove(_ sender: Any) {
         delegate?.tapRemove()
+    }
+    
+    @IBAction func didTapSort(_ sender: Any) {
+        delegate?.tapSort()
     }
 }
