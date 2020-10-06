@@ -148,6 +148,8 @@ class StatusVC: UIViewController {
             if success {
                 self.delegate?.saveNote(self.workout)
                 self.back()
+            }else{
+                self.showFailureAlert()
             }
         }        
         

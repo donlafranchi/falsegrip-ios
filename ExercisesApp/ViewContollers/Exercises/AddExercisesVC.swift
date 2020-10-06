@@ -185,6 +185,10 @@ class AddExercisesVC: UIViewController {
                     self.collectionView.cr.noticeNoMoreData()
                 }
             }else{
+                self.showFailureAlert()
+                self.pageNum = 1
+                self.exercises.removeAll()
+                self.filteredExercises.removeAll()
                 self.collectionView.cr.endHeaderRefresh()
                 self.collectionView.cr.endLoadingMore()
                 self.collectionView.cr.noticeNoMoreData()
@@ -236,6 +240,8 @@ class AddExercisesVC: UIViewController {
                 nc.post(name: Notification.Name("addToWorkoutNotification"), object: nil)
                 nc.post(name: Notification.Name("workoutUpdated"), object: nil)
                 self.back()
+            }else{
+                self.showFailureAlert()
             }
         }
     }

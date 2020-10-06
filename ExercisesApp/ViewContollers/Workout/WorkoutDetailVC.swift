@@ -251,6 +251,8 @@ class WorkoutDetailVC: UIViewController {
                     self.reloadView()
                     
                 }
+            }else{
+                self.showFailureAlert()
             }
             self.tableView.cr.endHeaderRefresh()
         }
@@ -340,6 +342,8 @@ class WorkoutDetailVC: UIViewController {
                     if success {
                         self.isSort = false
                         self.isEdit = false
+                    }else{
+                        self.showFailureAlert()
                     }
                     self.dismissHUD()
                 }
@@ -363,6 +367,8 @@ class WorkoutDetailVC: UIViewController {
                         self.isEdit = false
                         let nc = NotificationCenter.default
                         nc.post(name: Notification.Name("workoutUpdated"), object: nil)
+                    }else{
+                        self.showFailureAlert()
                     }
                     self.dismissHUD()
                 }
@@ -457,6 +463,7 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
                             
                         }else{
                             self.dismissHUD()
+                            self.showFailureAlert()
                         }
                     }
                     
@@ -505,6 +512,8 @@ extension WorkoutDetailVC: AddSetVCDelegate{
                     self.exercises = self.workout.exercises
                     self.tableView.reloadData()
                 }
+            }else{
+                self.showFailureAlert()
             }
         }
     }
@@ -609,6 +618,7 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
                 self.back()
             }else{
                 self.dismissHUD()
+                self.showFailureAlert()
             }
         }
     }

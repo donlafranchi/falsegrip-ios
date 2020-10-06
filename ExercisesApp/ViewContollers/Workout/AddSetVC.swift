@@ -198,6 +198,8 @@ extension AddSetVC: UITableViewDataSource,UITableViewDelegate{
                             self.tableView.reloadData()
                             self.delegate?.deletedSet()
                             
+                        }else{
+                            self.showFailureAlert()
                         }
                     }
                 }

@@ -142,6 +142,8 @@ class ExercisesDetailVC: UIViewController {
                 })
                 
                 self.tableView.reloadData()
+            }else{
+                self.showFailureAlert()
             }
         }
     }

@@ -153,6 +153,10 @@ class ExercisesViewVC: UIViewController {
                     self.collectionView.cr.noticeNoMoreData()
                 }
             }else{
+                self.pageNum = 1
+                self.exercises.removeAll()
+                self.filteredExercises.removeAll()
+                self.showFailureAlert()
                 self.collectionView.cr.endHeaderRefresh()
                 self.collectionView.cr.endLoadingMore()
                 self.collectionView.cr.noticeNoMoreData()

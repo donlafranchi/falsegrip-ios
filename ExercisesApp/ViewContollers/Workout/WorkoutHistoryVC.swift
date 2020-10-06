@@ -138,6 +138,8 @@ class WorkoutHistoryVC: UIViewController {
                     self.historyTableView.cr.noticeNoMoreData()
                 }
             }else{
+                self.pageNum = 1
+                self.workouts.removeAll()
                 self.historyTableView.cr.endHeaderRefresh()
                 self.historyTableView.cr.endLoadingMore()
                 self.historyTableView.cr.noticeNoMoreData()
@@ -304,6 +306,8 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
                     self.checkIsTodayCreadted()
                     self.pageNum = 1
                     self.getWorkouts()
+                }else{
+                    self.showFailureAlert()
                 }
             }
 
