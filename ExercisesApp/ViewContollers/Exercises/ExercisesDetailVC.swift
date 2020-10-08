@@ -141,6 +141,23 @@ class ExercisesDetailVC: UIViewController {
                     
                 })
                 
+                if self.sections.count > 1 {
+                    for i in 0...self.sections.count - 2 {
+                        
+                        for j in i+1...self.sections.count - 1  {
+                            
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-M"
+                            let date1 = dateFormatter.date(from:self.sections[j])!
+                            let date2 = dateFormatter.date(from:self.sections[i])!
+                            
+                            if date1 >= date2 {
+                                self.sections.swapAt(i, j)
+                            }
+                        }
+                    }
+                }
+                
                 self.tableView.reloadData()
             }else{
                 self.showFailureAlert()
@@ -179,7 +196,7 @@ extension ExercisesDetailVC: UITableViewDataSource,UITableViewDelegate{
         dateFormatter.dateFormat = "yyyy-M"
         let date = dateFormatter.date(from:self.sections[section])!
         
-        dateFormatter.dateFormat = "yyyy LLLL"
+        dateFormatter.dateFormat = "yyyy LLL"
         let month = dateFormatter.string(from: date)
         
         headerView.lblMonth.text = month

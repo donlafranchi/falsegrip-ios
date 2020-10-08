@@ -332,6 +332,7 @@ extension AllExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             cell.searchBar.searchBarStyle = .minimal
             cell.searchBar.placeholder = "Search"
             cell.searchBar.text = query
+            cell.searchBar.searchTextField.delegate = self
             return cell
             
         case 1:
@@ -500,6 +501,16 @@ extension AllExercisesVC: UISearchBarDelegate{
         self.query = searchBar.searchTextField.text!
         self.pageNum = 1
         self.getAllExercises()
+    }
+}
+
+extension AllExercisesVC: UITextFieldDelegate{
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.query = ""
+        self.pageNum = 1
+        self.getAllExercises()
+        return true
     }
 }
 

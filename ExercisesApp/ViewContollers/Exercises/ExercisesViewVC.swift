@@ -202,7 +202,7 @@ extension ExercisesViewVC: UICollectionViewDataSource,UICollectionViewDelegate,U
             cell.searchBar.searchBarStyle = .minimal
             cell.searchBar.placeholder = "Search"
             cell.searchBar.text = query
-            
+            cell.searchBar.searchTextField.delegate = self
             return cell
             
         case 1:
@@ -349,6 +349,16 @@ extension ExercisesViewVC: UISearchBarDelegate{
     }
 }
 
+extension ExercisesViewVC: UITextFieldDelegate{
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.query = ""
+        self.pageNum = 1
+        self.getAllExercises()
+        return true
+    }
+}
+
 extension ExercisesViewVC: TTGTextTagCollectionViewDelegate {
     func textTagCollectionView(_ textTagCollectionView: TTGTextTagCollectionView!, didTapTag tagText: String!, at index: UInt, selected: Bool, tagConfig config: TTGTextTagConfig!) {
         
@@ -371,3 +381,4 @@ extension ExercisesViewVC: TTGTextTagCollectionViewDelegate {
         }
     }
 }
+
