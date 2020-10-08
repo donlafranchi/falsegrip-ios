@@ -412,6 +412,7 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         cell.initCell(self.exercises[indexPath.row])
         cell.delegate = self
         cell.sortView.isHidden = !self.isSort
+        cell.rightSpacing.constant = self.isSort ? 50 : 10
         return cell
     }
     
