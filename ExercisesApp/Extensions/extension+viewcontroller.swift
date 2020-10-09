@@ -50,7 +50,9 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             completion(true)
         }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
+            completion(false)
+        }))
         self.present(alert, animated: true)
     }
     

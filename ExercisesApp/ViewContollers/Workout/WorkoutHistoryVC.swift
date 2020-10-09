@@ -297,19 +297,25 @@ extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {
         }
         
         if editingStyle == .delete {
-            showHUD()
-            ApiService.deleteWorkout(id: self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id) { (deleted) in
-                self.dismissHUD()
-                if deleted {
-                    self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.checkIsTodayCreadted()
-                    self.pageNum = 1
-                    self.getWorkouts()
-                }else{
-                    self.showFailureAlert()
+            
+            self.showConfirmAlert("Warning", msg: "Do you want to delete Workout?") { (ok) in
+                if ok {
+                    self.showHUD()
+                    ApiService.deleteWorkout(id: self.workoutDict[self.sections[indexPath.section]]![indexPath.row].id) { (deleted) in
+                        self.dismissHUD()
+                        if deleted {
+                            self.workoutDict[self.sections[indexPath.section]]!.remove(at: indexPath.row)
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                            self.checkIsTodayCreadted()
+                            self.pageNum = 1
+                            self.getWorkouts()
+                        }else{
+                            self.showFailureAlert()
+                        }
+                    }
+                    
                 }
-            }
+            }            
 
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

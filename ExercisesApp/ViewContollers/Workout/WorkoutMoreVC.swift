@@ -40,7 +40,17 @@ class WorkoutMoreVC: UIViewController {
     }
     
     @IBAction func didTapRemove(_ sender: Any) {
-        delegate?.tapRemove()
+        
+        self.showConfirmAlert("Warning", msg: "Do you want to delete Workout?") { (ok) in
+            
+            if ok {
+                self.delegate?.tapRemove()
+            }else{
+                self.delegate?.tapClose()
+            }
+        }
+        
+        
     }
     
     @IBAction func didTapSort(_ sender: Any) {

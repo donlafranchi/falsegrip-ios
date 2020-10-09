@@ -412,7 +412,6 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         cell.initCell(self.exercises[indexPath.row])
         cell.delegate = self
         cell.sortView.isHidden = !self.isSort
-        cell.rightSpacing.constant = self.isSort ? 50 : 10
         return cell
     }
     
@@ -609,8 +608,7 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
     
     func tapRemove() {
         self.moreSheet.closeSheet()
-        
-        showHUD()
+        self.showHUD()
         ApiService.deleteWorkout(id: self.workout.id) { (deleted) in
             
             if deleted {
@@ -621,7 +619,10 @@ extension WorkoutDetailVC: WorkoutMoreVCDelegate{
                 self.dismissHUD()
                 self.showFailureAlert()
             }
-        }
+        }   
+
+        
+
     }
     
     func tapSort() {
