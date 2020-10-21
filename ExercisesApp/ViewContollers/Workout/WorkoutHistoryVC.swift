@@ -241,6 +241,11 @@ class WorkoutHistoryVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    
+    @IBAction func didTapSettings(_ sender: Any) {
+        self.performSegue(withIdentifier: "goSettings", sender: nil)
+    }
+    
 }
 
 extension WorkoutHistoryVC: UITableViewDelegate,UITableViewDataSource {

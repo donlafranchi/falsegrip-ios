@@ -31,6 +31,7 @@
 		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
 		8B69B8582515246D00FD0598 /* GifVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* GifVC.swift */; };
 		8B69B85A251540C300FD0598 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B859251540C300FD0598 /* VideoPlayerVC.swift */; };
+		8B87845C253F477A00658491 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87845B253F477700658491 /* SettingsVC.swift */; };
 		8B9A6B9D251D645000F7AA3B /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */; };
 		8B9A6BD0251E59A200F7AA3B /* TrainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A6BCF251E59A200F7AA3B /* TrainerModel.swift */; };
 		8B9A6BD3251E5BCD00F7AA3B /* EquipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A6BD2251E5BCD00F7AA3B /* EquipmentModel.swift */; };
@@ -73,6 +74,19 @@
 		8BED8000250336D0001F2BBE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED7FFF250336D0001F2BBE /* UserInfo.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8B8784DB253F7AAE00658491 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExercisesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752D3903EAAD58D3399EF562 /* Pods-ExercisesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExercisesApp.release.xcconfig"; path = "Target Support Files/Pods-ExercisesApp/Pods-ExercisesApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +113,10 @@
 		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		8B69B8572515246D00FD0598 /* GifVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVC.swift; sourceTree = "<group>"; };
 		8B69B859251540C300FD0598 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
+		8B87845B253F477700658491 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		8B8784C1253F799500658491 /* DatePickerDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DatePickerDialog.framework; sourceTree = "<group>"; };
+		8B8784D1253F7AAE00658491 /* DatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
+		8B8784D2253F7AAE00658491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
 		8B9A6BCF251E59A200F7AA3B /* TrainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerModel.swift; sourceTree = "<group>"; };
 		8B9A6BD2251E5BCD00F7AA3B /* EquipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentModel.swift; sourceTree = "<group>"; };
@@ -218,6 +236,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		8B87845A253F475400658491 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8B87845B253F477700658491 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8B8784D0253F7AAE00658491 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				8B8784D1253F7AAE00658491 /* DatePicker.h */,
+				8B8784D2253F7AAE00658491 /* Info.plist */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
 		8BD8B90F2507012200688B57 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				8BED7FC22502D8BF001F2BBE /* ExercisesApp */,
+				8B8784D0253F7AAE00658491 /* DatePicker */,
 				8BED7FC12502D8BF001F2BBE /* Products */,
 				D51835567CC68C4B3D9E1C13 /* Pods */,
 				AF4EF67F547D22178C85631F /* Frameworks */,
@@ -296,6 +332,7 @@
 		8BED7FD82502DF7C001F2BBE /* ViewContollers */ = {
 			isa = PBXGroup;
 			children = (
+				8B87845A253F475400658491 /* Settings */,
 				8B10E484252B705A00DD1A4D /* Exercises */,
 				8B10E483252B703B00DD1A4D /* Nav */,
 				8B10E481252B6FCC00DD1A4D /* Workout */,
@@ -410,6 +447,7 @@
 		AF4EF67F547D22178C85631F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B8784C1253F799500658491 /* DatePickerDialog.framework */,
 				72FB0788A0664C9DDA88DAFD /* Pods_ExercisesApp.framework */,
 			);
 			name = Frameworks;
@@ -436,6 +474,7 @@
 				8BED7FBD2502D8BF001F2BBE /* Frameworks */,
 				8BED7FBE2502D8BF001F2BBE /* Resources */,
 				8A3287EA32E05F232720FFA8 /* [CP] Embed Pods Frameworks */,
+				8B8784DB253F7AAE00658491 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -566,6 +605,7 @@
 				8B9A6B9D251D645000F7AA3B /* iOSDropDown.swift in Sources */,
 				8BED7FDA2502DFA1001F2BBE /* SigninVC.swift in Sources */,
 				8BD8B91D2507C35500688B57 /* SearchCollectionViewCell.swift in Sources */,
+				8B87845C253F477A00658491 /* SettingsVC.swift in Sources */,
 				8BED7FF7250303EB001F2BBE /* DropShadowView.swift in Sources */,
 				8BDA5776252253A40033EFAE /* CreateWorkoutCell.swift in Sources */,
 				8B17E565250A6EF400EE1DBA /* AddSetTVCell.swift in Sources */,
@@ -746,7 +786,12 @@
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -768,7 +813,12 @@
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ExercisesApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

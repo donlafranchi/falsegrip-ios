@@ -32,4 +32,5 @@ target 'ExercisesApp' do
     pod 'SwiftReorder', '~> 7.2'
     pod 'SDWebImage'
     pod 'TableViewDragger'
+    pod 'AYPopupPickerView'
 end
