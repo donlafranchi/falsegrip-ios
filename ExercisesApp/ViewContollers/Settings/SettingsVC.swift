@@ -9,8 +9,9 @@
 import UIKit
 import AYPopupPickerView
 import UserNotifications
+import MessageUI
 
-class SettingsVC: UIViewController {
+class SettingsVC: UIViewController,MFMailComposeViewControllerDelegate {
 
 
     @IBOutlet weak var timeBtn: UIButton!
@@ -96,6 +97,23 @@ class SettingsVC: UIViewController {
         center.add(request)
         print(UserInfo.shared.reminderTime!)
     }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["mrlafranchi@gmail.com"])
+            mail.setSubject("Contact Us")
+            mail.setMessageBody("", isHTML: true)
+            present(mail, animated: true)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true)
+       
+    }
 
     @IBAction func reminderChanged(_ sender: Any) {
         
@@ -130,6 +148,7 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func didTapContactUs(_ sender: Any) {
+        self.sendEmail()
     }
     
     @IBAction func didTapLogout(_ sender: Any) {
