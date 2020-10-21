@@ -3806,6 +3806,9 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIb-Du-rrx">
                                                         <rect key="frame" x="349" y="10.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="reminderChanged:" destination="Q9X-AQ-Cef" eventType="valueChanged" id="dDc-qg-oQD"/>
+                                                        </connections>
                                                     </switch>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="60j-4U-6AV">
                                                         <rect key="frame" x="16" y="51" width="382" height="1"/>
@@ -3980,6 +3983,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="reminderSwitch" destination="yIb-Du-rrx" id="KQY-Ta-nyj"/>
                         <outlet property="reminderView" destination="OPD-W0-o9z" id="UwX-KC-tAd"/>
                         <outlet property="timeBtn" destination="5QF-Gt-Nch" id="ZU2-kW-mL0"/>
                     </connections>

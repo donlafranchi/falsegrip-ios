@@ -9,16 +9,27 @@
 import UIKit
 import IQKeyboardManagerSwift
 import AuthenticationServices
-
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
         Thread.sleep(forTimeInterval: 3.0)
        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (accepted, error) in
+            
+            if accepted {
+                self.removeNotifications()
+                self.setNotifications()
+            }
+            
+        }
+        UNUserNotificationCenter.current().delegate = self
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
 
         for family in UIFont.familyNames {
@@ -45,7 +56,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
+      completionHandler([.alert,.sound,.badge])
+    }
 
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      didReceive response: UNNotificationResponse,
+      withCompletionHandler completionHandler: @escaping () -> Void) {
+
+      completionHandler()
+    }
+
+    
+    func removeNotifications(){
+        
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+    }
+    
+    func setNotifications(){
+        
+        if !UserInfo.shared.isReminder {
+            return
+        }
+        
+        if UserInfo.shared.reminderTime == nil {
+            return
+        }
+        
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = "It's exercise time."
+        content.categoryIdentifier = "alarm"
+        
+        let calendar = Calendar.current
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = calendar.component(.hour, from: UserInfo.shared.reminderTime!)
+        dateComponents.minute = calendar.component(.minute, from: UserInfo.shared.reminderTime!)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "\(Date().timeIntervalSince1970)", content: content, trigger: trigger)
+        center.add(request)
+        
+    }
 }
 

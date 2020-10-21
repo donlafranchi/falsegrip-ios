@@ -17,6 +17,9 @@ enum UserField {
     case showOnboarding2
     case showOnboarding3
     case showOnboarding4
+    case isReminder
+    case reminderTime
+
 }
 
 class UserInfo: NSObject {
@@ -32,6 +35,8 @@ class UserInfo: NSObject {
     var showOnboarding2: Bool = false
     var showOnboarding3: Bool = false
     var showOnboarding4: Bool = false
+    var isReminder: Bool = true
+    var reminderTime: Date?
 
 
 
@@ -58,7 +63,11 @@ class UserInfo: NSObject {
         self.showOnboarding2 = defaults.bool(forKey: "showOnboarding2")
         self.showOnboarding3 = defaults.bool(forKey: "showOnboarding3")
         self.showOnboarding4 = defaults.bool(forKey: "showOnboarding4")
-
+        self.isReminder = defaults.bool(forKey: "isReminder")
+        
+        if let reminderTime = defaults.object(forKey: "reminderTime") {
+            self.reminderTime = (reminderTime as! Date)
+        }
 
     }
     
@@ -90,6 +99,12 @@ class UserInfo: NSObject {
         case .showOnboarding4:
             showOnboarding4 = value as? Bool ?? false
             defaults.set(showOnboarding4, forKey: "showOnboarding4")
+        case .isReminder:
+            isReminder = value as? Bool ?? true
+            defaults.set(isReminder, forKey: "isReminder")
+        case .reminderTime:
+            reminderTime = (value as! Date)
+            defaults.set(reminderTime, forKey: "reminderTime")
         }
         
         

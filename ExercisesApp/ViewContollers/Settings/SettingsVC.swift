@@ -8,19 +8,38 @@
 
 import UIKit
 import AYPopupPickerView
+import UserNotifications
 
 class SettingsVC: UIViewController {
 
 
     @IBOutlet weak var timeBtn: UIButton!
     @IBOutlet weak var reminderView: UIView!
+    @IBOutlet weak var reminderSwitch: UISwitch!
+    
+    var isReminder = false{
+        didSet{
+            self.reminderView.isHidden = !isReminder
+            self.reminderSwitch.setOn(isReminder, animated: true)
+        }
+    }
     
     let popupDatePickerView = AYPopupDatePickerView()
-    var reminderTime = Date()
+    var reminderTime: Date?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        timeField.delegate = self
+        self.getSettings()
+
+    }
+    
+    func getSettings(){
+        self.isReminder = UserInfo.shared.isReminder
+        self.reminderTime = UserInfo.shared.reminderTime
+        self.initView()
         
+    }
+    
+    func initView(){
         popupDatePickerView.datePickerView.datePickerMode = .time
         popupDatePickerView.datePickerView.locale = .current
         popupDatePickerView.headerView.backgroundColor = BACKGROUND_COLOR
@@ -32,13 +51,65 @@ class SettingsVC: UIViewController {
             popupDatePickerView.datePickerView.preferredDatePickerStyle = .wheels
             popupDatePickerView.datePickerView.sizeToFit()
         }
+        if reminderTime == nil {
+            self.timeBtn.setTitle("set time", for: .normal)
+        }else{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            self.timeBtn.setTitle(formatter.string(from: reminderTime!), for: .normal)
+        }
+
+    }
+    
+    func removeNotifications(){
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        self.timeBtn.setTitle(formatter.string(from: reminderTime), for: .normal)
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+    }
+    
+    func setNotifications(){
+        
+        if !UserInfo.shared.isReminder {
+            return
+        }
+        
+        if UserInfo.shared.reminderTime == nil {
+            return
+        }
+        
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = "It's exercise time."
+        content.categoryIdentifier = "alarm"
+        
+        let calendar = Calendar.current
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = calendar.component(.hour, from: UserInfo.shared.reminderTime!)
+        dateComponents.minute = calendar.component(.minute, from: UserInfo.shared.reminderTime!)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "\(Date().timeIntervalSince1970)", content: content, trigger: trigger)
+        center.add(request)
+        print(UserInfo.shared.reminderTime!)
     }
 
-
+    @IBAction func reminderChanged(_ sender: Any) {
+        
+        self.isReminder = self.reminderSwitch.isOn
+        UserInfo.shared.setUserInfo(.isReminder, value: self.isReminder)
+        
+        if isReminder {
+            removeNotifications()
+            setNotifications()
+        }else{
+            removeNotifications()
+        }
+    }
+    
     @IBAction func didTapBack(_ sender: Any) {
         self.back()
     }
@@ -46,12 +117,15 @@ class SettingsVC: UIViewController {
     @IBAction func didTapTime(_ sender: Any) {
         
 
-        popupDatePickerView.display(defaultDate: reminderTime, doneHandler: { date in
+        popupDatePickerView.display(defaultDate: reminderTime, doneHandler: { [self] date in
             print(date)
             self.reminderTime = date
+            UserInfo.shared.setUserInfo(.reminderTime, value: self.reminderTime! as Date)
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a"
             self.timeBtn.setTitle(formatter.string(from: date), for: .normal)
+            self.removeNotifications()
+            self.setNotifications()
         })
     }
     
