@@ -12,12 +12,12 @@ import SDWebImage
 
 protocol ExercisesTVCellDelegate {
     func tapAddSet(_ exercise: Exercise)
+    func tapAddNote(_ exercise: Exercise)
     func tapExercise(_ exercise: Exercise)
 }
 
 class ExercisesTVCell: UITableViewCell {
     
-    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPersonalReps: UILabel!
     @IBOutlet weak var lblSets: UILabel!
@@ -35,8 +35,8 @@ class ExercisesTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let imgTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        imgView.addGestureRecognizer(imgTap)
+//        let imgTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+//        imgView.addGestureRecognizer(imgTap)
         
         let lblTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         lblName.addGestureRecognizer(lblTap)
@@ -68,22 +68,17 @@ class ExercisesTVCell: UITableViewCell {
 //        options.placeholder = UIImage(named: "placeholder")
 //        options.transition = .fadeIn(duration: 0.25)
 
-        let url = URL(string: "\(baseURL)\(self.exercise.imagePath)")
-//        loadImage(
-//            with: ImageRequest(url: url!, processors: [_ProgressiveBlurImageProcessor()]),
-//            options: options,
-//            into: self.imgView!,
-//            progress: { _, completed, total in
-//
-//            }
-//        )
-        self.imgView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+//        let url = URL(string: "\(baseURL)\(self.exercise.imagePath)")
+//        self.imgView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
     }
     
     @IBAction func didTapAddSet(_ sender: Any) {
         delegate?.tapAddSet(self.exercise)
     }
     
+    @IBAction func didTapAddNote(_ sender: Any) {
+        delegate?.tapAddNote(self.exercise)
+    }
     
 
 }

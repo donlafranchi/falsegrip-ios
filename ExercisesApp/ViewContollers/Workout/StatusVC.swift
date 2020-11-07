@@ -28,9 +28,9 @@ class StatusVC: UIViewController {
     var selectedUnit = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        initDropDown()
-        self.weightField.text = "\(self.workout.body_weight)"
-        self.energySlider.index = UInt(self.workout.energy_level)
+//        initDropDown()
+//        self.weightField.text = "\(self.workout.body_weight)"
+//        self.energySlider.index = UInt(self.workout.energy_level)
         self.notesTextView.text = self.workout.comments
     }
     

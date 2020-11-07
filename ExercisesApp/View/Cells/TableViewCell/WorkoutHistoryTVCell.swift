@@ -16,6 +16,7 @@ class WorkoutHistoryTVCell: UITableViewCell {
     @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var lblDay: UILabel!
     @IBOutlet weak var lblMonth: UILabel!
+    @IBOutlet weak var noteImgView: UIImageView!
     
     var workout = WorkoutModel()
     
@@ -98,6 +99,7 @@ class WorkoutHistoryTVCell: UITableViewCell {
        
         self.lblDay.text = day
         self.lblMonth.text = weekDay.uppercased()
+        self.noteImgView.image = self.workout.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes")
     }
 
 }

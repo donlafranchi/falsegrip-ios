@@ -19,6 +19,8 @@ class WorkoutHistoryVC: UIViewController {
             createBtn.layer.borderColor = COLOR3?.cgColor
         }
     }
+
+    
     var rowCount = 0
     var pageNum = 1
     var nextPage = ""

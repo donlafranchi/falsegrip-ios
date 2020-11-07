@@ -35,7 +35,10 @@ class WorkoutDetailVC: UIViewController {
     var sections = [String]()
     
     var sheetController = SheetViewController()
+    var noteSheetController = SheetViewController()
+
     var addSetVC = AddSetVC()
+    var addNoteVC = AddNoteVC()
     var moreSheet = SheetViewController()
     var moreVC = WorkoutMoreVC()
     var preferences = EasyTipView.Preferences()
@@ -86,26 +89,26 @@ class WorkoutDetailVC: UIViewController {
     }
     
     func reloadNoteView(){
-        switch self.workout.energy_level {
-        case 0:
-            batteryImgView.image = UIImage(named: "battery_empty")
-        case 1:
-            batteryImgView.image = UIImage(named: "battery1")
-        case 2:
-            batteryImgView.image = UIImage(named: "battery2")
-        case 3:
-            batteryImgView.image = UIImage(named: "battery3")
-        case 4:
-            batteryImgView.image = UIImage(named: "battery4")
-        case 5:
-            batteryImgView.image = UIImage(named: "battery5")
-        default:
-            break
-        }
-        
-        weightImgView.isHidden = self.workout.body_weight > 0
-        weightView.isHidden = !(self.workout.body_weight > 0)
-        lblWeight.text = "\(self.workout.body_weight)"
+//        switch self.workout.energy_level {
+//        case 0:
+//            batteryImgView.image = UIImage(named: "battery_empty")
+//        case 1:
+//            batteryImgView.image = UIImage(named: "battery1")
+//        case 2:
+//            batteryImgView.image = UIImage(named: "battery2")
+//        case 3:
+//            batteryImgView.image = UIImage(named: "battery3")
+//        case 4:
+//            batteryImgView.image = UIImage(named: "battery4")
+//        case 5:
+//            batteryImgView.image = UIImage(named: "battery5")
+//        default:
+//            break
+//        }
+//
+//        weightImgView.isHidden = self.workout.body_weight > 0
+//        weightView.isHidden = !(self.workout.body_weight > 0)
+//        lblWeight.text = "\(self.workout.body_weight)"
         noteImgView.image = self.workout.comments.isEmpty ? UIImage(named: "notes_empty") : UIImage(named: "notes")
     }
     
@@ -206,6 +209,26 @@ class WorkoutDetailVC: UIViewController {
         moreSheet.dismissOnPan = true
         moreSheet.dismissOnBackgroundTap = true
         moreVC.delegate = self
+        
+        // AddNote Sheet
+        
+        addNoteVC = storyboard.instantiateViewController(withIdentifier: "AddNoteVC") as! AddNoteVC
+
+        noteSheetController = SheetViewController(controller: addNoteVC, sizes: [.fixed(270)])
+        noteSheetController.adjustForBottomSafeArea = false
+        noteSheetController.blurBottomSafeArea = false
+        noteSheetController.dismissOnBackgroundTap = true
+        noteSheetController.extendBackgroundBehindHandle = false
+        noteSheetController.topCornersRadius = 20
+        noteSheetController.overlayColor = UIColor.init(white: 1, alpha: 0.7)
+        noteSheetController.handleSize = .zero
+        noteSheetController.containerView.layer.shadowColor = UIColor.gray.cgColor
+        noteSheetController.containerView.layer.shadowOffset = CGSize(width: 0, height: -1)
+        noteSheetController.containerView.layer.shadowRadius = 8
+        noteSheetController.containerView.layer.shadowOpacity = 0.4
+        noteSheetController.dismissOnPan = true
+        noteSheetController.dismissOnBackgroundTap = true
+        addNoteVC.delegate = self
     }
     
     func getWorkout(){
@@ -524,6 +547,8 @@ extension WorkoutDetailVC: StatusVCDelegate{
     func saveNote(_ workout: WorkoutModel) {
         self.workout = workout
         self.reloadNoteView()
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("workoutUpdated"), object: nil)
         CRNotifications.showNotification(textColor: MAIN_COLOR!, backgroundColor: BACKGROUND_COLOR!, image: UIImage(named: "success"), title: "Success!", message: "You successfully updated Note.", dismissDelay: 2.0)
     }
 }
@@ -539,6 +564,10 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
         self.addSetVC.exerciseName = exercise.name
         self.addSetVC.addedSets.removeAll()
         self.present(sheetController, animated: false, completion: nil)
+    }
+    
+    func tapAddNote(_ exercise: Exercise) {
+        self.present(noteSheetController, animated: true, completion: nil)
     }
     
     func tapExercise(_ exercise: Exercise) {
@@ -653,4 +682,15 @@ extension WorkoutDetailVC: TableViewDraggerDataSource, TableViewDraggerDelegate 
     func dragger(_ dragger: TableViewDragger, didEndDraggingAt indexPath: IndexPath) {
         
     }
+}
+
+extension WorkoutDetailVC: AddNoteVCDelegate {
+    func tapCancel() {
+        self.noteSheetController.closeSheet()
+    }
+    
+    func tapDone(_ added: Bool) {
+        self.noteSheetController.closeSheet()
+    }
+    
 }
