@@ -30,7 +30,7 @@
 		8B33C0F62513CE4A006618E6 /* AddExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */; };
 		8B508A012556173D00C13CF9 /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B508A002556173D00C13CF9 /* AddNoteVC.swift */; };
 		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
-		8B69B8582515246D00FD0598 /* GifVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* GifVC.swift */; };
+		8B69B8582515246D00FD0598 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* ImageVC.swift */; };
 		8B69B85A251540C300FD0598 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B859251540C300FD0598 /* VideoPlayerVC.swift */; };
 		8B87845C253F477A00658491 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87845B253F477700658491 /* SettingsVC.swift */; };
 		8B9A6B9D251D645000F7AA3B /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A6B9C251D644F00F7AA3B /* iOSDropDown.swift */; };
@@ -113,7 +113,7 @@
 		8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercisesVC.swift; sourceTree = "<group>"; };
 		8B508A002556173D00C13CF9 /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
-		8B69B8572515246D00FD0598 /* GifVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVC.swift; sourceTree = "<group>"; };
+		8B69B8572515246D00FD0598 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
 		8B69B859251540C300FD0598 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
 		8B87845B253F477700658491 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		8B8784C1253F799500658491 /* DatePickerDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DatePickerDialog.framework; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 				8BD8B91E2507D05800688B57 /* ExercisesDetailVC.swift */,
 				8B69B8552515245A00FD0598 /* VideoVC.swift */,
 				8B69B859251540C300FD0598 /* VideoPlayerVC.swift */,
-				8B69B8572515246D00FD0598 /* GifVC.swift */,
+				8B69B8572515246D00FD0598 /* ImageVC.swift */,
 			);
 			path = Exercises;
 			sourceTree = "<group>";
@@ -621,7 +621,7 @@
 				8BED7FFB25030644001F2BBE /* WorkoutHistoryTVCell.swift in Sources */,
 				8BD8B91F2507D05800688B57 /* ExercisesDetailVC.swift in Sources */,
 				8B9A6BD3251E5BCD00F7AA3B /* EquipmentModel.swift in Sources */,
-				8B69B8582515246D00FD0598 /* GifVC.swift in Sources */,
+				8B69B8582515246D00FD0598 /* ImageVC.swift in Sources */,
 				8B10E3FF2524C44800DD1A4D /* OnboardingVC3.swift in Sources */,
 				8BD8B92525082EB000688B57 /* HistoryContainerTVCell.swift in Sources */,
 				8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */,

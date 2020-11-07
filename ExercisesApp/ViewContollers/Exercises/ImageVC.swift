@@ -7,18 +7,21 @@
 //
 
 import UIKit
-import SwiftyGif
+import SDWebImage
 
-class GifVC: UIViewController {
+class ImageVC: UIViewController {
 
-    @IBOutlet weak var gifView: UIImageView!
-    var gifUrl:String?
+    @IBOutlet weak var imgView: UIImageView!
+    var imagePath:String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if !gifUrl!.isEmpty {
-            self.gifView?.setGifFromURL(URL(string: gifUrl!)!)
-        }
+//        if !gifUrl!.isEmpty {
+//            self.gifView?.setGifFromURL(URL(string: gifUrl!)!)
+//        }
+        
+        let url = URL(string: "\(baseURL)\(self.imagePath!)")
+        self.imgView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
         
     }
     

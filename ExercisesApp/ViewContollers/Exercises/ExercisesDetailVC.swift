@@ -30,7 +30,7 @@ class ExercisesDetailVC: UIViewController {
     let firstNetworkURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4")
 
     var videoVC: VideoVC?
-    var gifVC: GifVC?
+    var imgVC: ImageVC?
     var pagingVC: PagingViewController?
     var exercise: Exercise?
     var exerciseHistory: Exercise?
@@ -41,8 +41,8 @@ class ExercisesDetailVC: UIViewController {
         super.viewDidLoad()
         
         initView()
-        initVideoView()
-//        setupPageView()
+//        initVideoView()
+        setupPageView()
         let nibName = UINib(nibName: "HeaderCell", bundle: nil)
         self.tableView.register(nibName, forHeaderFooterViewReuseIdentifier: "HeaderCell")
         self.getExerciseHistory()
@@ -70,9 +70,9 @@ class ExercisesDetailVC: UIViewController {
         
         videoVC = (storyboard?.instantiateViewController(withIdentifier: "VideoVC") as! VideoVC)
         videoVC!.videoPath = URL(string: self.exercise!.videoPath)
-        gifVC = (storyboard?.instantiateViewController(withIdentifier: "GifVC") as! GifVC)
-        gifVC?.gifUrl = self.exercise!.short_demo
-        pagingVC = PagingViewController(viewControllers: [videoVC!])
+        imgVC = (storyboard?.instantiateViewController(withIdentifier: "ImageVC") as! ImageVC)
+        imgVC!.imagePath = self.exercise!.imagePath
+        pagingVC = PagingViewController(viewControllers: [imgVC!,videoVC!])
         pagingVC!.textColor = MAIN_COLOR!
         pagingVC!.selectedTextColor = COLOR2!
         pagingVC!.indicatorColor = COLOR2!
