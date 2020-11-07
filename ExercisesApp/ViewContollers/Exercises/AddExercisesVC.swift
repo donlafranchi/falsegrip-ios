@@ -19,7 +19,22 @@ class AddExercisesVC: UIViewController {
     @IBOutlet weak var lblSelectedCount: UILabel!
     @IBOutlet weak var selectionView: DropShadowView!
     @IBOutlet weak var tagView: TTGTextTagCollectionView!
-
+    @IBOutlet weak var searchBar: UISearchBar!{
+        didSet{
+            self.searchBar.searchTextField.textColor = MAIN_COLOR
+            self.searchBar.searchTextField.leftView?.tintColor = MAIN_COLOR
+            self.searchBar.tintColor = MAIN_COLOR
+            self.searchBar.isHidden = true
+            self.searchBar.delegate = self
+            self.searchBar.searchTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var searchBarHeight: NSLayoutConstraint!{
+        didSet{
+            searchBarHeight.constant = 0
+        }
+    }
+    
     var seletedCount = 0 {
         didSet{
             selectionView.isHidden = seletedCount == 0
@@ -121,14 +136,14 @@ class AddExercisesVC: UIViewController {
     }
     
     func getAllExercises(){
-        self.showHUD()
+//        self.showHUD()
         let params = [
             "order_by": "-created",
             "active": true,
             "category": selectedCategory,
             "q": query] as [String : Any]
         ApiService.getAllExercises(page: pageNum, params: params) { (success, data) in
-            self.dismissHUD()
+//            self.dismissHUD()
             if success {
                 if self.pageNum == 1 {
 //                    self.seletedCount = 0
@@ -378,7 +393,7 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             
         case 0:
             let itemWidth = collectionView.frame.width
-            let itemHeight: CGFloat = 40.0
+            let itemHeight: CGFloat = 0.1
             
             return CGSize(width: itemWidth, height: itemHeight)
         
@@ -434,6 +449,9 @@ extension AddExercisesVC: UICollectionViewDataSource,UICollectionViewDelegate,UI
             return
         }
         
+        self.searchBar.isHidden = false
+        self.searchBarHeight.constant = 44
+        
         let indexPath = IndexPath(item: 0, section: 0)
         guard let cell = self.collectionView.cellForItem(at: indexPath) as? SearchCollectionViewCell else {
             
@@ -456,6 +474,7 @@ extension AddExercisesVC: UISearchBarDelegate{
         self.query = searchBar.searchTextField.text!
         self.pageNum = 1
         self.getAllExercises()
+        self.view.endEditing(true)
     }
 }
 
@@ -465,6 +484,20 @@ extension AddExercisesVC: UITextFieldDelegate{
         self.query = ""
         self.pageNum = 1
         self.getAllExercises()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let str = textField.text,
+            let textRange = Range(range, in: str) {
+            let updatedText = str.replacingCharacters(in: textRange,
+                                                       with: string)
+           
+            self.query = updatedText
+            self.pageNum = 1
+            self.getAllExercises()
+        
+        }
         return true
     }
 }
