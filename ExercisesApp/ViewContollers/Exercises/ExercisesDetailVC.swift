@@ -8,7 +8,7 @@
 
 import UIKit
 import Parchment
-import YouTubePlayer
+import YoutubePlayerView
 //import ASPVideoPlayer
 //import AVFoundation
 
@@ -22,7 +22,7 @@ class ExercisesDetailVC: UIViewController {
     @IBOutlet weak var lblCreator: UILabel!
     @IBOutlet weak var lblPrimaryMusel: UILabel!
     @IBOutlet weak var lblSecondaryMusel: UILabel!
-    @IBOutlet weak var videoPlayer: YouTubePlayerView!
+    @IBOutlet weak var videoPlayer: YoutubePlayerView!
     @IBOutlet weak var lblPersonalRecord: UILabel!
     @IBOutlet weak var lblTotalReps: UILabel!
     
@@ -60,10 +60,10 @@ class ExercisesDetailVC: UIViewController {
     
     func initVideoView(){
         
-        if let url = URL(string: self.exercise!.videoPath) {
-            videoPlayer.loadVideoURL(url)
-            videoPlayer.play()
-        }
+//        if let url = URL(string: self.exercise!.videoPath) {
+//            videoPlayer.loadVideoURL(url)
+//            videoPlayer.play()
+//        }
     }
 
     func setupPageView(){

@@ -9,101 +9,90 @@
 import UIKit
 import ASPVideoPlayer
 import AVFoundation
-import YouTubePlayer
+import YoutubePlayerView
 
 class VideoVC: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var videoPlayerBackgroundView: UIView!
 //    @IBOutlet weak var videoPlayer: ASPVideoPlayer!
-    @IBOutlet weak var videoPlayer: YouTubePlayerView!
+    @IBOutlet weak var videoPlayer: YoutubePlayerView!
+    var isPlaying = false
     
     let firstNetworkURL = URL(string: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8")
     var videoPath: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let firstAsset = AVURLAsset(url: URL(string: "https://youtu.be/x-WosgklhR0?t=189s")!)
-//        videoPlayer.videoAssets = [firstAsset]
-//
-//
-//        videoPlayer.resizeClosure = { [unowned self] isExpanded in
-//
-//            let videoVC = self.storyboard!.instantiateViewController(withIdentifier: "VideoPlayerVC") as! VideoPlayerVC
-//            videoVC.url =  "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
-//            videoVC.modalPresentationStyle = .fullScreen
-//            self.present(videoVC, animated: true, completion: nil)
-//        }
-//        videoPlayer.layer.cornerRadius = 6
-//        videoPlayer.layer.masksToBounds = true
-//        videoPlayer.delegate = self
         
-        print(videoPath)
-        if self.videoPath != nil {
-            videoPlayer.layer.cornerRadius = 6
-            videoPlayer.layer.masksToBounds = true
-            videoPlayer.loadVideoURL(videoPath!)
-            videoPlayer.play()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isPlaying {
+            initVideo()
         }
+    }
+    
+    func initVideo(){
+        
+        if self.videoPath != nil {
+            videoPlayer.layer.cornerRadius = 0
+            videoPlayer.layer.masksToBounds = true
+            print(Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0))
+            let playerVars: [String: Any] = [
+                "controls": 1,
+                "modestbranding": 1,
+                "playsinline": 1,
+                "origin": "https://youtube.com"
+            ]
+            videoPlayer.delegate = self
+            videoPlayer.loadWithVideoId(getYoutubeId(youtubeUrl: videoPath!.absoluteString)!, with: playerVars)
+        }
+    }
+    
+    func getQueryStringParameter(url: String, param: String) -> String? {
+      guard let url = URLComponents(string: url) else { return nil }
+      return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
+    func getYoutubeId(youtubeUrl: String) -> String? {
+        return URLComponents(string: youtubeUrl)?.queryItems?.first(where: { $0.name == "v" })?.value
     }
 
 }
 
-extension VideoVC: ASPVideoPlayerViewDelegate {
-    func startedVideo() {
-        print("Started video")
+extension VideoVC: YoutubePlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: YoutubePlayerView) {
+        print("Ready")
+        playerView.fetchPlayerState { [self] (state) in
+            print("Fetch Player State: \(state)")
+            playerView.play()
+            isPlaying = true
+            playerView.seek(to: Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0), allowSeekAhead: true)
+        }
     }
-
-    func stoppedVideo() {
-        print("Stopped video")
+    
+    func playerView(_ playerView: YoutubePlayerView, didChangedToState state: YoutubePlayerState) {
+        print("Changed to state: \(state)")
     }
-
-    func newVideo() {
-        print("New Video")
+    
+    func playerView(_ playerView: YoutubePlayerView, didChangeToQuality quality: YoutubePlaybackQuality) {
+        print("Changed to quality: \(quality)")
     }
-
-    func readyToPlayVideo() {
-        print("Ready to play video")
-    }
-
-    func playingVideo(progress: Double) {
-//        print("Playing: \(progress)")
-    }
-
-    func pausedVideo() {
-        print("Paused Video")
-    }
-
-    func finishedVideo() {
-        print("Finished Video")
-    }
-
-    func seekStarted() {
-        print("Seek started")
-    }
-
-    func seekEnded() {
-        print("Seek ended")
-    }
-
-    func error(error: Error) {
+    
+    func playerView(_ playerView: YoutubePlayerView, receivedError error: Error) {
         print("Error: \(error)")
     }
-
-    func willShowControls() {
-        print("will show controls")
+    
+    func playerView(_ playerView: YoutubePlayerView, didPlayTime time: Float) {
+        print("Play time: \(time)")
     }
-
-    func didShowControls() {
-        print("did show controls")
-    }
-
-    func willHideControls() {
-        print("will hide controls")
-    }
-
-    func didHideControls() {
-        print("did hide controls")
+    
+    func playerViewPreferredInitialLoadingView(_ playerView: YoutubePlayerView) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .gray
+        return view
     }
 
 }
