@@ -76,7 +76,7 @@ class ExercisesDetailVC: UIViewController {
         pagingVC!.textColor = MAIN_COLOR!
         pagingVC!.selectedTextColor = COLOR2!
         pagingVC!.indicatorColor = COLOR2!
-        pagingVC!.indicatorOptions = PagingIndicatorOptions.visible(height: 0, zIndex: 0, spacing:.zero, insets: .init(top: 0, left: 0, bottom: 0, right: 0))
+        pagingVC!.indicatorOptions = PagingIndicatorOptions.visible(height: 2, zIndex: 0, spacing:.zero, insets: .init(top: 0, left: 8, bottom: 0, right: 8))
         pagingVC!.borderColor = UIColor.clear
         addChild(pagingVC!)
         containerView.addSubview(pagingVC!.view)

@@ -35,7 +35,7 @@ class VideoVC: UIViewController {
     }
     
     func initVideo(){
-        
+        print(videoPath?.absoluteURL)
         if self.videoPath != nil {
             videoPlayer.layer.cornerRadius = 0
             videoPlayer.layer.masksToBounds = true
@@ -47,7 +47,11 @@ class VideoVC: UIViewController {
                 "origin": "https://youtube.com"
             ]
             videoPlayer.delegate = self
-            videoPlayer.loadWithVideoId(getYoutubeId(youtubeUrl: videoPath!.absoluteString)!, with: playerVars)
+            
+            if getYoutubeId(youtubeUrl: videoPath!.absoluteString) != nil {
+                videoPlayer.loadWithVideoId(getYoutubeId(youtubeUrl: videoPath!.absoluteString)!, with: playerVars)
+            }
+            
         }
     }
     

@@ -28,6 +28,7 @@
 		8B33C0F02512606C006618E6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0EF2512606C006618E6 /* Utilities.swift */; };
 		8B33C0F42513BD4A006618E6 /* SetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F32513BD4A006618E6 /* SetsModel.swift */; };
 		8B33C0F62513CE4A006618E6 /* AddExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */; };
+		8B450A4B255847E200A1D6A6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B450A4A255847E200A1D6A6 /* ProfileVC.swift */; };
 		8B508A012556173D00C13CF9 /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B508A002556173D00C13CF9 /* AddNoteVC.swift */; };
 		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
 		8B69B8582515246D00FD0598 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* ImageVC.swift */; };
@@ -111,6 +112,7 @@
 		8B33C0EF2512606C006618E6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8B33C0F32513BD4A006618E6 /* SetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsModel.swift; sourceTree = "<group>"; };
 		8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercisesVC.swift; sourceTree = "<group>"; };
+		8B450A4A255847E200A1D6A6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		8B508A002556173D00C13CF9 /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		8B69B8572515246D00FD0598 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				8B87845B253F477700658491 /* SettingsVC.swift */,
+				8B450A4A255847E200A1D6A6 /* ProfileVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				8BD8B9132507015B00688B57 /* ExercisesCell2.swift in Sources */,
 				8BDA577E252399C40033EFAE /* FooterView.swift in Sources */,
 				8B33C0ED25112327006618E6 /* Exercise.swift in Sources */,
+				8B450A4B255847E200A1D6A6 /* ProfileVC.swift in Sources */,
 				8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */,
 				8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */,
 				8BED7FE32502EA3F001F2BBE /* BaseNavVC.swift in Sources */,
@@ -789,7 +793,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -816,7 +820,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExercisesApp/ExercisesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9K65WY5EHC;
 				FRAMEWORK_SEARCH_PATHS = (
