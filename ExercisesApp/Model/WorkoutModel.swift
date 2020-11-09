@@ -23,6 +23,7 @@ class WorkoutModel: NSObject {
     var isToday = false
     var isCreated = false
     var exercises = [Exercise]()
+    var exercise_notes: [String:Any] = [:]
     
     override init() {
         super.init()
@@ -38,7 +39,6 @@ class WorkoutModel: NSObject {
         energy_level = json["energy_level"] as? Int ?? 0
         comments = json["comments"] as? String ?? ""
         order = json["order"] as? String ?? ""
-
         let exercises = json["exercises_obj"] as?  [[String: Any]] ?? []
         var exercisesList = [Exercise]()
         for item in exercises {
@@ -46,6 +46,18 @@ class WorkoutModel: NSObject {
         }
         self.exercises = exercisesList
 
+        let jsonStr = json["exercise_notes"] as? String ?? ""
+        let data = Data(jsonStr.utf8)
+
+        do {
+            // make sure this JSON is in the format we expect
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                // try to read out a string array
+                exercise_notes = json
+            }
+        } catch let error as NSError {
+            print("Failed to load: \(error.localizedDescription)")
+        }
     }
     
 }

@@ -31,6 +31,7 @@ class WorkoutDetailVC: UIViewController {
     var workoutID = ""
     var workout = WorkoutModel()
     var exercises = [Exercise]()
+    var selectedExerciseId = ""
 //    var exerciseDict = [String: [Exercise]]()
     var sections = [String]()
     
@@ -567,6 +568,8 @@ extension WorkoutDetailVC: ExercisesTVCellDelegate{
     }
     
     func tapAddNote(_ exercise: Exercise) {
+        self.selectedExerciseId = exercise.id
+        self.addNoteVC.note = self.workout.exercise_notes[selectedExerciseId] as? String ?? ""
         self.present(noteSheetController, animated: true, completion: nil)
     }
     
@@ -689,8 +692,27 @@ extension WorkoutDetailVC: AddNoteVCDelegate {
         self.noteSheetController.closeSheet()
     }
     
-    func tapDone(_ added: Bool) {
+    func tapDone(_ note: String) {
+        
         self.noteSheetController.closeSheet()
+        
+        self.workout.exercise_notes[self.selectedExerciseId] = note
+        
+        showHUD()
+        
+        let exercise_notes = stringify(json: self.workout.exercise_notes)
+        let params = [
+            "exercise_notes": exercise_notes] as [String : Any]
+
+        ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
+            if success {
+                
+            }else{
+                self.showFailureAlert()
+            }
+            self.dismissHUD()
+        }
+        
     }
     
 }

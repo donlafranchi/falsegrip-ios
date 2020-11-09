@@ -11,12 +11,13 @@ import GrowingTextView
 
 protocol AddNoteVCDelegate {
     func tapCancel()
-    func tapDone(_ added: Bool)
+    func tapDone(_ note: String)
 }
 
 class AddNoteVC: UIViewController {
 
     @IBOutlet weak var noteTextView: GrowingTextView!
+    var note: String?
     var delegate: AddNoteVCDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,18 @@ class AddNoteVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.noteTextView.text = note
+    }
 
     @IBAction func didTapDone(_ sender: Any) {
-        delegate?.tapDone(true)
+        
+        if self.noteTextView.text == note || self.noteTextView.text.isEmpty {
+            delegate?.tapCancel()
+        }else{
+            delegate?.tapDone(noteTextView.text)
+        }        
     }
     
     @IBAction func didTapCancel(_ sender: Any) {
