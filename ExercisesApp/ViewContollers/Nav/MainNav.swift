@@ -13,7 +13,7 @@ class MainNav: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationBar.isHidden = true
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         appleIDProvider.getCredentialState(forUserID: UserInfo.shared.appleID) { (credentialState, error) in
             print(UserInfo.shared.appleID)

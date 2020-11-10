@@ -436,6 +436,14 @@ extension WorkoutDetailVC: UITableViewDataSource,UITableViewDelegate{
         cell.initCell(self.exercises[indexPath.row])
         cell.delegate = self
         cell.sortView.isHidden = !self.isSort
+        
+//        if self.workout.exercise_notes.keys.contains(self.exercises[indexPath.row].id) {
+//            cell.noteBtn.tintColor = UIColor(red: 255.0/255, green: 201.0/255, blue: 60.0/255, alpha: 1.0)
+//        }else{
+//            cell.noteBtn.tintColor = UIColor(red: 174.0/255, green: 174.0/255, blue: 174.0/255, alpha: 0.4)
+//        }
+        
+        
         return cell
     }
     
@@ -706,7 +714,7 @@ extension WorkoutDetailVC: AddNoteVCDelegate {
 
         ApiService.updateWorkout2(id: self.workout.id,params: params) { (success, data) in
             if success {
-                
+                self.tableView.reloadData()
             }else{
                 self.showFailureAlert()
             }
