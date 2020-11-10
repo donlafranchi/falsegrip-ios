@@ -39,7 +39,7 @@ class VideoVC: UIViewController {
         if self.videoPath != nil {
             videoPlayer.layer.cornerRadius = 0
             videoPlayer.layer.masksToBounds = true
-            print(Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0))
+//            print(Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0))
             let playerVars: [String: Any] = [
                 "controls": 1,
                 "modestbranding": 1,
@@ -73,7 +73,10 @@ extension VideoVC: YoutubePlayerViewDelegate {
             print("Fetch Player State: \(state)")
             playerView.play()
             isPlaying = true
-            playerView.seek(to: Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0), allowSeekAhead: true)
+            
+            if (getQueryStringParameter(url: videoPath!.absoluteString, param: "t") != nil) {
+                playerView.seek(to: Float(Int((getQueryStringParameter(url: videoPath!.absoluteString, param: "t")?.dropLast())!) ?? 0), allowSeekAhead: true)
+            }
         }
     }
     
