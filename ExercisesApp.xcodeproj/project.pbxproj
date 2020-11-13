@@ -30,6 +30,7 @@
 		8B33C0F62513CE4A006618E6 /* AddExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */; };
 		8B450A4B255847E200A1D6A6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B450A4A255847E200A1D6A6 /* ProfileVC.swift */; };
 		8B508A012556173D00C13CF9 /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B508A002556173D00C13CF9 /* AddNoteVC.swift */; };
+		8B6013DA255F08D30095F96A /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6013D9255F08D30095F96A /* ProfileModel.swift */; };
 		8B69B8562515245A00FD0598 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552515245A00FD0598 /* VideoVC.swift */; };
 		8B69B8582515246D00FD0598 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572515246D00FD0598 /* ImageVC.swift */; };
 		8B69B85A251540C300FD0598 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B859251540C300FD0598 /* VideoPlayerVC.swift */; };
@@ -114,6 +115,7 @@
 		8B33C0F52513CE4A006618E6 /* AddExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercisesVC.swift; sourceTree = "<group>"; };
 		8B450A4A255847E200A1D6A6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		8B508A002556173D00C13CF9 /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
+		8B6013D9255F08D30095F96A /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		8B69B8552515245A00FD0598 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		8B69B8572515246D00FD0598 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
 		8B69B859251540C300FD0598 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				8B33C0EC25112327006618E6 /* Exercise.swift */,
 				8B33C0EA251120AC006618E6 /* WorkoutModel.swift */,
 				8B33C0F32513BD4A006618E6 /* SetsModel.swift */,
+				8B6013D9255F08D30095F96A /* ProfileModel.swift */,
 				8B9A6BCF251E59A200F7AA3B /* TrainerModel.swift */,
 				8B9A6BD2251E5BCD00F7AA3B /* EquipmentModel.swift */,
 			);
@@ -603,6 +606,7 @@
 				8BD8B90E2506E6AA00688B57 /* AllExercisesVC.swift in Sources */,
 				8BED7FC42502D8BF001F2BBE /* AppDelegate.swift in Sources */,
 				8BED7FE32502EA3F001F2BBE /* BaseNavVC.swift in Sources */,
+				8B6013DA255F08D30095F96A /* ProfileModel.swift in Sources */,
 				8BED8000250336D0001F2BBE /* UserInfo.swift in Sources */,
 				8BDA57832523B7F90033EFAE /* OnboardingVC1.swift in Sources */,
 				8B1CE337250CF4CC00EECE4E /* APIRouter.swift in Sources */,
