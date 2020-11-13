@@ -53,6 +53,28 @@ class ApiService: NSObject {
          }
     }
     
+    // MARK: - Profile -
+    
+    class func getProfile(completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+     
+          let url = baseURLPath + "users/me/"
+         
+          AF.request(url, method: .get)
+           .responseJSON { response in
+              switch response.result {
+              case .success(let data):
+                  let jsonData = JSON(data).dictionaryObject
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true,jsonData)
+                  }else{
+                     completion(false,["error":response.response.debugDescription])
+                  }
+              case .failure(let error):
+                 completion(false,["error":error])
+              }
+          }
+     }
+    
     // MARK: - Workout -
     
     class func getWorkouts(page: Int,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
