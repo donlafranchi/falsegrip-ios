@@ -15,13 +15,23 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var ageField: MFTextField!
     @IBOutlet weak var weightField: MFTextField!
     @IBOutlet weak var cityField: MFTextField!
+    @IBOutlet weak var lblAge: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.ageField.setInputViewDatePicker(target: self, selector: #selector(tapDone)) //1
+
     }
     
+    @objc func tapDone() {
+        if let datePicker = self.ageField.inputView as? UIDatePicker { // 2-1
+            let dateformatter = DateFormatter() // 2-2
+            dateformatter.dateStyle = .medium // 2-3
+            self.ageField.text = dateformatter.string(from: datePicker.date) //2-4
+        }
+        self.ageField.resignFirstResponder() // 2-5
+    }
 
     @IBAction func didTapBack(_ sender: Any) {
         self.back()
