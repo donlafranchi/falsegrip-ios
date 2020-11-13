@@ -81,61 +81,16 @@ extension UIViewController {
         return ""
     }
     
-    func calculateAge(dob : String, format:String = "MM/dd/yyyy") -> Int{
-            let df = DateFormatter()
-            df.dateFormat = format
-            let date = df.date(from: dob)
-            guard let val = date else{
-                return 0
-            }
-            var years = 0
-            var months = 0
-            var days = 0
-            
-            let cal = Calendar.current
-            years = cal.component(.year, from: Date()) -  cal.component(.year, from: val)
-            
-            let currMonth = cal.component(.month, from: Date())
-            let birthMonth = cal.component(.month, from: val)
-            
-            //get difference between current month and birthMonth
-            months = currMonth - birthMonth
-            //if month difference is in negative then reduce years by one and calculate the number of months.
-            if months < 0
-            {
-                years = years - 1
-                months = 12 - birthMonth + currMonth
-                if cal.component(.day, from: Date()) < cal.component(.day, from: val){
-                    months = months - 1
-                }
-            } else if months == 0 && cal.component(.day, from: Date()) < cal.component(.day, from: val)
-            {
-                years = years - 1
-                months = 11
-            }
-            
-            //Calculate the days
-            if cal.component(.day, from: Date()) > cal.component(.day, from: val){
-                days = cal.component(.day, from: Date()) - cal.component(.day, from: val)
-            }
-            else if cal.component(.day, from: Date()) < cal.component(.day, from: val)
-            {
-                _ = cal.component(.day, from: Date())
-                _ = cal.date(byAdding: .month, value: -1, to: Date())
-                
-//                days = date!.day - cal.component(.day, from: val) + today
-            } else
-            {
-                days = 0
-                if months == 12
-                {
-                    years = years + 1
-                    months = 0
-                }
-            }
-            
-            return years
-        }
+    func calculateAge(dob : String) -> Int{
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "MM/dd/yyyy"
+        let birthdayDate = dateFormater.date(from: dob)
+        let calendar: NSCalendar! = NSCalendar(calendarIdentifier: .gregorian)
+        let now = Date()
+        let calcAge = calendar.components(.year, from: birthdayDate!, to: now, options: [])
+        let age = calcAge.year
+        return age!
+    }
 }
 
 

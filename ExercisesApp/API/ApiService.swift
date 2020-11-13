@@ -57,9 +57,29 @@ class ApiService: NSObject {
     
     class func getProfile(completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
      
-          let url = baseURLPath + "users/me/"
+          let url = baseURLPath + "api/users/me/"
          
           AF.request(url, method: .get)
+           .responseJSON { response in
+              switch response.result {
+              case .success(let data):
+                  let jsonData = JSON(data).dictionaryObject
+                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
+                      completion(true,jsonData)
+                  }else{
+                     completion(false,["error":response.response.debugDescription])
+                  }
+              case .failure(let error):
+                 completion(false,["error":error])
+              }
+          }
+     }
+    
+    class func updateProfile(id: String,params: [String: Any], completion: @escaping (_ success: Bool, _ data: [String: Any]?) -> Void) {
+    
+        let url = baseURLPath + "api/users/\(id)/"
+        
+        AF.request(url, method: .patch, parameters: params, encoding: JSONEncoding.default)
            .responseJSON { response in
               switch response.result {
               case .success(let data):
