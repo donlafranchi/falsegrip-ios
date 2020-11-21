@@ -48,7 +48,12 @@ class WorkoutHistoryVC: UIViewController {
         if !UserInfo.shared.showOnboarding1 {
             showOnboarding()
         }
-        
+       
+//        let alert = UIAlertController(title: "UserID", message: UserInfo.shared.appleID, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action) in
+//            
+//        }))
+//        self.present(alert, animated: true)
 
     }
 

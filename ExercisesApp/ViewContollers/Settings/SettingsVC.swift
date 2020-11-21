@@ -152,6 +152,21 @@ class SettingsVC: UIViewController,MFMailComposeViewControllerDelegate {
     }
     
     @IBAction func didTapLogout(_ sender: Any) {
+        
+        
+        let alert = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (action) in
+            UserInfo.shared.setUserInfo(.token, value: "")
+            DispatchQueue.main.async {
+                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
+                self.view.window?.rootViewController = vc
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true)
+
     }
     
 }

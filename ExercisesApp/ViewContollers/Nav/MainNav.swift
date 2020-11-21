@@ -14,47 +14,59 @@ class MainNav: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.isHidden = true
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: UserInfo.shared.appleID) { (credentialState, error) in
-            print(UserInfo.shared.appleID)
-            print(UserInfo.shared.username)
+        
+        if UserInfo.shared.token.isEmpty {
+            DispatchQueue.main.async {
+                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
+                self.view.window?.rootViewController = vc
+             }
+        }else{
+            self.showHUD()
+            let params = [
+                "apple_id": UserInfo.shared.appleID] as [String : Any]
             
-            switch credentialState {
-            case .authorized:
+            ApiService.login(params: params) { (success, data) in
                 
-                self.showHUD()
-                let params = [
-                    "apple_id": UserInfo.shared.appleID] as [String : Any]
-                
-                ApiService.login(params: params) { (success, data) in
-                    self.dismissHUD()
-                    if success {
-                        
-                        UserInfo.shared.setUserInfo(.token, value: data!["key"] as! String)
-                        
-                        DispatchQueue.main.async {
-                            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
-                            self.view.window?.rootViewController = vc
-                        }
-                    }else{
-                        DispatchQueue.main.async {
-                            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
-                            self.view.window?.rootViewController = vc
-                         }
+                if success {
+                    
+                    UserInfo.shared.setUserInfo(.token, value: data!["key"] as! String)
+                    
+                    DispatchQueue.main.async {
+                        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
+                        self.view.window?.rootViewController = vc
                     }
+                }else{
+                    self.dismissHUD()
+                    DispatchQueue.main.async {
+                        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
+                        self.view.window?.rootViewController = vc
+                     }
                 }
-                
-
-
-                break
-            case .revoked, .notFound:
-                DispatchQueue.main.async {
-                    let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
-                    self.view.window?.rootViewController = vc
-                 }
-            default:
-                break
             }
         }
+        
+
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        appleIDProvider.getCredentialState(forUserID: UserInfo.shared.appleID) { (credentialState, error) in
+//            print(UserInfo.shared.appleID)
+//            print(UserInfo.shared.username)
+//
+//            switch credentialState {
+//            case .authorized:
+//
+//
+//
+//
+//
+//                break
+//            case .revoked, .notFound:
+//                DispatchQueue.main.async {
+//                    let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginNav")
+//                    self.view.window?.rootViewController = vc
+//                 }
+//            default:
+//                break
+//            }
+//        }
     }
 }

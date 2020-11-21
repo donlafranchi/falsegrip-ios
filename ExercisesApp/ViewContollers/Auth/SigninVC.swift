@@ -65,7 +65,7 @@ extension SigninVC: ASAuthorizationControllerDelegate, ASAuthorizationController
             "apple_id": UserInfo.shared.appleID] as [String : Any]
         
         ApiService.login(params: params) { (success, data) in
-            self.dismissHUD()
+            
             if success {
                 print(data!["key"] as! String)
                 UserInfo.shared.setUserInfo(.token, value: data!["key"] as! String)
@@ -74,6 +74,7 @@ extension SigninVC: ASAuthorizationControllerDelegate, ASAuthorizationController
                     self.view.window?.rootViewController = vc
                 }
             }else{
+                self.dismissHUD()
                 guard let alertVC = self.storyboard!.instantiateViewController(withIdentifier: "SignupAlertVC") as? SignupAlertVC else { return }
                 alertVC.modalPresentationStyle = .custom
                 alertVC.modalTransitionStyle = .crossDissolve
