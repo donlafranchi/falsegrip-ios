@@ -45,10 +45,11 @@ class ApiService: NSObject {
                  if response.response!.statusCode >= 200 && response.response!.statusCode < 300 {
                      completion(true,jsonData)
                  }else{
-                    completion(false,["error":response.response.debugDescription])
+                    completion(false,jsonData)
                  }
-             case .failure(let error):
-                completion(false,["error":error])
+             case .failure( _):
+                let jsonData = JSON(response.data as Any).dictionaryObject
+                completion(false,jsonData)
              }
          }
     }
