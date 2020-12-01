@@ -739,16 +739,16 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="370.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdg-Ve-qnG">
-                                                        <rect key="frame" x="16" y="4" width="42.5" height="19"/>
+                                                        <rect key="frame" x="16" y="4" width="42.5" height="120.5"/>
                                                         <fontDescription key="fontDescription" name="Mulish-ExtraBold" family="Mulish" pointSize="16"/>
                                                         <color key="textColor" name="MainColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-WM-i9S" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="37" width="382" height="317.5"/>
+                                                        <rect key="frame" x="16" y="138.5" width="382" height="216"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="olQ-mV-Kl9" customClass="GrowingTextView" customModule="GrowingTextView">
-                                                                <rect key="frame" x="8" y="8" width="366" height="301.5"/>
+                                                                <rect key="frame" x="8" y="8" width="366" height="200"/>
                                                                 <color key="backgroundColor" name="BackgroundColor"/>
                                                                 <color key="textColor" name="MainColor"/>
                                                                 <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
@@ -4181,10 +4181,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nS8-rJ-UbA" customClass="DropShadowView" customModule="ExercisesApp" customModuleProvider="target">
-                                <rect key="frame" x="16" y="62" width="382" height="51.5"/>
+                                <rect key="frame" x="16" y="62" width="382" height="166"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6As-aP-FyG" customClass="GrowingTextView" customModule="GrowingTextView">
-                                        <rect key="frame" x="8" y="8" width="366" height="35.5"/>
+                                        <rect key="frame" x="8" y="8" width="366" height="150"/>
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                         <color key="textColor" name="MainColor"/>
                                         <fontDescription key="fontDescription" name="Mulish-SemiBold" family="Mulish" pointSize="16"/>
@@ -4265,7 +4265,7 @@
                                                 <rect key="frame" x="0.0" y="10" width="414" height="70"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7bR-5F-EH6" customClass="MFTextField">
-                                                        <rect key="frame" x="20" y="28" width="374" height="34"/>
+                                                        <rect key="frame" x="20" y="29.5" width="374" height="32.5"/>
                                                         <color key="textColor" name="MainColor"/>
                                                         <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -4294,7 +4294,7 @@
                                                 <rect key="frame" x="0.0" y="80" width="414" height="70"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sHd-Wo-cLZ" customClass="MFTextField">
-                                                        <rect key="frame" x="20" y="28" width="187" height="34"/>
+                                                        <rect key="frame" x="20" y="29.5" width="187" height="32.5"/>
                                                         <color key="textColor" name="MainColor"/>
                                                         <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -4339,7 +4339,7 @@
                                                 <rect key="frame" x="0.0" y="150" width="414" height="70"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMF-oO-uWf" customClass="MFTextField">
-                                                        <rect key="frame" x="20" y="28" width="374" height="34"/>
+                                                        <rect key="frame" x="20" y="29.5" width="374" height="32.5"/>
                                                         <color key="textColor" name="MainColor"/>
                                                         <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -4368,7 +4368,7 @@
                                                 <rect key="frame" x="0.0" y="220" width="414" height="70"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bGK-Df-6oZ" customClass="MFTextField">
-                                                        <rect key="frame" x="20" y="28" width="374" height="34"/>
+                                                        <rect key="frame" x="20" y="29.5" width="374" height="32.5"/>
                                                         <color key="textColor" name="MainColor"/>
                                                         <fontDescription key="fontDescription" name="Mulish-Regular" family="Mulish" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -4464,22 +4464,28 @@
     </scenes>
     <designables>
         <designable name="6As-aP-FyG">
-            <size key="intrinsicContentSize" width="10" height="35.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="7bR-5F-EH6">
-            <size key="intrinsicContentSize" width="65.5" height="34"/>
+            <size key="intrinsicContentSize" width="37.5" height="32.310000000000002"/>
+        </designable>
+        <designable name="8tu-ZS-xxH">
+            <size key="intrinsicContentSize" width="10" height="10"/>
+        </designable>
+        <designable name="XAL-Qm-w1T">
+            <size key="intrinsicContentSize" width="366" height="44"/>
         </designable>
         <designable name="bGK-Df-6oZ">
-            <size key="intrinsicContentSize" width="53" height="34"/>
+            <size key="intrinsicContentSize" width="25" height="32.310000000000002"/>
         </designable>
         <designable name="oMF-oO-uWf">
-            <size key="intrinsicContentSize" width="71.5" height="34"/>
+            <size key="intrinsicContentSize" width="43.5" height="32.310000000000002"/>
         </designable>
         <designable name="olQ-mV-Kl9">
-            <size key="intrinsicContentSize" width="10" height="35.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="sHd-Wo-cLZ">
-            <size key="intrinsicContentSize" width="80.5" height="34"/>
+            <size key="intrinsicContentSize" width="52.5" height="32.310000000000002"/>
         </designable>
     </designables>
     <resources>

@@ -87,7 +87,7 @@ extension UIViewController {
         let birthdayDate = dateFormater.date(from: dob)
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: .gregorian)
         let now = Date()
-        let calcAge = calendar.components(.year, from: birthdayDate!, to: now, options: [])
+        let calcAge = calendar.components(.year, from: (birthdayDate)!, to: now, options: [])
         let age = calcAge.year
         return age!
     }

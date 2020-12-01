@@ -35,8 +35,12 @@ class ProfileVC: UIViewController {
         self.nameField.delegate = self
         self.weightField.delegate = self
         self.cityField.delegate = self
-        
-        self.lblAge.text = "\(self.calculateAge(dob: self.profile!.birthday))"
+        if !(self.profile?.birthday.isEmpty)! {
+            self.lblAge.text = "\(self.calculateAge(dob: self.profile!.birthday))"
+        }else{
+            self.lblAge.text = ""
+        }
+       
         self.weightField.text = "\(self.profile!.weight)"
         self.cityField.text = "\(self.profile!.city)"
     }
@@ -92,7 +96,10 @@ class ProfileVC: UIViewController {
             dateformatter.dateFormat = "MM/dd/yyyy"
             self.ageField.text = dateformatter.string(from: datePicker.date)
             self.profile!.birthday = dateformatter.string(from: datePicker.date)
-            self.lblAge.text = "\(self.calculateAge(dob: self.ageField.text!))"
+            
+            if !self.ageField.text!.isEmpty {
+                self.lblAge.text = "\(self.calculateAge(dob: self.ageField.text!))"
+            }           
             
         }
         self.ageField.resignFirstResponder() // 2-5
@@ -115,7 +122,11 @@ extension ProfileVC: UITextFieldDelegate{
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let datePicker = ageField.inputView as! UIDatePicker
-            datePicker.setDate(dateFormatter.date(from: self.profile!.birthday)!, animated: true)
+            
+            if !self.profile!.birthday.isEmpty {
+                datePicker.setDate(dateFormatter.date(from: self.profile!.birthday)!, animated: true)
+            }
+            
         }
 
         if textField == nameField {
